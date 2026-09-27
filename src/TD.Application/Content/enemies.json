@@ -1,0 +1,222 @@
+[
+  {
+    "id": "automaton-scout", "name": "Automaton Scout",
+    "description": "A spindly brass walker with a single lamp-eye. Fast, fragile and always first through the gates.",
+    "movement": "ground", "hp": 55, "armor": 0, "speed": 1.9, "bounty": 6, "coreCarry": 1, "size": 0.28, "threat": 6, "introducedAtLevel": 1, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": -0.2, "fire": 0, "chemical": 0, "force": 0, "temporal": 0 },
+    "immune": [], "abilities": [], "phases": []
+  },
+  {
+    "id": "clockwork-swarm", "name": "Clockwork Swarm",
+    "description": "Palm-sized wind-up beetles released by the hundred. Individually harmless; together they overwhelm single-target guns.",
+    "movement": "ground", "hp": 18, "armor": 0, "speed": 1.7, "bounty": 2, "coreCarry": 1, "size": 0.16, "threat": 2, "introducedAtLevel": 2, "isBoss": false,
+    "resist": { "ballistic": 0.1, "electric": -0.3, "fire": -0.3, "chemical": 0, "force": 0, "temporal": 0 },
+    "immune": [], "abilities": [], "phases": []
+  },
+  {
+    "id": "rivet-rat", "name": "Rivet Rat",
+    "description": "A scuttling scavenger drone that sprints in bursts when it senses open ground.",
+    "movement": "ground", "hp": 40, "armor": 1, "speed": 2.2, "bounty": 5, "coreCarry": 1, "size": 0.2, "threat": 6, "introducedAtLevel": 4, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": 0, "fire": -0.2, "chemical": 0.1, "force": -0.2, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "charge", "params": { "interval": 6, "duration": 1.5, "speedMul": 1.8 } } ],
+    "phases": []
+  },
+  {
+    "id": "steam-golem", "name": "Steam Golem",
+    "description": "A lumbering boiler on legs. Thick plating shrugs off light rounds, and its furnace laughs at flame.",
+    "movement": "ground", "hp": 420, "armor": 6, "speed": 0.8, "bounty": 22, "coreCarry": 2, "size": 0.45, "threat": 30, "introducedAtLevel": 3, "isBoss": false,
+    "resist": { "ballistic": 0.1, "electric": 0, "fire": 0.6, "chemical": -0.2, "force": 0, "temporal": 0 },
+    "immune": [], "abilities": [], "phases": []
+  },
+  {
+    "id": "tesla-wraith", "name": "Tesla Wraith",
+    "description": "A crackling phantom of captured lightning. Immune to electricity and briefly phases out of reality.",
+    "movement": "ground", "hp": 150, "armor": 0, "speed": 1.4, "bounty": 14, "coreCarry": 1, "size": 0.3, "threat": 18, "introducedAtLevel": 11, "isBoss": false,
+    "resist": { "ballistic": 0.3, "electric": 1, "fire": 0, "chemical": 0.2, "force": 0, "temporal": -0.3 },
+    "immune": ["shock", "stun"],
+    "abilities": [ { "kind": "phase", "params": { "interval": 7, "duration": 1.2 } } ],
+    "phases": []
+  },
+  {
+    "id": "brass-juggernaut", "name": "Brass Juggernaut",
+    "description": "Layered armour plates bolted over a piston core. Every quarter of its health lost sheds a plate.",
+    "movement": "ground", "hp": 900, "armor": 14, "speed": 0.6, "bounty": 45, "coreCarry": 3, "size": 0.55, "threat": 70, "introducedAtLevel": 14, "isBoss": false,
+    "resist": { "ballistic": 0.2, "electric": 0.1, "fire": 0.1, "chemical": -0.3, "force": 0.2, "temporal": 0 },
+    "immune": ["stun", "pull"],
+    "abilities": [ { "kind": "armorShed", "params": { "step": 0.25, "armorLoss": 3 } } ],
+    "phases": []
+  },
+  {
+    "id": "smog-phantom", "name": "Smog Phantom",
+    "description": "A shroud of choking soot around a clockwork heart. Invisible to towers unless revealed by a Spotter or flare.",
+    "movement": "ground", "hp": 130, "armor": 1, "speed": 1.5, "bounty": 14, "coreCarry": 1, "size": 0.32, "threat": 18, "introducedAtLevel": 9, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": 0, "fire": -0.2, "chemical": 0.5, "force": 0, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "cloak", "params": {} } ],
+    "phases": []
+  },
+  {
+    "id": "boiler-walker", "name": "Boiler Walker",
+    "description": "An over-pressurised tank on stilts. When destroyed it bursts, scalding nearby towers into a brief shutdown.",
+    "movement": "ground", "hp": 260, "armor": 3, "speed": 1, "bounty": 18, "coreCarry": 1, "size": 0.4, "threat": 22, "introducedAtLevel": 7, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": 0, "fire": 0.4, "chemical": 0, "force": -0.2, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "explodeOnDeath", "params": { "radius": 1.6, "stunTowers": 2.5 } } ],
+    "phases": []
+  },
+  {
+    "id": "gyrocopter", "name": "Gyrocopter",
+    "description": "A twin-rotor scout craft. Flies straight over mazes to the vault; only anti-air capable towers can reach it.",
+    "movement": "air", "hp": 110, "armor": 1, "speed": 1.6, "bounty": 12, "coreCarry": 1, "size": 0.34, "threat": 14, "introducedAtLevel": 6, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": -0.2, "fire": 0, "chemical": 0.3, "force": 0, "temporal": 0 },
+    "immune": [], "abilities": [], "phases": []
+  },
+  {
+    "id": "zeppelin-carrier", "name": "Zeppelin Carrier",
+    "description": "A slow armoured airship that drops Clockwork Swarms as it drifts overhead, and releases more when it falls.",
+    "movement": "air", "hp": 1100, "armor": 5, "speed": 0.5, "bounty": 60, "coreCarry": 3, "size": 0.7, "threat": 85, "introducedAtLevel": 22, "isBoss": false,
+    "resist": { "ballistic": 0.1, "electric": 0, "fire": -0.4, "chemical": 0.2, "force": 0.3, "temporal": 0 },
+    "immune": ["pull", "stun"],
+    "abilities": [
+      { "kind": "spawner", "params": { "interval": 5, "count": 3 }, "spawns": "clockwork-swarm" },
+      { "kind": "splitOnDeath", "params": { "count": 6 }, "spawns": "clockwork-swarm" }
+    ],
+    "phases": []
+  },
+  {
+    "id": "magnet-drone", "name": "Magnet Drone",
+    "description": "A hovering lodestone that bends incoming shells away. Energy and chemical attacks are unaffected.",
+    "movement": "air", "hp": 160, "armor": 2, "speed": 1.3, "bounty": 16, "coreCarry": 1, "size": 0.3, "threat": 20, "introducedAtLevel": 18, "isBoss": false,
+    "resist": { "ballistic": 0.2, "electric": -0.3, "fire": 0, "chemical": 0, "force": 0, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "deflect", "params": { "chance": 0.4 } } ],
+    "phases": []
+  },
+  {
+    "id": "shield-bearer", "name": "Shield Bearer",
+    "description": "Carries an aether projector that wraps nearby allies in a regenerating barrier.",
+    "movement": "ground", "hp": 240, "armor": 4, "speed": 1, "bounty": 20, "coreCarry": 1, "size": 0.38, "threat": 26, "introducedAtLevel": 12, "isBoss": false,
+    "resist": { "ballistic": 0.1, "electric": -0.3, "fire": 0, "chemical": 0, "force": 0, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "shieldAura", "params": { "radius": 1.8, "shield": 60, "interval": 6 } } ],
+    "phases": []
+  },
+  {
+    "id": "mender-automaton", "name": "Mender Automaton",
+    "description": "A field-repair unit with welding arms that patches nearby machines as they march.",
+    "movement": "ground", "hp": 180, "armor": 2, "speed": 1.1, "bounty": 18, "coreCarry": 1, "size": 0.34, "threat": 22, "introducedAtLevel": 10, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": 0, "fire": 0, "chemical": -0.3, "force": 0, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "healAura", "params": { "radius": 1.8, "hps": 14 } } ],
+    "phases": []
+  },
+  {
+    "id": "chimney-stalker", "name": "Chimney Stalker",
+    "description": "A tall soot-belching strider. Its exhaust plume shortens the sight range of nearby towers.",
+    "movement": "ground", "hp": 300, "armor": 3, "speed": 1, "bounty": 22, "coreCarry": 1, "size": 0.4, "threat": 28, "introducedAtLevel": 16, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": 0, "fire": 0.3, "chemical": 0.3, "force": 0, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "smokeScreen", "params": { "radius": 2.2, "rangeMul": 0.65 } } ],
+    "phases": []
+  },
+  {
+    "id": "iron-beetle", "name": "Iron Beetle",
+    "description": "A drilling carapace that periodically burrows underground, untargetable until it surfaces.",
+    "movement": "ground", "hp": 340, "armor": 8, "speed": 0.9, "bounty": 24, "coreCarry": 1, "size": 0.38, "threat": 30, "introducedAtLevel": 20, "isBoss": false,
+    "resist": { "ballistic": 0.2, "electric": 0.2, "fire": 0, "chemical": -0.2, "force": -0.3, "temporal": 0 },
+    "immune": ["slow"],
+    "abilities": [ { "kind": "burrow", "params": { "interval": 8, "duration": 2.5, "speedMul": 1.4 } } ],
+    "phases": []
+  },
+  {
+    "id": "copper-centipede", "name": "Copper Centipede",
+    "description": "A segmented train of copper links. Destroying the head scatters its segments, each crawling on alone.",
+    "movement": "ground", "hp": 520, "armor": 4, "speed": 1, "bounty": 26, "coreCarry": 1, "size": 0.45, "threat": 40, "introducedAtLevel": 24, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": -0.2, "fire": 0, "chemical": 0, "force": 0.2, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "splitOnDeath", "params": { "count": 4 }, "spawns": "centipede-segment" } ],
+    "phases": []
+  },
+  {
+    "id": "centipede-segment", "name": "Centipede Segment",
+    "description": "A severed copper link, still twitching toward the vault.",
+    "movement": "ground", "hp": 90, "armor": 3, "speed": 1.3, "bounty": 4, "coreCarry": 1, "size": 0.24, "threat": 0, "introducedAtLevel": 999, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": -0.2, "fire": 0, "chemical": 0, "force": 0.2, "temporal": 0 },
+    "immune": [], "abilities": [], "phases": []
+  },
+  {
+    "id": "aether-leech", "name": "Aether Leech",
+    "description": "A glowing parasite that siphons power from nearby towers, slowing their rate of fire.",
+    "movement": "air", "hp": 200, "armor": 1, "speed": 1.2, "bounty": 20, "coreCarry": 1, "size": 0.3, "threat": 26, "introducedAtLevel": 28, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": 0.5, "fire": 0, "chemical": -0.2, "force": 0, "temporal": -0.3 },
+    "immune": [],
+    "abilities": [ { "kind": "drain", "params": { "radius": 2, "rateMul": 0.6 } } ],
+    "phases": []
+  },
+  {
+    "id": "sapper", "name": "Sapper",
+    "description": "A saboteur automaton that plants spanners in the works, jamming any tower it passes.",
+    "movement": "ground", "hp": 210, "armor": 2, "speed": 1.3, "bounty": 20, "coreCarry": 1, "size": 0.32, "threat": 26, "introducedAtLevel": 32, "isBoss": false,
+    "resist": { "ballistic": 0, "electric": 0, "fire": -0.2, "chemical": 0, "force": 0, "temporal": 0 },
+    "immune": [],
+    "abilities": [ { "kind": "sabotage", "params": { "radius": 1.3, "duration": 3, "interval": 5 } } ],
+    "phases": []
+  },
+  {
+    "id": "vapor-djinn", "name": "Vapor Djinn",
+    "description": "A spirit of superheated steam bound in a brass lamp. Regenerates rapidly and shrugs off physical harm.",
+    "movement": "air", "hp": 380, "armor": 0, "speed": 1.2, "bounty": 30, "coreCarry": 1, "size": 0.4, "threat": 40, "introducedAtLevel": 36, "isBoss": false,
+    "resist": { "ballistic": 0.5, "electric": 0, "fire": 0.8, "chemical": -0.3, "force": 0.3, "temporal": -0.2 },
+    "immune": ["burn"],
+    "abilities": [ { "kind": "regenerate", "params": { "hps": 18 } } ],
+    "phases": []
+  },
+  {
+    "id": "pressure-titan", "name": "Pressure Titan",
+    "description": "A walking pressure vessel the size of a foundry. It vents scalding steam and grows more dangerous as its hull cracks.",
+    "movement": "ground", "hp": 9000, "armor": 10, "speed": 0.45, "bounty": 400, "coreCarry": 5, "size": 0.9, "threat": 500, "introducedAtLevel": 10, "isBoss": true,
+    "resist": { "ballistic": 0.1, "electric": 0.1, "fire": 0.5, "chemical": -0.1, "force": 0.2, "temporal": 0.2 },
+    "immune": ["stun", "pull", "stasis"],
+    "abilities": [ { "kind": "sabotage", "params": { "radius": 2, "duration": 2, "interval": 10 } } ],
+    "phases": [
+      { "hpBelow": 0.6, "name": "Hull Breach", "speedMul": 1.3, "armorAdd": -3,
+        "abilities": [ { "kind": "spawner", "params": { "interval": 6, "count": 2 }, "spawns": "boiler-walker" } ] },
+      { "hpBelow": 0.25, "name": "Critical Pressure", "speedMul": 1.6, "armorAdd": -3,
+        "abilities": [ { "kind": "regenerate", "params": { "hps": 40 } } ] }
+    ]
+  },
+  {
+    "id": "ironclad-behemoth", "name": "Ironclad Behemoth",
+    "description": "A rolling fortress of riveted iron with a Tesla dome. It shields its escorts and fires disabling pulses.",
+    "movement": "ground", "hp": 22000, "armor": 18, "speed": 0.4, "bounty": 900, "coreCarry": 8, "size": 1, "threat": 1200, "introducedAtLevel": 40, "isBoss": true,
+    "resist": { "ballistic": 0.3, "electric": 0.3, "fire": 0.2, "chemical": -0.2, "force": 0.3, "temporal": 0 },
+    "immune": ["stun", "pull", "stasis", "slow"],
+    "abilities": [ { "kind": "shieldAura", "params": { "radius": 3, "shield": 200, "interval": 8 } } ],
+    "phases": [
+      { "hpBelow": 0.66, "name": "Dome Overload", "speedMul": 1, "armorAdd": 0,
+        "abilities": [ { "kind": "sabotage", "params": { "radius": 3, "duration": 3, "interval": 9 } } ] },
+      { "hpBelow": 0.33, "name": "Plates Buckling", "speedMul": 1.5, "armorAdd": -8,
+        "abilities": [ { "kind": "spawner", "params": { "interval": 5, "count": 2 }, "spawns": "shield-bearer" } ] }
+    ]
+  },
+  {
+    "id": "grand-orrery", "name": "The Grand Orrery",
+    "description": "A colossal flying clockwork cosmos. Its rings bend time itself: it phases, summons, and rewinds its own damage.",
+    "movement": "air", "hp": 60000, "armor": 12, "speed": 0.35, "bounty": 2500, "coreCarry": 12, "size": 1.2, "threat": 3000, "introducedAtLevel": 70, "isBoss": true,
+    "resist": { "ballistic": 0.2, "electric": 0.2, "fire": 0.2, "chemical": 0.2, "force": 0.2, "temporal": 0.6 },
+    "immune": ["stun", "pull", "stasis", "slow"],
+    "abilities": [
+      { "kind": "phase", "params": { "interval": 12, "duration": 2 } },
+      { "kind": "drain", "params": { "radius": 3, "rateMul": 0.75 } }
+    ],
+    "phases": [
+      { "hpBelow": 0.75, "name": "Outer Ring", "speedMul": 1, "armorAdd": 0,
+        "abilities": [ { "kind": "spawner", "params": { "interval": 7, "count": 2 }, "spawns": "magnet-drone" } ] },
+      { "hpBelow": 0.5, "name": "Inner Ring", "speedMul": 1.2, "armorAdd": 0,
+        "abilities": [ { "kind": "regenerate", "params": { "hps": 120 } } ] },
+      { "hpBelow": 0.2, "name": "Singular Heart", "speedMul": 1.5, "armorAdd": -6,
+        "abilities": [ { "kind": "spawner", "params": { "interval": 4, "count": 2 }, "spawns": "vapor-djinn" } ] }
+    ]
+  }
+]

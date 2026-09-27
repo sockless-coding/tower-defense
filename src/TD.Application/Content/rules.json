@@ -1,0 +1,17 @@
+{
+  "tickRate": 30,
+  "maxGameSpeed": 3,
+  "sellRefund": 0.75,
+  "interestRate": 0.02,
+  "interestCap": 60,
+  "minArmorDamageFraction": 0.15,
+  "eliteHpMul": 2.2,
+  "eliteArmorAdd": 3,
+  "eliteSpeedMul": 1.1,
+  "eliteBountyMul": 2.5,
+  "waveGap": 12,
+  "earlyCallBonusPerSecond": 1.5,
+  "coreReturnSpeed": 0.9,
+  "coreDropPickupRadius": 0.6,
+  "minSecondsPerWave": 8
+}

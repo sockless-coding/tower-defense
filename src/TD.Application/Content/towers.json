@@ -1,0 +1,5128 @@
+[
+ {
+  "id": "rivet-cannon",
+  "name": "Rivet Cannon",
+  "category": "ballistic",
+  "description": "A squat brass cannon that hammers red-hot rivets into anything on the road.",
+  "flavor": "Every foundry's first line of defence, and usually its last.",
+  "cost": 100,
+  "attack": "projectile",
+  "damageType": "ballistic",
+  "targets": "ground",
+  "stats": {
+   "damage": 20,
+   "rate": 1.0,
+   "range": 3.5,
+   "projectileSpeed": 10
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "rivet-cannon.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Double Barrel",
+    "description": "A second barrel doubles the clatter. +60% fire rate.",
+    "cost": 80,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "rivet-cannon.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Heavy Rivets",
+    "description": "Hardened slugs. +70% damage, ignores 3 armour.",
+    "cost": 80,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.7
+     },
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "rivet-cannon.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Shrapnel Rivets",
+    "description": "Rivets burst on impact, spraying fragments.",
+    "cost": 140,
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "add",
+      "value": 0.8
+     },
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "rivet-cannon.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Armour-Piercing Bolts",
+    "description": "Tungsten-tipped bolts punch through plate and the enemy behind it.",
+    "cost": 140,
+    "mods": [
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 8
+     },
+     {
+      "stat": "pierce",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "rivet-cannon.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Dreadnought Battery",
+    "description": "Three barrels fire in unison; every fifth volley is a thunderous broadside.",
+    "cost": 300,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "splitShot",
+      "name": "Triple Barrels",
+      "description": "Fires at three targets at once.",
+      "params": {
+       "count": 3
+      }
+     },
+     {
+      "kind": "everyNth",
+      "name": "Broadside",
+      "description": "Every fifth volley deals quadruple damage.",
+      "params": {
+       "n": 5,
+       "damageMul": 4
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.rivet-cannon.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "spotter-tower",
+    "radius": 3,
+    "name": "Ranged Spotting",
+    "description": "A nearby Spotter walks the rivets onto target: +15% range.",
+    "mods": [
+     {
+      "stat": "range",
+      "op": "mul",
+      "value": 1.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 1,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "gatling-nest",
+  "name": "Gatling Nest",
+  "category": "ballistic",
+  "description": "A crank-driven rotary gun on a swivel mount. Tracks both ground and air targets.",
+  "flavor": "Six barrels, one opinion.",
+  "cost": 140,
+  "attack": "projectile",
+  "damageType": "ballistic",
+  "targets": "both",
+  "stats": {
+   "damage": 6,
+   "rate": 5,
+   "range": 3.0,
+   "projectileSpeed": 14
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "gatling-nest.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Extended Belt",
+    "description": "Longer ammunition belts. +40% fire rate.",
+    "cost": 110,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gatling-nest.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Incendiary Rounds",
+    "description": "Phosphor-tipped bullets set targets alight.",
+    "cost": 110,
+    "mods": [
+     {
+      "stat": "burnDps",
+      "op": "add",
+      "value": 8
+     },
+     {
+      "stat": "burnDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gatling-nest.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Spin-Up Motor",
+    "description": "A steam motor periodically spins the barrels to a blur.",
+    "cost": 195,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "overcharge",
+      "name": "Spin-Up",
+      "description": "Every 10s, doubles fire rate for 4s.",
+      "params": {
+       "interval": 10,
+       "duration": 4,
+       "rateMul": 2,
+       "damageMul": 1
+      }
+     }
+    ]
+   },
+   {
+    "id": "gatling-nest.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Tungsten Cores",
+    "description": "Dense cores pierce plating. +30% damage, ignores 4 armour.",
+    "cost": 195,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.3
+     },
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gatling-nest.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Brass Hurricane",
+    "description": "A twin-mounted storm of lead that finds weak points.",
+    "cost": 420,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.8
+     },
+     {
+      "stat": "critChance",
+      "op": "add",
+      "value": 0.15
+     },
+     {
+      "stat": "critMul",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "splitShot",
+      "name": "Twin Mount",
+      "description": "Engages two targets simultaneously.",
+      "params": {
+       "count": 2
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.gatling-nest.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "steam-pressure-booster",
+    "radius": 2.5,
+    "name": "Overpressure",
+    "description": "Booster steam drives the crank harder: +10% fire rate.",
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.1
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 1,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "railgun-turret",
+  "name": "Railgun Turret",
+  "category": "ballistic",
+  "description": "Magnetic rails fling a steel slug at hypersonic speed in a perfectly straight line.",
+  "flavor": "It does not miss. It merely has not fired yet.",
+  "cost": 320,
+  "attack": "hitscan",
+  "damageType": "ballistic",
+  "targets": "both",
+  "stats": {
+   "damage": 180,
+   "rate": 0.3,
+   "range": 7,
+   "pierce": 1
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "railgun-turret.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Capacitor Bank",
+    "description": "Faster recharge. +50% fire rate.",
+    "cost": 255,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "railgun-turret.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Magnetic Accelerator",
+    "description": "Longer rails. +60% damage.",
+    "cost": 255,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "railgun-turret.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Overpenetration",
+    "description": "Slugs pass through four more enemies.",
+    "cost": 450,
+    "mods": [
+     {
+      "stat": "pierce",
+      "op": "add",
+      "value": 4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "railgun-turret.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Weak-Point Scanner",
+    "description": "30% chance to strike a weak point for triple damage.",
+    "cost": 450,
+    "mods": [
+     {
+      "stat": "critChance",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "critMul",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "railgun-turret.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Orbital Rail",
+    "description": "Relays targeting to an orbital mass driver that periodically obliterates the strongest foe.",
+    "cost": 960,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "orbital",
+      "name": "Orbital Strike",
+      "description": "Every 12s, a 3000 damage strike hits the toughest enemy in range.",
+      "params": {
+       "interval": 12,
+       "radius": 1.5,
+       "damage": 3000
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.railgun-turret.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "signal-relay",
+    "radius": 3,
+    "name": "Fire Solution",
+    "description": "Relay telemetry adds +20% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 16,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "mortar-tower",
+  "name": "Mortar Tower",
+  "category": "ballistic",
+  "description": "A stubby siege mortar that lobs explosive shells over walls. Cannot hit targets that are too close.",
+  "flavor": "What goes up comes down on your enemies.",
+  "cost": 180,
+  "attack": "lob",
+  "damageType": "ballistic",
+  "targets": "ground",
+  "stats": {
+   "damage": 55,
+   "rate": 0.45,
+   "range": 6,
+   "minRange": 1.5,
+   "splash": 1.2,
+   "projectileSpeed": 5
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "mortar-tower.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Cluster Shells",
+    "description": "Shells split into bomblets. +40% blast radius.",
+    "cost": 145,
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "mul",
+      "value": 1.4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "mortar-tower.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "High Explosive",
+    "description": "Stronger charges. +60% damage.",
+    "cost": 145,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "mortar-tower.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Incendiary Payload",
+    "description": "Shells leave burning pools on the road.",
+    "cost": 250,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Burning Crater",
+      "description": "Impacts burn for 3s.",
+      "params": {
+       "duration": 3,
+       "radius": 1,
+       "dps": 20,
+       "slowPct": 0
+      }
+     }
+    ]
+   },
+   {
+    "id": "mortar-tower.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Concussion Charge",
+    "description": "Blast waves have a 30% chance to stun.",
+    "cost": 250,
+    "mods": [
+     {
+      "stat": "stunChance",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "stunDuration",
+      "op": "add",
+      "value": 0.8
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "mortar-tower.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Siege Barrage",
+    "description": "Four tubes fire a creeping barrage.",
+    "cost": 540,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.3
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "splitShot",
+      "name": "Barrage",
+      "description": "Fires four shells at different targets.",
+      "params": {
+       "count": 4
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.mortar-tower.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "spotter-tower",
+    "radius": 3,
+    "name": "Forward Observer",
+    "description": "Spotters correct aim: +25% blast radius.",
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "mul",
+      "value": 1.25
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 5,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "flak-battery",
+  "name": "Flak Battery",
+  "category": "ballistic",
+  "description": "Twin anti-air guns that fill the sky with timed bursts. Cannot engage ground targets.",
+  "flavor": "Airships are just very large targets.",
+  "cost": 150,
+  "attack": "projectile",
+  "damageType": "ballistic",
+  "targets": "air",
+  "stats": {
+   "damage": 26,
+   "rate": 1.4,
+   "range": 4.5,
+   "splash": 0.9,
+   "projectileSpeed": 12
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "flak-battery.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Proximity Fuses",
+    "description": "Shells burst nearer their target. +50% blast radius.",
+    "cost": 120,
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "flak-battery.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Twin Barrels",
+    "description": "+60% fire rate.",
+    "cost": 120,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "flak-battery.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Chaff Shells",
+    "description": "Metal chaff fouls rotors: slows air units by 30%.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "flak-battery.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Armour-Rending Flak",
+    "description": "+30% damage, ignores 5 armour.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.3
+     },
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "flak-battery.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Skyfall Curtain",
+    "description": "Periodically fills the whole sky around it with a wall of flak.",
+    "cost": 450,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "mul",
+      "value": 1.2
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "periodicPulse",
+      "name": "Flak Curtain",
+      "description": "Every 6s, deals 250 damage to all air units within 5 tiles.",
+      "params": {
+       "interval": 6,
+       "radius": 5,
+       "damage": 250,
+       "stunDuration": 0,
+       "slowPct": 0,
+       "slowDuration": 0
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.flak-battery.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "spotter-tower",
+    "radius": 3,
+    "name": "Sky Watch",
+    "description": "+20% damage while a Spotter is near.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 6,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "harpoon-launcher",
+  "name": "Harpoon Launcher",
+  "category": "ballistic",
+  "description": "A whaling gun repurposed for machines. Harpoons drag targets back down the road.",
+  "flavor": "Reel them in. Then reel them in again.",
+  "cost": 200,
+  "attack": "projectile",
+  "damageType": "ballistic",
+  "targets": "ground",
+  "stats": {
+   "damage": 45,
+   "rate": 0.6,
+   "range": 4,
+   "pullDistance": 0.8,
+   "projectileSpeed": 9
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "harpoon-launcher.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Barbed Heads",
+    "description": "Barbs tear open plating: targets take +20% damage for 3s.",
+    "cost": 160,
+    "mods": [
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.2
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "harpoon-launcher.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Winch Motor",
+    "description": "A steam winch doubles the pull distance.",
+    "cost": 160,
+    "mods": [
+     {
+      "stat": "pullDistance",
+      "op": "add",
+      "value": 0.8
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "harpoon-launcher.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Chain Harpoon",
+    "description": "Harpoons skewer two more enemies.",
+    "cost": 280,
+    "mods": [
+     {
+      "stat": "pierce",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "harpoon-launcher.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Anchor Pin",
+    "description": "Harpoons pin targets in place for 1.2s.",
+    "cost": 280,
+    "mods": [
+     {
+      "stat": "stunChance",
+      "op": "add",
+      "value": 1
+     },
+     {
+      "stat": "stunDuration",
+      "op": "add",
+      "value": 1.2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "harpoon-launcher.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Leviathan Reel",
+    "description": "A colossal winch periodically hauls every nearby enemy backwards.",
+    "cost": 600,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "pull",
+      "name": "Leviathan Reel",
+      "description": "Every 8s, drags all enemies within 3 tiles back 3 tiles.",
+      "params": {
+       "interval": 8,
+       "distance": 3,
+       "radius": 3
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.harpoon-launcher.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "mortar-tower",
+    "radius": 3,
+    "name": "Kill Zone",
+    "description": "Harpooned clusters are perfect mortar targets: +15% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 19,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "tesla-coil",
+  "name": "Tesla Coil",
+  "category": "electrical",
+  "description": "A crackling copper coil that arcs lightning between enemies.",
+  "flavor": "Mr. Tesla sends his regards.",
+  "cost": 160,
+  "attack": "chain",
+  "damageType": "electric",
+  "targets": "both",
+  "stats": {
+   "damage": 16,
+   "rate": 0.8,
+   "range": 3.2,
+   "chains": 3,
+   "chainRange": 1.8,
+   "chainFalloff": 0.85
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "tesla-coil.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Longer Chains",
+    "description": "Arcs leap to three more targets and further.",
+    "cost": 130,
+    "mods": [
+     {
+      "stat": "chains",
+      "op": "add",
+      "value": 3
+     },
+     {
+      "stat": "chainRange",
+      "op": "add",
+      "value": 0.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "tesla-coil.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "High Voltage",
+    "description": "+60% damage.",
+    "cost": 130,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "tesla-coil.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Overload Mode",
+    "description": "Every fifth discharge overloads for quadruple damage and a brief stun.",
+    "cost": 225,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "everyNth",
+      "name": "Overload",
+      "description": "Every 5th bolt deals 4x damage and stuns for 0.5s.",
+      "params": {
+       "n": 5,
+       "damageMul": 4,
+       "stunDuration": 0.5
+      }
+     }
+    ]
+   },
+   {
+    "id": "tesla-coil.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "EMP Bursts",
+    "description": "Periodically releases an electromagnetic pulse.",
+    "cost": 225,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "periodicPulse",
+      "name": "EMP Burst",
+      "description": "Every 6s, deals 40 damage and stuns everything within 2.5 tiles for 1s.",
+      "params": {
+       "interval": 6,
+       "radius": 2.5,
+       "damage": 40,
+       "stunDuration": 1,
+       "slowPct": 0,
+       "slowDuration": 0
+      }
+     }
+    ]
+   },
+   {
+    "id": "tesla-coil.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Thunder God Protocol",
+    "description": "Calls down map-wide lightning strikes.",
+    "cost": 480,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.3
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "mapStrike",
+      "name": "Thunder God Protocol",
+      "description": "Every 8s, six lightning bolts strike random enemies anywhere on the map.",
+      "params": {
+       "interval": 8,
+       "strikes": 6,
+       "damage": 220,
+       "stunDuration": 0.6
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.tesla-coil.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "acid-sprayer",
+    "radius": 2.5,
+    "name": "Electrolysis",
+    "description": "Acid-soaked targets conduct better: +20% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   },
+   {
+    "partner": "category:electrical",
+    "radius": 2,
+    "name": "Grid Coupling",
+    "description": "Adjacent electrical towers share load: +1 chain.",
+    "mods": [
+     {
+      "stat": "chains",
+      "op": "add",
+      "value": 1
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 3,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "arc-tower",
+  "name": "Arc Tower",
+  "category": "electrical",
+  "description": "A pair of carbon electrodes that sustain a continuous arc on one target, growing hotter the longer it holds.",
+  "flavor": "Hold still. This will only hurt forever.",
+  "cost": 190,
+  "attack": "beam",
+  "damageType": "electric",
+  "targets": "both",
+  "stats": {
+   "damage": 3,
+   "rate": 10,
+   "range": 3,
+   "beamRamp": 0.5,
+   "beamRampMax": 3
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "arc-tower.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Arc Splitter",
+    "description": "The arc forks to a second target at 60% strength.",
+    "cost": 150,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "prismSplit",
+      "name": "Forked Arc",
+      "description": "Beam splits to 1 extra target at 60% damage.",
+      "params": {
+       "count": 1,
+       "damageFraction": 0.6
+      }
+     }
+    ]
+   },
+   {
+    "id": "arc-tower.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Ramping Arc",
+    "description": "Heats up twice as fast, to a higher peak.",
+    "cost": 150,
+    "mods": [
+     {
+      "stat": "beamRamp",
+      "op": "add",
+      "value": 0.5
+     },
+     {
+      "stat": "beamRampMax",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "arc-tower.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Galvanic Weld",
+    "description": "The arc welds joints stiff: slows the target by 25%.",
+    "cost": 265,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.25
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 0.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "arc-tower.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Plasma Core",
+    "description": "+50% damage, ignores 4 armour.",
+    "cost": 265,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     },
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "arc-tower.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Voltaic Lance",
+    "description": "A blinding lance of plasma that splinters across the battlefield.",
+    "cost": 570,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 2
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "prismSplit",
+      "name": "Voltaic Splinters",
+      "description": "Beam splits to 4 extra targets at 70% damage.",
+      "params": {
+       "count": 4,
+       "damageFraction": 0.7
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.arc-tower.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "amplifier-beacon",
+    "radius": 2.5,
+    "name": "Resonance",
+    "description": "Amplified arcs ramp 30% faster.",
+    "mods": [
+     {
+      "stat": "beamRamp",
+      "op": "mul",
+      "value": 1.3
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 8,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "storm-generator",
+  "name": "Storm Generator",
+  "category": "electrical",
+  "description": "A copper dome that brews a miniature thunderstorm, zapping everything nearby in pulses.",
+  "flavor": "Forecast: overcast with a chance of annihilation.",
+  "cost": 260,
+  "attack": "pulse",
+  "damageType": "electric",
+  "targets": "both",
+  "stats": {
+   "damage": 35,
+   "rate": 0.5,
+   "range": 2.5,
+   "shockChance": 0.2,
+   "stunDuration": 0.4
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "storm-generator.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Cloud Seeding",
+    "description": "The storm spreads 0.8 tiles further.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 0.8
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "storm-generator.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Supercell",
+    "description": "+70% damage.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.7
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "storm-generator.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Static Field",
+    "description": "Lingering static slows enemies by 30%.",
+    "cost": 365,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "storm-generator.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Ball Lightning",
+    "description": "Pulses leave drifting ball lightning.",
+    "cost": 365,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Ball Lightning",
+      "description": "Leaves 2s electric fields dealing 30 dps.",
+      "params": {
+       "duration": 2,
+       "radius": 0.8,
+       "dps": 30,
+       "slowPct": 0
+      }
+     }
+    ]
+   },
+   {
+    "id": "storm-generator.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Tempest Engine",
+    "description": "The storm breaks loose across the map.",
+    "cost": 780,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "mapStrike",
+      "name": "Tempest",
+      "description": "Every 5s, three 300-damage bolts strike random enemies.",
+      "params": {
+       "interval": 5,
+       "strikes": 3,
+       "damage": 300,
+       "stunDuration": 0.3
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.storm-generator.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "tesla-coil",
+    "radius": 3,
+    "name": "Lightning Rod",
+    "description": "Tesla coils ground the storm: +20% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 25,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "galvanic-mine-layer",
+  "name": "Galvanic Mine Layer",
+  "category": "electrical",
+  "description": "Scatters voltaic mines onto nearby roads that detonate under passing feet.",
+  "flavor": "Watch your step. Actually, don't bother.",
+  "cost": 170,
+  "attack": "mine",
+  "damageType": "electric",
+  "targets": "ground",
+  "stats": {
+   "damage": 90,
+   "rate": 0.4,
+   "range": 2.5,
+   "splash": 0.9,
+   "mineCount": 6
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "galvanic-mine-layer.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Rapid Deployment",
+    "description": "+60% laying speed and 4 more mines.",
+    "cost": 135,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.6
+     },
+     {
+      "stat": "mineCount",
+      "op": "add",
+      "value": 4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "galvanic-mine-layer.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Heavy Charges",
+    "description": "+70% damage.",
+    "cost": 135,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.7
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "galvanic-mine-layer.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Shock Mines",
+    "description": "Detonations have a 60% chance to stun for 1s.",
+    "cost": 240,
+    "mods": [
+     {
+      "stat": "stunChance",
+      "op": "add",
+      "value": 0.6
+     },
+     {
+      "stat": "stunDuration",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "galvanic-mine-layer.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Chain Detonation",
+    "description": "Blasts arc to two nearby enemies.",
+    "cost": 240,
+    "mods": [
+     {
+      "stat": "chains",
+      "op": "add",
+      "value": 2
+     },
+     {
+      "stat": "chainRange",
+      "op": "add",
+      "value": 1.5
+     },
+     {
+      "stat": "chainFalloff",
+      "op": "add",
+      "value": 0.7
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "galvanic-mine-layer.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Minefield Matrix",
+    "description": "Carpets the road with overlapping charges.",
+    "cost": 510,
+    "mods": [
+     {
+      "stat": "mineCount",
+      "op": "add",
+      "value": 10
+     },
+     {
+      "stat": "splash",
+      "op": "mul",
+      "value": 1.5
+     },
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.galvanic-mine-layer.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "clockwork-snare",
+    "radius": 3,
+    "name": "Snared",
+    "description": "Slowed enemies linger on mines: +15% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 14,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "incinerator",
+  "name": "Incinerator",
+  "category": "flame",
+  "description": "A pressurised flamethrower that bathes the road in a cone of burning oil.",
+  "flavor": "Warmth for the whole family.",
+  "cost": 150,
+  "attack": "cone",
+  "damageType": "fire",
+  "targets": "ground",
+  "stats": {
+   "damage": 4,
+   "rate": 8,
+   "range": 2.2,
+   "coneAngle": 50,
+   "burnDps": 10,
+   "burnDuration": 2
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "incinerator.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Wide Nozzle",
+    "description": "Cone widens by 30 degrees.",
+    "cost": 120,
+    "mods": [
+     {
+      "stat": "coneAngle",
+      "op": "add",
+      "value": 30
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "incinerator.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Pressurised Fuel",
+    "description": "+0.8 range and +30% damage.",
+    "cost": 120,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 0.8
+     },
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "incinerator.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Sticky Fuel",
+    "description": "Burns twice as hot and 2s longer.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "burnDps",
+      "op": "mul",
+      "value": 2
+     },
+     {
+      "stat": "burnDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "incinerator.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Blue Flame",
+    "description": "+40% damage, ignores 6 armour.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.4
+     },
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "incinerator.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Dragon's Breath",
+    "description": "A roaring wall of fire that leaves the road ablaze.",
+    "cost": 450,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.8
+     },
+     {
+      "stat": "coneAngle",
+      "op": "add",
+      "value": 40
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Scorched Earth",
+      "description": "Leaves burning ground (40 dps for 3s).",
+      "params": {
+       "duration": 3,
+       "radius": 1.2,
+       "dps": 40,
+       "slowPct": 0
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.incinerator.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "steam-pressure-booster",
+    "radius": 2.5,
+    "name": "Forced Draft",
+    "description": "+20% range.",
+    "mods": [
+     {
+      "stat": "range",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 4,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "furnace-tower",
+  "name": "Furnace Tower",
+  "category": "flame",
+  "description": "A blast furnace that periodically exhales a ring of searing heat.",
+  "flavor": "Stoked day and night by a very enthusiastic automaton.",
+  "cost": 200,
+  "attack": "pulse",
+  "damageType": "fire",
+  "targets": "ground",
+  "stats": {
+   "damage": 30,
+   "rate": 0.7,
+   "range": 2,
+   "burnDps": 15,
+   "burnDuration": 3
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "furnace-tower.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Bellows",
+    "description": "+50% pulse rate.",
+    "cost": 160,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "furnace-tower.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Crucible Heat",
+    "description": "+80% burn damage.",
+    "cost": 160,
+    "mods": [
+     {
+      "stat": "burnDps",
+      "op": "mul",
+      "value": 1.8
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "furnace-tower.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Molten Slag",
+    "description": "Slag clogs joints: slows by 30%.",
+    "cost": 280,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "furnace-tower.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Heat Shimmer",
+    "description": "Heat-weakened metal takes +20% damage.",
+    "cost": 280,
+    "mods": [
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.2
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "furnace-tower.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Heart of the Forge",
+    "description": "Periodically erupts with a devastating firestorm.",
+    "cost": 600,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "periodicPulse",
+      "name": "Forge Eruption",
+      "description": "Every 7s, deals 400 fire damage within 3 tiles.",
+      "params": {
+       "interval": 7,
+       "radius": 3,
+       "damage": 400,
+       "stunDuration": 0,
+       "slowPct": 0,
+       "slowDuration": 0
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.furnace-tower.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "gear-forge",
+    "radius": 2,
+    "name": "Shared Coal",
+    "description": "+15% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 12,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "napalm-projector",
+  "name": "Napalm Projector",
+  "category": "flame",
+  "description": "Lobs canisters of jellied fire that splash and keep burning.",
+  "flavor": "Sticks to everything. Especially regret.",
+  "cost": 230,
+  "attack": "lob",
+  "damageType": "fire",
+  "targets": "ground",
+  "stats": {
+   "damage": 30,
+   "rate": 0.5,
+   "range": 5,
+   "splash": 1,
+   "projectileSpeed": 5
+  },
+  "abilities": [
+   {
+    "kind": "lingeringGround",
+    "name": "Napalm Pool",
+    "description": "Impacts burn for 4s at 18 dps.",
+    "params": {
+     "duration": 4,
+     "radius": 1,
+     "dps": 18,
+     "slowPct": 0
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "id": "napalm-projector.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Extended Tanks",
+    "description": "Fires burn far longer.",
+    "cost": 185,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Long Burn",
+      "description": "Pools burn for 7s at 18 dps.",
+      "params": {
+       "duration": 7,
+       "radius": 1,
+       "dps": 18,
+       "slowPct": 0
+      }
+     }
+    ]
+   },
+   {
+    "id": "napalm-projector.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Accelerant",
+    "description": "Targets burn for 20 dps over 3s.",
+    "cost": 185,
+    "mods": [
+     {
+      "stat": "burnDps",
+      "op": "add",
+      "value": 20
+     },
+     {
+      "stat": "burnDuration",
+      "op": "add",
+      "value": 3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "napalm-projector.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Wildfire",
+    "description": "Burning enemies explode on death.",
+    "cost": 320,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "onKillExplode",
+      "name": "Wildfire",
+      "description": "Kills explode for 40% of max HP within 1.2 tiles.",
+      "params": {
+       "radius": 1.2,
+       "damageFraction": 0.4
+      }
+     }
+    ]
+   },
+   {
+    "id": "napalm-projector.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Firestorm Shells",
+    "description": "Fires three canisters at once.",
+    "cost": 320,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "splitShot",
+      "name": "Firestorm",
+      "description": "Three canisters per volley.",
+      "params": {
+       "count": 3
+      }
+     }
+    ]
+   },
+   {
+    "id": "napalm-projector.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Inferno Carpet",
+    "description": "Blankets the road in an unending sea of fire.",
+    "cost": 690,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Inferno",
+      "description": "Pools burn for 8s at 60 dps over a wide area.",
+      "params": {
+       "duration": 8,
+       "radius": 1.8,
+       "dps": 60,
+       "slowPct": 0
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.napalm-projector.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "category:chemical",
+    "radius": 2.5,
+    "name": "Volatile Mix",
+    "description": "+20% splash radius.",
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 18,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "boiler-bomb",
+  "name": "Boiler Bomb",
+  "category": "flame",
+  "description": "Catapults scrap boilers primed to rupture, blasting enemies with steam and shrapnel.",
+  "flavor": "Health and safety has left the building.",
+  "cost": 260,
+  "attack": "lob",
+  "damageType": "fire",
+  "targets": "ground",
+  "stats": {
+   "damage": 160,
+   "rate": 0.25,
+   "range": 4.5,
+   "splash": 1.6,
+   "knockback": 0.5,
+   "projectileSpeed": 4
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "boiler-bomb.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Rivet Shrapnel",
+    "description": "+20% damage and +30% blast radius.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     },
+     {
+      "stat": "splash",
+      "op": "mul",
+      "value": 1.3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "boiler-bomb.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Scalding Steam",
+    "description": "Blasts scald for 25 dps over 3s.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "burnDps",
+      "op": "add",
+      "value": 25
+     },
+     {
+      "stat": "burnDuration",
+      "op": "add",
+      "value": 3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "boiler-bomb.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Pressure Wave",
+    "description": "Blasts hurl enemies a full tile further back.",
+    "cost": 365,
+    "mods": [
+     {
+      "stat": "knockback",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "boiler-bomb.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Quick Fuse",
+    "description": "+80% fire rate.",
+    "cost": 365,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.8
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "boiler-bomb.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Grand Boiler Rupture",
+    "description": "Every third boiler is a locomotive engine.",
+    "cost": 780,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "everyNth",
+      "name": "Locomotive",
+      "description": "Every 3rd bomb deals 5x damage in a 3-tile blast.",
+      "params": {
+       "n": 3,
+       "damageMul": 5,
+       "splash": 3
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.boiler-bomb.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "harpoon-launcher",
+    "radius": 3,
+    "name": "Reel and Ruin",
+    "description": "+20% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 27,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "acid-sprayer",
+  "name": "Acid Sprayer",
+  "category": "chemical",
+  "description": "Hoses a fine mist of vitriol that eats through armour plating.",
+  "flavor": "Rust never sleeps. We help it along.",
+  "cost": 140,
+  "attack": "cone",
+  "damageType": "chemical",
+  "targets": "ground",
+  "stats": {
+   "damage": 3,
+   "rate": 6,
+   "range": 2.4,
+   "coneAngle": 40,
+   "corrodePerHit": 0.3,
+   "corrodeMax": 8
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "acid-sprayer.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Concentrated Acid",
+    "description": "Corrodes twice as fast, to 6 more armour.",
+    "cost": 110,
+    "mods": [
+     {
+      "stat": "corrodePerHit",
+      "op": "mul",
+      "value": 2
+     },
+     {
+      "stat": "corrodeMax",
+      "op": "add",
+      "value": 6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "acid-sprayer.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Mist Nozzle",
+    "description": "+40 degree cone and +0.5 range.",
+    "cost": 110,
+    "mods": [
+     {
+      "stat": "coneAngle",
+      "op": "add",
+      "value": 40
+     },
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 0.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "acid-sprayer.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Etching Agent",
+    "description": "Etched targets take +20% damage.",
+    "cost": 195,
+    "mods": [
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.2
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "acid-sprayer.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Caustic Pools",
+    "description": "Acid pools on the road.",
+    "cost": 195,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Caustic Pool",
+      "description": "Leaves 3s acid pools at 15 dps.",
+      "params": {
+       "duration": 3,
+       "radius": 0.9,
+       "dps": 15,
+       "slowPct": 0.1
+      }
+     }
+    ]
+   },
+   {
+    "id": "acid-sprayer.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Dissolution Engine",
+    "description": "Dissolves weakened machines outright.",
+    "cost": 420,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 2
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "execute",
+      "name": "Dissolve",
+      "description": "Instantly destroys non-boss enemies below 12% health.",
+      "params": {
+       "threshold": 0.12
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.acid-sprayer.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "category:ballistic",
+    "radius": 2.5,
+    "name": "Weakened Hulls",
+    "description": "+20% corrosion rate.",
+    "mods": [
+     {
+      "stat": "corrodePerHit",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 7,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "corrosion-pump",
+  "name": "Corrosion Pump",
+  "category": "chemical",
+  "description": "Fires pressurised globs of rust accelerant at ground and air targets.",
+  "flavor": "Oxidation, but make it fast.",
+  "cost": 190,
+  "attack": "projectile",
+  "damageType": "chemical",
+  "targets": "both",
+  "stats": {
+   "damage": 20,
+   "rate": 1,
+   "range": 3.8,
+   "corrodePerHit": 1.5,
+   "corrodeMax": 12,
+   "projectileSpeed": 8
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "corrosion-pump.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Rust Bloom",
+    "description": "Globs splash over 0.8 tiles.",
+    "cost": 150,
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "add",
+      "value": 0.8
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "corrosion-pump.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Deep Corrosion",
+    "description": "+1 corrosion per hit, up to 10 more.",
+    "cost": 150,
+    "mods": [
+     {
+      "stat": "corrodePerHit",
+      "op": "add",
+      "value": 1
+     },
+     {
+      "stat": "corrodeMax",
+      "op": "add",
+      "value": 10
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "corrosion-pump.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Metal Fatigue",
+    "description": "Corroded targets take +30% damage.",
+    "cost": 265,
+    "mods": [
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "corrosion-pump.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Seizing Rust",
+    "description": "Rust seizes joints: slows by 35%.",
+    "cost": 265,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.35
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "corrosion-pump.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Oxidation Cascade",
+    "description": "Kills burst into clouds of rust.",
+    "cost": 570,
+    "mods": [
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 10
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "onKillExplode",
+      "name": "Rust Cloud",
+      "description": "Kills explode for 50% max HP within 1.5 tiles.",
+      "params": {
+       "radius": 1.5,
+       "damageFraction": 0.5
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.corrosion-pump.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "tesla-coil",
+    "radius": 3,
+    "name": "Galvanic Cell",
+    "description": "+15% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 21,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "toxic-diffuser",
+  "name": "Toxic Diffuser",
+  "category": "chemical",
+  "description": "Vents a pulsing cloud of poison that hits everything around it, even aircraft.",
+  "flavor": "Do not inhale. Do not exhale either.",
+  "cost": 170,
+  "attack": "pulse",
+  "damageType": "chemical",
+  "targets": "both",
+  "stats": {
+   "damage": 12,
+   "rate": 1,
+   "range": 2.3,
+   "poisonDps": 10,
+   "poisonDuration": 3
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "toxic-diffuser.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Wider Vents",
+    "description": "+0.8 range.",
+    "cost": 135,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 0.8
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "toxic-diffuser.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Neurotoxin",
+    "description": "Poison deals double damage.",
+    "cost": 135,
+    "mods": [
+     {
+      "stat": "poisonDps",
+      "op": "mul",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "toxic-diffuser.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Choking Cloud",
+    "description": "Slows by 30%.",
+    "cost": 240,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "toxic-diffuser.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Contagion",
+    "description": "Poisoned enemies spread it on death.",
+    "cost": 240,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "onKillExplode",
+      "name": "Contagion",
+      "description": "Kills burst for 30% max HP within 1.4 tiles.",
+      "params": {
+       "radius": 1.4,
+       "damageFraction": 0.3
+      }
+     }
+    ]
+   },
+   {
+    "id": "toxic-diffuser.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Miasma Engine",
+    "description": "Leaves a creeping miasma everywhere it pulses.",
+    "cost": 510,
+    "mods": [
+     {
+      "stat": "poisonDps",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Miasma",
+      "description": "Pulses leave 6s toxic clouds at 45 dps.",
+      "params": {
+       "duration": 6,
+       "radius": 2,
+       "dps": 45,
+       "slowPct": 0.1
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.toxic-diffuser.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "category:flame",
+    "radius": 2.5,
+    "name": "Combustible Fumes",
+    "description": "+20% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 10,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "alchemical-still",
+  "name": "Alchemical Still",
+  "category": "chemical",
+  "description": "A bubbling alembic that fires volatile elixirs; its reagents can transmute scrap into gold.",
+  "flavor": "Lead into gold. Automatons into lead.",
+  "cost": 240,
+  "attack": "projectile",
+  "damageType": "chemical",
+  "targets": "both",
+  "stats": {
+   "damage": 35,
+   "rate": 0.8,
+   "range": 4,
+   "poisonDps": 12,
+   "poisonDuration": 3,
+   "projectileSpeed": 7
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "alchemical-still.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Philosopher's Drip",
+    "description": "Kills by this tower yield +25% gold.",
+    "cost": 190,
+    "mods": [
+     {
+      "stat": "bountyBonus",
+      "op": "add",
+      "value": 0.25
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "alchemical-still.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Volatile Reagents",
+    "description": "+1 splash and +30% damage.",
+    "cost": 190,
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "add",
+      "value": 1
+     },
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "alchemical-still.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Transmutation",
+    "description": "Transmutes weakened foes into scrap.",
+    "cost": 335,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "execute",
+      "name": "Transmute",
+      "description": "Destroys non-boss enemies below 8% health.",
+      "params": {
+       "threshold": 0.08
+      }
+     }
+    ]
+   },
+   {
+    "id": "alchemical-still.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Quicksilver",
+    "description": "Mercury slows targets by 40%.",
+    "cost": 335,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.4
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "alchemical-still.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Magnum Opus",
+    "description": "The great work, complete.",
+    "cost": 720,
+    "mods": [
+     {
+      "stat": "bountyBonus",
+      "op": "add",
+      "value": 0.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "execute",
+      "name": "Magnum Opus",
+      "description": "Destroys non-boss enemies below 18% health.",
+      "params": {
+       "threshold": 0.18
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.alchemical-still.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "gear-forge",
+    "radius": 3,
+    "name": "Refinery",
+    "description": "+15% gold from kills.",
+    "mods": [
+     {
+      "stat": "bountyBonus",
+      "op": "add",
+      "value": 0.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 30,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "amplifier-beacon",
+  "name": "Amplifier Beacon",
+  "category": "support",
+  "description": "A humming resonance mast that amplifies the output of every tower around it.",
+  "flavor": "Turn it up to eleven. Then keep going.",
+  "cost": 200,
+  "attack": "support",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "range": 2.5,
+   "buffDamage": 0.15
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "amplifier-beacon.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Resonant Coils",
+    "description": "+10% damage amplification.",
+    "cost": 160,
+    "mods": [
+     {
+      "stat": "buffDamage",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "amplifier-beacon.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Wide Broadcast",
+    "description": "+1 range.",
+    "cost": 160,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "amplifier-beacon.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Overclock",
+    "description": "Nearby towers fire 15% faster.",
+    "cost": 280,
+    "mods": [
+     {
+      "stat": "buffRate",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "amplifier-beacon.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Focusing Lens",
+    "description": "Nearby towers gain 15% range.",
+    "cost": 280,
+    "mods": [
+     {
+      "stat": "buffRange",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "amplifier-beacon.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Harmonic Crescendo",
+    "description": "Periodically drives every nearby tower into a frenzy.",
+    "cost": 600,
+    "mods": [
+     {
+      "stat": "buffDamage",
+      "op": "add",
+      "value": 0.15
+     },
+     {
+      "stat": "buffRate",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "overcharge",
+      "name": "Crescendo",
+      "description": "Every 20s, nearby towers deal +50% damage and fire 50% faster for 6s.",
+      "params": {
+       "interval": 20,
+       "duration": 6,
+       "rateMul": 1.5,
+       "damageMul": 1.5
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "buffDamage",
+     "op": "add",
+     "value": 0.02
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.02
+    }
+   ],
+   "skinAtMaxRank": "skin.amplifier-beacon.gilded"
+  },
+  "synergies": [],
+  "unlock": {
+   "campaignLevel": 11,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "spotter-tower",
+  "name": "Spotter Tower",
+  "category": "support",
+  "description": "A brass crow's nest with a lamp and telescope. Reveals cloaked enemies and marks targets.",
+  "flavor": "Nothing hides from the lamp.",
+  "cost": 120,
+  "attack": "support",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "range": 4,
+   "reveal": 1,
+   "buffRange": 0.1
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "spotter-tower.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Telescopic Optics",
+    "description": "+1.5 range.",
+    "cost": 95,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "spotter-tower.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Target Painter",
+    "description": "Enemies in range take +15% damage.",
+    "cost": 95,
+    "mods": [
+     {
+      "stat": "auraExposePct",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "spotter-tower.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Signal Flares",
+    "description": "Enemies in range take a further +10% damage.",
+    "cost": 170,
+    "mods": [
+     {
+      "stat": "auraExposePct",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "spotter-tower.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Rangefinder",
+    "description": "Nearby towers gain a further 15% range.",
+    "cost": 170,
+    "mods": [
+     {
+      "stat": "buffRange",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "spotter-tower.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "All-Seeing Eye",
+    "description": "A searchlight that sweeps the whole battlefield.",
+    "cost": 360,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 4
+     },
+     {
+      "stat": "auraExposePct",
+      "op": "add",
+      "value": 0.15
+     },
+     {
+      "stat": "buffDamage",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.04
+    }
+   ],
+   "skinAtMaxRank": "skin.spotter-tower.gilded"
+  },
+  "synergies": [],
+  "unlock": {
+   "campaignLevel": 9,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "steam-pressure-booster",
+  "name": "Steam Pressure Booster",
+  "category": "support",
+  "description": "A manifold of pipes that pumps high-pressure steam into neighbouring machinery.",
+  "flavor": "More pressure. Always more pressure.",
+  "cost": 180,
+  "attack": "support",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "range": 2,
+   "buffRate": 0.2
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "steam-pressure-booster.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Pressure Regulator",
+    "description": "+10% fire rate boost.",
+    "cost": 145,
+    "mods": [
+     {
+      "stat": "buffRate",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "steam-pressure-booster.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Superheated Lines",
+    "description": "Nearby towers deal +10% damage.",
+    "cost": 145,
+    "mods": [
+     {
+      "stat": "buffDamage",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "steam-pressure-booster.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Emergency Valve",
+    "description": "Periodically vents everything into overdrive.",
+    "cost": 250,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "overcharge",
+      "name": "Emergency Valve",
+      "description": "Every 15s, nearby towers fire 60% faster for 5s.",
+      "params": {
+       "interval": 15,
+       "duration": 5,
+       "rateMul": 1.6,
+       "damageMul": 1
+      }
+     }
+    ]
+   },
+   {
+    "id": "steam-pressure-booster.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Steam Jacket",
+    "description": "Nearby towers are immune to sabotage and power drain.",
+    "cost": 250,
+    "mods": [
+     {
+      "stat": "buffProtect",
+      "op": "set",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "steam-pressure-booster.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Grand Manifold",
+    "description": "+20% fire rate boost and +1 range.",
+    "cost": 540,
+    "mods": [
+     {
+      "stat": "buffRate",
+      "op": "add",
+      "value": 0.2
+     },
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "buffRate",
+     "op": "add",
+     "value": 0.02
+    }
+   ],
+   "skinAtMaxRank": "skin.steam-pressure-booster.gilded"
+  },
+  "synergies": [],
+  "unlock": {
+   "campaignLevel": 13,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "gear-forge",
+  "name": "Gear Forge",
+  "category": "support",
+  "description": "A small foundry that smelts salvage into gold every wave. Limited to three per level.",
+  "flavor": "Profit is the best defence.",
+  "cost": 150,
+  "attack": "economy",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "range": 2.5,
+   "income": 25
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "gear-forge.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Efficient Smelting",
+    "description": "+20 gold per wave.",
+    "cost": 120,
+    "mods": [
+     {
+      "stat": "income",
+      "op": "add",
+      "value": 20
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gear-forge.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Scrap Reclaimer",
+    "description": "Kills near the forge yield +15% gold.",
+    "cost": 120,
+    "mods": [
+     {
+      "stat": "auraBounty",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gear-forge.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Compound Interest",
+    "description": "+1% interest on unspent gold.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "interestBonus",
+      "op": "add",
+      "value": 0.01
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gear-forge.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Salvage Crews",
+    "description": "Kills nearby yield a further +20% gold.",
+    "cost": 210,
+    "mods": [
+     {
+      "stat": "auraBounty",
+      "op": "add",
+      "value": 0.2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gear-forge.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Industrial Revolution",
+    "description": "+60 gold per wave and +1% interest.",
+    "cost": 450,
+    "mods": [
+     {
+      "stat": "income",
+      "op": "add",
+      "value": 60
+     },
+     {
+      "stat": "interestBonus",
+      "op": "add",
+      "value": 0.01
+     }
+    ],
+    "abilities": []
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "income",
+     "op": "add",
+     "value": 4
+    }
+   ],
+   "skinAtMaxRank": "skin.gear-forge.gilded"
+  },
+  "synergies": [],
+  "unlock": {
+   "campaignLevel": 5,
+   "research": null
+  },
+  "maxPerLevel": 3
+ },
+ {
+  "id": "signal-relay",
+  "name": "Signal Relay",
+  "category": "support",
+  "description": "A telegraph mast that feeds range-finding data to every tower in reach.",
+  "flavor": "Dot dot dash. Target acquired.",
+  "cost": 170,
+  "attack": "support",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "range": 3,
+   "buffRange": 0.2
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "signal-relay.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Repeater Mast",
+    "description": "+1.5 range.",
+    "cost": 135,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "signal-relay.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Fire Control",
+    "description": "Nearby towers fire 10% faster.",
+    "cost": 135,
+    "mods": [
+     {
+      "stat": "buffRate",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "signal-relay.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Network Link",
+    "description": "Nearby towers deal 10% more damage.",
+    "cost": 240,
+    "mods": [
+     {
+      "stat": "buffDamage",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "signal-relay.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Cloak Scanner",
+    "description": "Reveals cloaked enemies in range.",
+    "cost": 240,
+    "mods": [
+     {
+      "stat": "reveal",
+      "op": "set",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "signal-relay.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Command Nexus",
+    "description": "+15% range, +10% damage and +10% fire rate to nearby towers.",
+    "cost": 510,
+    "mods": [
+     {
+      "stat": "buffRange",
+      "op": "add",
+      "value": 0.15
+     },
+     {
+      "stat": "buffDamage",
+      "op": "add",
+      "value": 0.1
+     },
+     {
+      "stat": "buffRate",
+      "op": "add",
+      "value": 0.1
+     }
+    ],
+    "abilities": []
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "buffRange",
+     "op": "add",
+     "value": 0.02
+    }
+   ],
+   "skinAtMaxRank": "skin.signal-relay.gilded"
+  },
+  "synergies": [],
+  "unlock": {
+   "campaignLevel": 23,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "clockwork-snare",
+  "name": "Clockwork Snare",
+  "category": "mechanical",
+  "description": "Fires spring-loaded bolas that tangle legs and gears.",
+  "flavor": "Tick, tock, stop.",
+  "cost": 110,
+  "attack": "projectile",
+  "damageType": "force",
+  "targets": "ground",
+  "stats": {
+   "damage": 8,
+   "rate": 1,
+   "range": 3,
+   "slowPct": 0.35,
+   "slowDuration": 2,
+   "projectileSpeed": 9
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "clockwork-snare.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Tighter Springs",
+    "description": "+15% slow.",
+    "cost": 90,
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "clockwork-snare.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Multi-Snare",
+    "description": "Snares three targets at once.",
+    "cost": 90,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "splitShot",
+      "name": "Multi-Snare",
+      "description": "Fires at three targets.",
+      "params": {
+       "count": 3
+      }
+     }
+    ]
+   },
+   {
+    "id": "clockwork-snare.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Bear Trap",
+    "description": "25% chance to stop targets dead for 1s.",
+    "cost": 155,
+    "mods": [
+     {
+      "stat": "stunChance",
+      "op": "add",
+      "value": 0.25
+     },
+     {
+      "stat": "stunDuration",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "clockwork-snare.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Gummed Gears",
+    "description": "Snared targets take +15% damage.",
+    "cost": 155,
+    "mods": [
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.15
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "clockwork-snare.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Temporal Tangle",
+    "description": "Periodically ensnares everything nearby.",
+    "cost": 330,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "periodicPulse",
+      "name": "Tangle Burst",
+      "description": "Every 8s, slows all enemies within 3 tiles by 60% for 3s.",
+      "params": {
+       "interval": 8,
+       "radius": 3,
+       "damage": 50,
+       "stunDuration": 0,
+       "slowPct": 0.6,
+       "slowDuration": 3
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.clockwork-snare.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "category:flame",
+    "radius": 2.5,
+    "name": "Roasting Spit",
+    "description": "+10% slow.",
+    "mods": [
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.1
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 8,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "steam-hammer",
+  "name": "Steam Hammer",
+  "category": "mechanical",
+  "description": "A colossal piston hammer that pounds the ground, crushing and staggering everything nearby.",
+  "flavor": "When all you have is a hammer, everything is a nail.",
+  "cost": 210,
+  "attack": "pulse",
+  "damageType": "force",
+  "targets": "ground",
+  "stats": {
+   "damage": 70,
+   "rate": 0.5,
+   "range": 1.6,
+   "stunChance": 0.25,
+   "stunDuration": 0.6
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "steam-hammer.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Heavier Head",
+    "description": "+60% damage.",
+    "cost": 170,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "steam-hammer.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Faster Piston",
+    "description": "+50% strike rate.",
+    "cost": 170,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "steam-hammer.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Seismic Slam",
+    "description": "+0.8 range; shockwaves slow by 30%.",
+    "cost": 295,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 0.8
+     },
+     {
+      "stat": "slowPct",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "slowDuration",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "steam-hammer.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Armour Crusher",
+    "description": "Ignores 10 armour and dents plating.",
+    "cost": 295,
+    "mods": [
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 10
+     },
+     {
+      "stat": "corrodePerHit",
+      "op": "add",
+      "value": 1
+     },
+     {
+      "stat": "corrodeMax",
+      "op": "add",
+      "value": 6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "steam-hammer.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Tectonic Engine",
+    "description": "Every fourth strike splits the earth.",
+    "cost": 630,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 0.6
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "everyNth",
+      "name": "Tectonic Strike",
+      "description": "Every 4th strike deals 3x damage and stuns for 1.5s.",
+      "params": {
+       "n": 4,
+       "damageMul": 3,
+       "stunDuration": 1.5
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.steam-hammer.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "clockwork-snare",
+    "radius": 2.5,
+    "name": "Hold Still",
+    "description": "+15% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 15,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "sawblade-launcher",
+  "name": "Sawblade Launcher",
+  "category": "mechanical",
+  "description": "Flings spinning circular saws that carve through lines of enemies.",
+  "flavor": "Mind the fingers.",
+  "cost": 190,
+  "attack": "projectile",
+  "damageType": "ballistic",
+  "targets": "ground",
+  "stats": {
+   "damage": 28,
+   "rate": 0.9,
+   "range": 3.5,
+   "pierce": 3,
+   "projectileSpeed": 8
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "sawblade-launcher.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Serrated Edge",
+    "description": "+40% damage.",
+    "cost": 150,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "sawblade-launcher.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Ricochet",
+    "description": "Blades bounce to two more enemies.",
+    "cost": 150,
+    "mods": [
+     {
+      "stat": "chains",
+      "op": "add",
+      "value": 2
+     },
+     {
+      "stat": "chainRange",
+      "op": "add",
+      "value": 1.8
+     },
+     {
+      "stat": "chainFalloff",
+      "op": "add",
+      "value": 0.9
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "sawblade-launcher.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Diamond Teeth",
+    "description": "Ignores 6 armour and cuts through two more enemies.",
+    "cost": 265,
+    "mods": [
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 6
+     },
+     {
+      "stat": "pierce",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "sawblade-launcher.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Buzzsaw Storm",
+    "description": "Throws three blades at once.",
+    "cost": 265,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "splitShot",
+      "name": "Buzzsaw Storm",
+      "description": "Three blades per throw.",
+      "params": {
+       "count": 3
+      }
+     }
+    ]
+   },
+   {
+    "id": "sawblade-launcher.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Whirling Death",
+    "description": "A cyclone of blades orbits the tower.",
+    "cost": 570,
+    "mods": [
+     {
+      "stat": "pierce",
+      "op": "add",
+      "value": 5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "periodicPulse",
+      "name": "Blade Cyclone",
+      "description": "Every 5s, deals 180 damage to everything within 2.5 tiles.",
+      "params": {
+       "interval": 5,
+       "radius": 2.5,
+       "damage": 180,
+       "stunDuration": 0,
+       "slowPct": 0,
+       "slowDuration": 0
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.sawblade-launcher.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "harpoon-launcher",
+    "radius": 3,
+    "name": "Lined Up",
+    "description": "+2 pierce.",
+    "mods": [
+     {
+      "stat": "pierce",
+      "op": "add",
+      "value": 2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 17,
+   "research": null
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "time-distortion-tower",
+  "name": "Time Distortion Tower",
+  "category": "experimental",
+  "description": "A spinning array of escapement wheels that drags nearby time to a crawl.",
+  "flavor": "Five minutes in there feels like an hour. For them.",
+  "cost": 300,
+  "attack": "field",
+  "damageType": "temporal",
+  "targets": "both",
+  "stats": {
+   "damage": 5,
+   "rate": 2,
+   "range": 2.5,
+   "auraSlowPct": 0.3
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "time-distortion-tower.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Dilation Field",
+    "description": "+15% slow.",
+    "cost": 240,
+    "mods": [
+     {
+      "stat": "auraSlowPct",
+      "op": "add",
+      "value": 0.15
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "time-distortion-tower.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Temporal Shear",
+    "description": "Triple damage; targets take +15% damage.",
+    "cost": 240,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 3
+     },
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.15
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "time-distortion-tower.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Stasis Pulse",
+    "description": "Periodically freezes everything nearby in time.",
+    "cost": 420,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "stasisField",
+      "name": "Stasis Pulse",
+      "description": "Every 10s, freezes enemies within 2.5 tiles for 2s.",
+      "params": {
+       "interval": 10,
+       "duration": 2,
+       "radius": 2.5
+      }
+     }
+    ]
+   },
+   {
+    "id": "time-distortion-tower.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Rewind",
+    "description": "Periodically sends enemies back along their route.",
+    "cost": 420,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "rewind",
+      "name": "Rewind",
+      "description": "Every 9s, rewinds enemies in range 2.5 tiles along their path.",
+      "params": {
+       "interval": 9,
+       "distance": 2.5
+      }
+     }
+    ]
+   },
+   {
+    "id": "time-distortion-tower.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Chronostasis",
+    "description": "Time itself stops around the tower.",
+    "cost": 900,
+    "mods": [
+     {
+      "stat": "auraSlowPct",
+      "op": "add",
+      "value": 0.2
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "stasisField",
+      "name": "Chronostasis",
+      "description": "Every 12s, freezes enemies within 4 tiles for 4s.",
+      "params": {
+       "interval": 12,
+       "duration": 4,
+       "radius": 4
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "auraSlowPct",
+     "op": "add",
+     "value": 0.01
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.02
+    }
+   ],
+   "skinAtMaxRank": "skin.time-distortion-tower.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "category:ballistic",
+    "radius": 3,
+    "name": "Bullet Time",
+    "description": "+15% damage to nearby ballistic fire.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.15
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 35,
+   "research": "exp-chronometry"
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "gravity-manipulator",
+  "name": "Gravity Manipulator",
+  "category": "experimental",
+  "description": "A levitating lodestone core that bends gravity, crushing and dragging enemies.",
+  "flavor": "What goes up must come down. On command.",
+  "cost": 340,
+  "attack": "field",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "damage": 10,
+   "rate": 2,
+   "range": 2.5,
+   "auraSlowPct": 0.2
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "gravity-manipulator.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Graviton Lens",
+    "description": "+1 range.",
+    "cost": 270,
+    "mods": [
+     {
+      "stat": "range",
+      "op": "add",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gravity-manipulator.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Crushing Well",
+    "description": "2.5x damage, ignores 5 armour.",
+    "cost": 270,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 2.5
+     },
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gravity-manipulator.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Grounding Field",
+    "description": "Air units in range are dragged low enough for ground towers to hit.",
+    "cost": 475,
+    "mods": [
+     {
+      "stat": "groundAir",
+      "op": "set",
+      "value": 1
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "gravity-manipulator.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Event Tether",
+    "description": "Periodically drags enemies back.",
+    "cost": 475,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "pull",
+      "name": "Event Tether",
+      "description": "Every 6s, pulls enemies within 2.5 tiles back 1.5 tiles.",
+      "params": {
+       "interval": 6,
+       "distance": 1.5,
+       "radius": 2.5
+      }
+     }
+    ]
+   },
+   {
+    "id": "gravity-manipulator.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Collapse Point",
+    "description": "Opens a crushing gravity well.",
+    "cost": 1020,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "singularity",
+      "name": "Collapse Point",
+      "description": "Every 14s, a 3s singularity pulls in and crushes enemies (250 dps).",
+      "params": {
+       "interval": 14,
+       "radius": 2.5,
+       "duration": 3,
+       "pullStrength": 1.5,
+       "dps": 250
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.gravity-manipulator.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "mortar-tower",
+    "radius": 3,
+    "name": "Clumping",
+    "description": "+20% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 45,
+   "research": "exp-gravitics"
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "singularium-engine",
+  "name": "Singularium Engine",
+  "category": "experimental",
+  "description": "Harnesses a caged sliver of collapsed matter. Fires micro-singularities that tear enemies apart. Limited to two per level.",
+  "flavor": "Handle with extreme prejudice.",
+  "cost": 520,
+  "attack": "projectile",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "damage": 400,
+   "rate": 0.2,
+   "range": 5,
+   "splash": 1.5,
+   "projectileSpeed": 4
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "singularium-engine.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Dense Core",
+    "description": "+50% damage.",
+    "cost": 415,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "singularium-engine.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Event Horizon",
+    "description": "+50% blast radius; blasts drag enemies inward.",
+    "cost": 415,
+    "mods": [
+     {
+      "stat": "splash",
+      "op": "mul",
+      "value": 1.5
+     },
+     {
+      "stat": "pullDistance",
+      "op": "add",
+      "value": 0.5
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "singularium-engine.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Spaghettification",
+    "description": "Ignores 20 armour; targets take +30% damage.",
+    "cost": 730,
+    "mods": [
+     {
+      "stat": "armorPierce",
+      "op": "add",
+      "value": 20
+     },
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.3
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "singularium-engine.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Hawking Radiation",
+    "description": "Impacts leave radiant fields.",
+    "cost": 730,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "lingeringGround",
+      "name": "Hawking Radiation",
+      "description": "4s fields dealing 80 dps.",
+      "params": {
+       "duration": 4,
+       "radius": 1.5,
+       "dps": 80,
+       "slowPct": 0.2
+      }
+     }
+    ]
+   },
+   {
+    "id": "singularium-engine.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Singularity Collapse",
+    "description": "Periodically births a true singularity.",
+    "cost": 1560,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.3
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "singularity",
+      "name": "Singularity Collapse",
+      "description": "Every 20s, a 4s singularity crushes enemies within 3.5 tiles (800 dps).",
+      "params": {
+       "interval": 20,
+       "radius": 3.5,
+       "duration": 4,
+       "pullStrength": 2,
+       "dps": 800
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.singularium-engine.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "gravity-manipulator",
+    "radius": 3,
+    "name": "Gravitic Resonance",
+    "description": "+25% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.25
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 60,
+   "research": "exp-singularity"
+  },
+  "maxPerLevel": 2
+ },
+ {
+  "id": "aether-prism",
+  "name": "Aether Prism",
+  "category": "experimental",
+  "description": "A rotating crystal lens that refracts aether into multiple searing beams.",
+  "flavor": "Light, bent to a purpose.",
+  "cost": 380,
+  "attack": "beam",
+  "damageType": "force",
+  "targets": "both",
+  "stats": {
+   "damage": 5,
+   "rate": 10,
+   "range": 4,
+   "beamRamp": 0.4,
+   "beamRampMax": 2
+  },
+  "abilities": [
+   {
+    "kind": "prismSplit",
+    "name": "Refraction",
+    "description": "Splits to 1 extra target at 50% damage.",
+    "params": {
+     "count": 1,
+     "damageFraction": 0.5
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "id": "aether-prism.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Cut Facets",
+    "description": "Beams split to three targets at 70% strength.",
+    "cost": 305,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "prismSplit",
+      "name": "Facets",
+      "description": "Splits to 3 extra targets at 70% damage.",
+      "params": {
+       "count": 3,
+       "damageFraction": 0.7
+      }
+     }
+    ]
+   },
+   {
+    "id": "aether-prism.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Focused Lens",
+    "description": "Ramps much faster, to a higher peak.",
+    "cost": 305,
+    "mods": [
+     {
+      "stat": "beamRamp",
+      "op": "add",
+      "value": 0.6
+     },
+     {
+      "stat": "beamRampMax",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "aether-prism.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Refraction Web",
+    "description": "Beams arc to two nearby enemies.",
+    "cost": 530,
+    "mods": [
+     {
+      "stat": "chains",
+      "op": "add",
+      "value": 2
+     },
+     {
+      "stat": "chainRange",
+      "op": "add",
+      "value": 2
+     },
+     {
+      "stat": "chainFalloff",
+      "op": "add",
+      "value": 0.6
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "aether-prism.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Aether Burn",
+    "description": "Targets burn for 30 dps.",
+    "cost": 530,
+    "mods": [
+     {
+      "stat": "burnDps",
+      "op": "add",
+      "value": 30
+     },
+     {
+      "stat": "burnDuration",
+      "op": "add",
+      "value": 2
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "aether-prism.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Rainbow Cascade",
+    "description": "A dazzling cascade of refracted light.",
+    "cost": 1140,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "prismSplit",
+      "name": "Rainbow Cascade",
+      "description": "Splits to 6 extra targets at 80% damage.",
+      "params": {
+       "count": 6,
+       "damageFraction": 0.8
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.aether-prism.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "amplifier-beacon",
+    "radius": 3,
+    "name": "Lens Resonance",
+    "description": "+20% damage.",
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.2
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 50,
+   "research": "exp-aether"
+  },
+  "maxPerLevel": null
+ },
+ {
+  "id": "phase-lance",
+  "name": "Phase Lance",
+  "category": "experimental",
+  "description": "Fires a lance that exists slightly out of phase, striking phased, burrowed and cloaked enemies alike.",
+  "flavor": "It hits you in every reality at once.",
+  "cost": 420,
+  "attack": "hitscan",
+  "damageType": "temporal",
+  "targets": "both",
+  "stats": {
+   "damage": 260,
+   "rate": 0.35,
+   "range": 6,
+   "pierce": 10,
+   "hitsPhased": 1
+  },
+  "abilities": [],
+  "upgrades": [
+   {
+    "id": "phase-lance.2a",
+    "tier": 2,
+    "branch": "A",
+    "name": "Phase Capacitor",
+    "description": "+40% fire rate.",
+    "cost": 335,
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.4
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "phase-lance.2b",
+    "tier": 2,
+    "branch": "B",
+    "name": "Dimensional Edge",
+    "description": "+50% damage, +30% vs bosses.",
+    "cost": 335,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     },
+     {
+      "stat": "bossDamageMul",
+      "op": "add",
+      "value": 0.3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "phase-lance.3a",
+    "tier": 3,
+    "branch": "A",
+    "name": "Echo Strike",
+    "description": "Each lance echoes onto a second target.",
+    "cost": 590,
+    "mods": [],
+    "abilities": [
+     {
+      "kind": "splitShot",
+      "name": "Echo",
+      "description": "Strikes two targets.",
+      "params": {
+       "count": 2
+      }
+     }
+    ]
+   },
+   {
+    "id": "phase-lance.3b",
+    "tier": 3,
+    "branch": "B",
+    "name": "Unravel",
+    "description": "Struck enemies take +35% damage for 3s.",
+    "cost": 590,
+    "mods": [
+     {
+      "stat": "exposePct",
+      "op": "add",
+      "value": 0.35
+     },
+     {
+      "stat": "exposeDuration",
+      "op": "add",
+      "value": 3
+     }
+    ],
+    "abilities": []
+   },
+   {
+    "id": "phase-lance.u",
+    "tier": 4,
+    "branch": "U",
+    "name": "Void Spear",
+    "description": "Erases weakened enemies from existence.",
+    "cost": 1260,
+    "mods": [
+     {
+      "stat": "damage",
+      "op": "mul",
+      "value": 1.5
+     }
+    ],
+    "abilities": [
+     {
+      "kind": "execute",
+      "name": "Erase",
+      "description": "Destroys non-boss enemies below 15% health.",
+      "params": {
+       "threshold": 0.15
+      }
+     }
+    ]
+   }
+  ],
+  "prestige": {
+   "maxRank": 5,
+   "gearCost": [
+    200,
+    400,
+    800,
+    1600,
+    3200
+   ],
+   "modsPerRank": [
+    {
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.04
+    },
+    {
+     "stat": "range",
+     "op": "mul",
+     "value": 1.01
+    }
+   ],
+   "skinAtMaxRank": "skin.phase-lance.gilded"
+  },
+  "synergies": [
+   {
+    "partner": "time-distortion-tower",
+    "radius": 3,
+    "name": "Phase Lock",
+    "description": "+25% fire rate.",
+    "mods": [
+     {
+      "stat": "rate",
+      "op": "mul",
+      "value": 1.25
+     }
+    ]
+   }
+  ],
+  "unlock": {
+   "campaignLevel": 55,
+   "research": "exp-phase"
+  },
+  "maxPerLevel": null
+ }
+]

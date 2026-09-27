@@ -1,0 +1,231 @@
+{
+ "presets": [
+  {
+   "id": "recruit",
+   "name": "Recruit",
+   "description": "A gentle introduction. Slower, weaker enemies and a generous treasury.",
+   "order": 0,
+   "requiredCommanderLevel": 1,
+   "modifiers": {
+    "enemySpeed": 0.85,
+    "enemyHealth": 0.7,
+    "enemyArmor": 0.7,
+    "towerCost": 0.85,
+    "towerDamage": 1.15,
+    "economy": 1.25,
+    "fog": 0,
+    "eliteChance": 0,
+    "bossFrequency": 0.8
+   }
+  },
+  {
+   "id": "engineer",
+   "name": "Engineer",
+   "description": "The intended experience.",
+   "order": 1,
+   "requiredCommanderLevel": 1,
+   "modifiers": {
+    "enemySpeed": 1,
+    "enemyHealth": 1,
+    "enemyArmor": 1,
+    "towerCost": 1,
+    "towerDamage": 1,
+    "economy": 1,
+    "fog": 0,
+    "eliteChance": 0.02,
+    "bossFrequency": 1
+   }
+  },
+  {
+   "id": "veteran",
+   "name": "Veteran",
+   "description": "Tougher machines and a tighter budget.",
+   "order": 2,
+   "requiredCommanderLevel": 5,
+   "modifiers": {
+    "enemySpeed": 1.05,
+    "enemyHealth": 1.25,
+    "enemyArmor": 1.15,
+    "towerCost": 1.05,
+    "towerDamage": 1,
+    "economy": 0.95,
+    "fog": 0.1,
+    "eliteChance": 0.06,
+    "bossFrequency": 1.1
+   }
+  },
+  {
+   "id": "inventor",
+   "name": "Inventor",
+   "description": "For commanders who know their synergies.",
+   "order": 3,
+   "requiredCommanderLevel": 12,
+   "modifiers": {
+    "enemySpeed": 1.1,
+    "enemyHealth": 1.5,
+    "enemyArmor": 1.3,
+    "towerCost": 1.1,
+    "towerDamage": 1,
+    "economy": 0.9,
+    "fog": 0.2,
+    "eliteChance": 0.1,
+    "bossFrequency": 1.2
+   }
+  },
+  {
+   "id": "master-artificer",
+   "name": "Master Artificer",
+   "description": "Elite units are common and fog rolls in.",
+   "order": 4,
+   "requiredCommanderLevel": 20,
+   "modifiers": {
+    "enemySpeed": 1.15,
+    "enemyHealth": 1.9,
+    "enemyArmor": 1.5,
+    "towerCost": 1.15,
+    "towerDamage": 0.95,
+    "economy": 0.85,
+    "fog": 0.3,
+    "eliteChance": 0.15,
+    "bossFrequency": 1.35
+   }
+  },
+  {
+   "id": "grand-mechanist",
+   "name": "Grand Mechanist",
+   "description": "Every placement matters.",
+   "order": 5,
+   "requiredCommanderLevel": 30,
+   "modifiers": {
+    "enemySpeed": 1.2,
+    "enemyHealth": 2.4,
+    "enemyArmor": 1.75,
+    "towerCost": 1.2,
+    "towerDamage": 0.9,
+    "economy": 0.8,
+    "fog": 0.4,
+    "eliteChance": 0.22,
+    "bossFrequency": 1.5
+   }
+  },
+  {
+   "id": "nightmare",
+   "name": "Nightmare",
+   "description": "The factories never sleep, and neither will you.",
+   "order": 6,
+   "requiredCommanderLevel": 45,
+   "modifiers": {
+    "enemySpeed": 1.3,
+    "enemyHealth": 3.2,
+    "enemyArmor": 2.1,
+    "towerCost": 1.3,
+    "towerDamage": 0.85,
+    "economy": 0.75,
+    "fog": 0.55,
+    "eliteChance": 0.3,
+    "bossFrequency": 1.75
+   }
+  },
+  {
+   "id": "impossible",
+   "name": "Impossible",
+   "description": "It has been done. Allegedly.",
+   "order": 7,
+   "requiredCommanderLevel": 60,
+   "modifiers": {
+    "enemySpeed": 1.4,
+    "enemyHealth": 4.5,
+    "enemyArmor": 2.6,
+    "towerCost": 1.4,
+    "towerDamage": 0.8,
+    "economy": 0.7,
+    "fog": 0.7,
+    "eliteChance": 0.4,
+    "bossFrequency": 2
+   }
+  }
+ ],
+ "ranges": [
+  {
+   "key": "enemySpeed",
+   "name": "Enemy Speed",
+   "min": 0.5,
+   "max": 2.0,
+   "step": 0.05,
+   "rewardWeight": 0.6,
+   "higherIsHarder": true
+  },
+  {
+   "key": "enemyHealth",
+   "name": "Enemy Health",
+   "min": 0.5,
+   "max": 6.0,
+   "step": 0.1,
+   "rewardWeight": 0.2,
+   "higherIsHarder": true
+  },
+  {
+   "key": "enemyArmor",
+   "name": "Enemy Armour",
+   "min": 0.5,
+   "max": 4.0,
+   "step": 0.1,
+   "rewardWeight": 0.15,
+   "higherIsHarder": true
+  },
+  {
+   "key": "towerCost",
+   "name": "Tower Cost",
+   "min": 0.5,
+   "max": 2.0,
+   "step": 0.05,
+   "rewardWeight": 0.4,
+   "higherIsHarder": true
+  },
+  {
+   "key": "towerDamage",
+   "name": "Tower Damage",
+   "min": 0.5,
+   "max": 2.0,
+   "step": 0.05,
+   "rewardWeight": 0.4,
+   "higherIsHarder": false
+  },
+  {
+   "key": "economy",
+   "name": "Economy",
+   "min": 0.5,
+   "max": 2.0,
+   "step": 0.05,
+   "rewardWeight": 0.3,
+   "higherIsHarder": false
+  },
+  {
+   "key": "fog",
+   "name": "Fog",
+   "min": 0.0,
+   "max": 1.0,
+   "step": 0.05,
+   "rewardWeight": 0.2,
+   "higherIsHarder": true
+  },
+  {
+   "key": "eliteChance",
+   "name": "Elite Spawns",
+   "min": 0.0,
+   "max": 0.6,
+   "step": 0.02,
+   "rewardWeight": 0.6,
+   "higherIsHarder": true
+  },
+  {
+   "key": "bossFrequency",
+   "name": "Boss Frequency",
+   "min": 0.5,
+   "max": 3.0,
+   "step": 0.1,
+   "rewardWeight": 0.1,
+   "higherIsHarder": true
+  }
+ ]
+}

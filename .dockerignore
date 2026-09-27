@@ -1,0 +1,12 @@
+**/node_modules
+**/bin
+**/obj
+**/dist
+**/dev-dist
+src/TD.Application/wwwroot
+**/*.db
+**/*.db-shm
+**/*.db-wal
+.git
+.vscode
+tests
