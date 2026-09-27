@@ -25,8 +25,53 @@ export interface EnemyTextures {
   body: Texture
   /** Optional spinning part (rotors, orrery rings). */
   spinner: Texture | null
+  /** Walk-cycle frames for legs or treads, drawn beneath the body. */
+  gait: Texture[] | null
+  /** Tiles travelled per full gait cycle. */
+  gaitTiles: number
+  /** Whether the gait produces a stepping bob (legs) or a smooth glide (treads). */
+  steps: boolean
   size: number
 }
+
+type LegGroup = { x: number; r: number; count: number; length: number; metal: Metal; phase: number }
+type Locomotion = { kind: 'legs'; groups: LegGroup[] } | { kind: 'treads' }
+
+const walk = (count: number, length: number, metal: Metal = IRON): Locomotion => ({
+  kind: 'legs',
+  groups: [{ x: 0, r: 1, count, length, metal, phase: 0 }],
+})
+
+/** Legs and treads live on their own layer so they can be animated independently of the body. */
+const LOCOMOTION: Record<string, Locomotion> = {
+  'automaton-scout': walk(4, 0.8, STEEL),
+  'clockwork-swarm': walk(6, 0.6),
+  'rivet-rat': walk(4, 0.5),
+  'steam-golem': walk(4, 0.5),
+  'brass-juggernaut': walk(6, 0.45),
+  'boiler-walker': walk(4, 0.9, STEEL),
+  'shield-bearer': walk(4, 0.55),
+  'mender-automaton': walk(4, 0.55),
+  'chimney-stalker': walk(4, 0.9),
+  'iron-beetle': walk(6, 0.5),
+  'centipede-segment': walk(2, 0.6),
+  sapper: walk(4, 0.5),
+  'pressure-titan': walk(4, 0.45),
+  // Segments ripple back to front in a travelling wave.
+  'copper-centipede': {
+    kind: 'legs',
+    groups: [4, 3, 2, 1, 0].map((i) => ({ x: -i * 0.38 + 0.4, r: 0.4, count: 2, length: 0.3, metal: IRON, phase: i * 0.18 })),
+  },
+  'ironclad-behemoth': { kind: 'treads' },
+}
+
+const GAIT_FRAMES = 12
+/** Leg swing amplitude as a fraction of leg length. */
+const STRIDE = 0.35
+/** Upper bound on steps per second so tiny fast critters don't strobe. */
+const MAX_CYCLES_PER_SECOND = 5
+/** Spacing of tread cleats as a fraction of radius. */
+const TREAD_PITCH = 0.24
 
 const cache = new Map<string, EnemyTextures>()
 
@@ -44,7 +89,7 @@ export function drawEnemyIcon(target: HTMLCanvasElement, def: EnemyDefinition): 
   ctx.save()
   ctx.translate(target.width / 2, target.height / 2)
   ctx.rotate(-Math.PI / 2)
-  paintEnemy(ctx, def, 0, 0, def.size * P, P)
+  paintEnemy(ctx, def, 0, 0, def.size * P, 'full')
   ctx.restore()
 }
 
@@ -58,8 +103,25 @@ export function enemyTextures(def: EnemyDefinition, scale: number): EnemyTexture
   const { canvas, ctx } = makeCanvas(S, S)
   const c = S / 2
   const r = def.size * P
-  paintEnemy(ctx, def, c, c, r, P)
+  const loco = LOCOMOTION[def.id]
+  paintEnemy(ctx, def, c, c, r, loco ? 'body' : 'full')
   grain(ctx, S, S, 0.04, def.id.length * 3)
+
+  let gait: Texture[] | null = null
+  let gaitTiles = 1
+  if (loco) {
+    gait = []
+    for (let f = 0; f < GAIT_FRAMES; f++) {
+      const fr = makeCanvas(S, S)
+      paintShadow(fr.ctx, def, c, c, r)
+      paintLocomotion(fr.ctx, loco, c, c, r, f / GAIT_FRAMES)
+      grain(fr.ctx, S, S, 0.04, def.id.length * 3 + 1)
+      gait.push(Texture.from({ resource: fr.canvas, antialias: true }))
+    }
+    // A leg cycle covers four stride amplitudes, so planted feet don't skate.
+    const reach = loco.kind === 'treads' ? TREAD_PITCH : 4 * STRIDE * Math.max(...loco.groups.map((g) => g.length))
+    gaitTiles = Math.max(reach * def.size, def.speed / MAX_CYCLES_PER_SECOND)
+  }
 
   let spinner: Texture | null = null
   if (def.id === 'gyrocopter' || def.id === 'zeppelin-carrier' || def.id === 'grand-orrery' || def.id === 'magnet-drone') {
@@ -67,19 +129,71 @@ export function enemyTextures(def: EnemyDefinition, scale: number): EnemyTexture
     paintSpinner(sp.ctx, def, c, c, r)
     spinner = Texture.from({ resource: sp.canvas, antialias: true })
   }
-  const result = { body: Texture.from({ resource: canvas, antialias: true }), spinner, size }
+  const result = { body: Texture.from({ resource: canvas, antialias: true }), spinner, gait, gaitTiles, steps: loco?.kind === 'legs', size }
   cache.set(key, result)
   return result
 }
 
-function legs(ctx: Ctx, cx: number, cy: number, r: number, count: number, length: number, m: Metal = IRON) {
+/**
+ * Jointed legs at gait phase `t` (0..1). Legs alternate in diagonal pairs (tripods for six legs):
+ * a leg in stance sweeps backwards along the body while its partner swings forward, lifted.
+ */
+function legs(ctx: Ctx, cx: number, cy: number, r: number, count: number, length: number, m: Metal, t: number) {
+  const stride = length * STRIDE
   for (let i = 0; i < count; i++) {
     const side = i % 2 === 0 ? -1 : 1
-    const along = (Math.floor(i / 2) / Math.max(1, count / 2 - 1) - 0.5) * r * 1.1
-    const kx = cx + along + r * 0.1
+    const pair = Math.floor(i / 2)
+    const p = (t + ((pair + (i % 2)) % 2) * 0.5) * Math.PI * 2
+    const swing = Math.sin(p) * stride
+    // Lifted while swinging forward: the foot tucks in and the knee rises toward the camera.
+    const lift = Math.max(0, Math.cos(p))
+    const along = (pair / Math.max(1, count / 2 - 1) - 0.5) * r * 1.1
+    const kx = cx + along + r * 0.1 + swing * 0.5
     const ky = cy + side * r * 0.55
-    pipe(ctx, cx + along * 0.6, cy + side * r * 0.3, kx, ky + side * length * 0.5, r * 0.14, m)
-    pipe(ctx, kx, ky + side * length * 0.5, kx - r * 0.25, ky + side * length, r * 0.11, m)
+    const kneeY = ky + side * length * (0.5 + lift * 0.12)
+    const footX = kx - r * 0.25 + swing * 0.5
+    const footY = ky + side * length * (1 - lift * 0.22)
+    const w = 1 + lift * 0.18
+    if (lift < 0.2) {
+      // Planted foot presses a small contact shadow.
+      ctx.fillStyle = 'rgba(0,0,0,0.35)'
+      circle(ctx, footX + r * 0.02, footY + r * 0.03, r * 0.08)
+      ctx.fill()
+    }
+    pipe(ctx, cx + along * 0.6, cy + side * r * 0.3, kx, kneeY, r * 0.14 * w, m)
+    pipe(ctx, kx, kneeY, footX, footY, r * 0.11 * w, m)
+  }
+}
+
+function paintShadow(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: number) {
+  const air = def.movement === 'air'
+  shadow(ctx, cx + r * (air ? 0.6 : 0.15), cy + r * (air ? 0.9 : 0.25), r * 1.2, r * 0.9, air ? 0.3 : 0.55)
+}
+
+function paintLocomotion(ctx: Ctx, loco: Locomotion, cx: number, cy: number, r: number, t: number) {
+  if (loco.kind === 'legs') {
+    for (const g of loco.groups) legs(ctx, cx + g.x * r, cy, r * g.r, g.count, r * g.length, g.metal, t + g.phase)
+    return
+  }
+  // Tracks: the visible upper run advances relative to the hull as the vehicle rolls forward.
+  const pitch = r * TREAD_PITCH
+  for (const s of [-1, 1]) {
+    const x0 = cx - r * 0.95
+    const y0 = cy + s * r * 0.62 - r * 0.15
+    ctx.fillStyle = metalGradient(ctx, cx - r, cy + s * r * 0.8, cx + r, cy + s * r * 0.8, IRON)
+    ctx.fillRect(x0, y0, r * 1.9, r * 0.3)
+    ctx.save()
+    ctx.beginPath()
+    ctx.rect(x0, y0, r * 1.9, r * 0.3)
+    ctx.clip()
+    for (let i = -1; i < 9; i++) {
+      const x = x0 + r * 0.05 + (i + t) * pitch
+      ctx.fillStyle = 'rgba(0,0,0,0.5)'
+      ctx.fillRect(x, y0, r * 0.05, r * 0.3)
+      ctx.fillStyle = 'rgba(200,190,175,0.16)'
+      ctx.fillRect(x + r * 0.05, y0, r * 0.025, r * 0.3)
+    }
+    ctx.restore()
   }
 }
 
@@ -101,17 +215,17 @@ function body(ctx: Ctx, cx: number, cy: number, rx: number, ry: number, m: { hi:
   highlight(ctx, cx, cy, Math.min(rx, ry), 0.4)
 }
 
-function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: number, P: number) {
-  const air = def.movement === 'air'
-  shadow(ctx, cx + r * (air ? 0.6 : 0.15), cy + r * (air ? 0.9 : 0.25), r * 1.2, r * 0.9, air ? 0.3 : 0.55)
+/** Paints the enemy. `body` omits the shadow and locomotion, which are baked separately as gait frames. */
+function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: number, layer: 'full' | 'body') {
+  const loco = LOCOMOTION[def.id]
+  if (layer === 'full' || !loco) paintShadow(ctx, def, cx, cy, r)
+  if (layer === 'full' && loco) paintLocomotion(ctx, loco, cx, cy, r, 0)
   switch (def.id) {
     case 'automaton-scout':
-      legs(ctx, cx, cy, r, 4, r * 0.8, STEEL)
       body(ctx, cx, cy, r * 0.8, r * 0.55, BRASS)
       eye(ctx, cx + r * 0.6, cy, r * 0.16, '#ffd070')
       break
     case 'clockwork-swarm':
-      legs(ctx, cx, cy, r, 6, r * 0.6, IRON)
       body(ctx, cx, cy, r * 0.9, r * 0.7, COPPER)
       ctx.strokeStyle = BRASS.hi
       ctx.lineWidth = r * 0.12
@@ -129,13 +243,11 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       ctx.moveTo(cx - r * 0.7, cy)
       ctx.quadraticCurveTo(cx - r * 1.4, cy - r * 0.6, cx - r * 1.6, cy + r * 0.2)
       ctx.stroke()
-      legs(ctx, cx, cy, r, 4, r * 0.5, IRON)
       body(ctx, cx, cy, r * 0.85, r * 0.5, STEEL)
       eye(ctx, cx + r * 0.65, cy - r * 0.18, r * 0.1, '#ff3a2a')
       eye(ctx, cx + r * 0.65, cy + r * 0.18, r * 0.1, '#ff3a2a')
       break
     case 'steam-golem':
-      legs(ctx, cx, cy, r, 4, r * 0.5, IRON)
       body(ctx, cx, cy, r * 0.85, r * 0.8, IRON)
       rivetRing(ctx, cx, cy, r * 0.65, 10, r * 0.06)
       glow(ctx, cx + r * 0.45, cy, r * 0.5, '#ff7a1a', 0.9)
@@ -165,7 +277,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       break
     }
     case 'brass-juggernaut':
-      legs(ctx, cx, cy, r, 6, r * 0.45, IRON)
       for (let i = 3; i >= 0; i--) body(ctx, cx - i * r * 0.12, cy, r * (0.95 - i * 0.12), r * (0.85 - i * 0.1), i % 2 ? BRASS : { hi: '#c9a060', mid: '#8a6a30', lo: '#3a2a10' })
       rivetRing(ctx, cx, cy, r * 0.55, 12, r * 0.05)
       eye(ctx, cx + r * 0.75, cy, r * 0.1, '#ff6a2a')
@@ -183,7 +294,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       glow(ctx, cx, cy, r * 0.6, '#ff2a1a', 0.8)
       break
     case 'boiler-walker':
-      legs(ctx, cx, cy, r, 4, r * 0.9, STEEL)
       body(ctx, cx, cy, r * 0.8, r * 0.6, COPPER)
       ctx.strokeStyle = BRASS.mid
       ctx.lineWidth = r * 0.08
@@ -243,7 +353,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       ctx.stroke()
       break
     case 'shield-bearer':
-      legs(ctx, cx, cy, r, 4, r * 0.55, IRON)
       body(ctx, cx, cy, r * 0.75, r * 0.6, STEEL)
       glow(ctx, cx + r * 0.4, cy, r * 0.9, '#6ab0ff', 0.6)
       ctx.strokeStyle = metalGradient(ctx, cx, cy - r, cx, cy + r, BRASS)
@@ -253,7 +362,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       ctx.stroke()
       break
     case 'mender-automaton':
-      legs(ctx, cx, cy, r, 4, r * 0.55, IRON)
       for (const s of [-1, 1]) {
         pipe(ctx, cx, cy + s * r * 0.3, cx + r * 0.8, cy + s * r * 0.55, r * 0.12, STEEL)
         glow(ctx, cx + r * 0.85, cy + s * r * 0.55, r * 0.25, '#ffb040', 0.9)
@@ -264,7 +372,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       ctx.fillRect(cx - r * 0.3, cy - r * 0.1, r * 0.6, r * 0.2)
       break
     case 'chimney-stalker':
-      legs(ctx, cx, cy, r, 4, r * 0.9, IRON)
       ctx.fillStyle = radialMetal(ctx, cx, cy, r * 0.6, { hi: '#8a5a3a', mid: '#5a3422', lo: '#2a160c' })
       circle(ctx, cx, cy, r * 0.6)
       ctx.fill()
@@ -277,7 +384,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       ctx.stroke()
       break
     case 'iron-beetle':
-      legs(ctx, cx, cy, r, 6, r * 0.5, IRON)
       body(ctx, cx, cy, r * 0.95, r * 0.75, IRON)
       ctx.strokeStyle = 'rgba(0,0,0,0.7)'
       ctx.lineWidth = r * 0.06
@@ -289,15 +395,10 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       highlight(ctx, cx, cy - r * 0.2, r * 0.6, 0.35)
       break
     case 'copper-centipede':
-      for (let i = 4; i >= 0; i--) {
-        const x = cx - i * r * 0.38 + r * 0.4
-        legs(ctx, x, cy, r * 0.4, 2, r * 0.3, IRON)
-        body(ctx, x, cy, r * 0.28, r * 0.32, COPPER)
-      }
+      for (let i = 4; i >= 0; i--) body(ctx, cx - i * r * 0.38 + r * 0.4, cy, r * 0.28, r * 0.32, COPPER)
       eye(ctx, cx + r * 0.6, cy, r * 0.08, '#ffd070')
       break
     case 'centipede-segment':
-      legs(ctx, cx, cy, r, 2, r * 0.6, IRON)
       body(ctx, cx, cy, r * 0.75, r * 0.8, COPPER)
       break
     case 'aether-leech':
@@ -314,7 +415,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       body(ctx, cx, cy, r * 0.65, r * 0.5, { hi: '#e8d8ff', mid: '#8a60d0', lo: '#2a1050' })
       break
     case 'sapper':
-      legs(ctx, cx, cy, r, 4, r * 0.5, IRON)
       body(ctx, cx, cy, r * 0.7, r * 0.6, { hi: '#a0a870', mid: '#6a7040', lo: '#2a2e14' })
       pipe(ctx, cx + r * 0.2, cy + r * 0.2, cx + r * 0.95, cy + r * 0.5, r * 0.14, STEEL)
       eye(ctx, cx + r * 0.5, cy - r * 0.1, r * 0.1, '#ff5a2a')
@@ -334,7 +434,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       eye(ctx, cx + r * 0.1, cy, r * 0.12, '#80e0ff')
       break
     case 'pressure-titan':
-      legs(ctx, cx, cy, r, 4, r * 0.45, IRON)
       body(ctx, cx, cy, r * 0.9, r * 0.8, IRON)
       rivetRing(ctx, cx, cy, r * 0.72, 16, r * 0.035)
       for (const [ox, oy] of [[-0.4, -0.4], [-0.4, 0.4], [0.1, -0.5], [0.1, 0.5]]) {
@@ -354,14 +453,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
       ctx.stroke()
       break
     case 'ironclad-behemoth':
-      for (const s of [-1, 1]) {
-        ctx.fillStyle = metalGradient(ctx, cx - r, cy + s * r * 0.8, cx + r, cy + s * r * 0.8, IRON)
-        ctx.fillRect(cx - r * 0.95, cy + s * r * 0.62 - r * 0.15, r * 1.9, r * 0.3)
-        for (let i = 0; i < 8; i++) {
-          ctx.fillStyle = 'rgba(0,0,0,0.5)'
-          ctx.fillRect(cx - r * 0.9 + i * r * 0.24, cy + s * r * 0.62 - r * 0.15, r * 0.05, r * 0.3)
-        }
-      }
       body(ctx, cx, cy, r * 0.9, r * 0.6, IRON)
       rivetRing(ctx, cx, cy, r * 0.5, 14, r * 0.03)
       glassDome(ctx, cx, cy, r * 0.32)
@@ -376,7 +467,6 @@ function paintEnemy(ctx: Ctx, def: EnemyDefinition, cx: number, cy: number, r: n
     default:
       body(ctx, cx, cy, r, r * 0.7, BRASS)
   }
-  void P
 }
 
 function glassDome(ctx: Ctx, cx: number, cy: number, r: number) {

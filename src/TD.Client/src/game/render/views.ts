@@ -1,4 +1,4 @@
-import { Container, Graphics, Sprite } from 'pixi.js'
+import { Container, Graphics, Sprite, type Texture } from 'pixi.js'
 import type { EnemyState, TowerState } from '../sim/types'
 import { enemyTextures } from './enemyArt'
 import type { TextureForge } from './forge'
@@ -113,6 +113,13 @@ export class EnemyView {
   readonly root = new Container()
   private readonly body: Sprite
   private readonly spinner: Sprite | null
+  private readonly gait: Sprite | null
+  private readonly gaitFrames: Texture[]
+  private readonly gaitTiles: number
+  private readonly steps: boolean
+  private gaitPhase = 0
+  private lastX = Number.NaN
+  private lastY = 0
   private readonly aura: Sprite
   private readonly shield: Sprite
   private readonly core: Sprite
@@ -130,6 +137,15 @@ export class EnemyView {
     this.body = new Sprite(tex.body)
     this.body.anchor.set(0.5)
     this.body.width = this.body.height = px
+    this.gaitFrames = tex.gait ?? []
+    this.gaitTiles = tex.gaitTiles
+    this.steps = tex.steps
+    this.gaitPhase = (enemy.id * 0.37) % 1
+    this.gait = tex.gait ? new Sprite(tex.gait[0]) : null
+    if (this.gait) {
+      this.gait.anchor.set(0.5)
+      this.gait.width = this.gait.height = px
+    }
     this.spinner = tex.spinner ? new Sprite(tex.spinner) : null
     if (this.spinner) {
       this.spinner.anchor.set(0.5)
@@ -151,7 +167,9 @@ export class EnemyView {
     this.core.anchor.set(0.5)
     this.core.width = this.core.height = TILE * 0.34
     this.core.visible = false
-    this.root.addChild(this.aura, this.body)
+    this.root.addChild(this.aura)
+    if (this.gait) this.root.addChild(this.gait)
+    this.root.addChild(this.body)
     if (this.spinner) this.root.addChild(this.spinner)
     this.root.addChild(this.shield, this.core, this.bar)
     this.heading = enemy.heading
@@ -165,7 +183,19 @@ export class EnemyView {
     const e = this.enemy
     const x = (e.prev.x + (e.pos.x - e.prev.x) * alpha) * TILE
     const y = (e.prev.y + (e.pos.y - e.prev.y) * alpha) * TILE
-    const bob = e.air ? Math.sin(time * 2 + e.id) * 3 : Math.abs(Math.sin(time * 9 * e.speed + e.id)) * 1.5
+    // Gait advances with distance actually covered, so legs stop when the enemy is stunned or frozen.
+    if (this.gait) {
+      const moved = Number.isNaN(this.lastX) ? 0 : Math.hypot(x - this.lastX, y - this.lastY) / TILE
+      if (moved < 0.5) this.gaitPhase = (this.gaitPhase + moved / this.gaitTiles) % 1
+      this.gait.texture = this.gaitFrames[Math.floor(this.gaitPhase * this.gaitFrames.length) % this.gaitFrames.length]
+    }
+    this.lastX = x
+    this.lastY = y
+    const bob = e.air
+      ? Math.sin(time * 2 + e.id) * 3
+      : this.gait
+        ? this.steps ? Math.abs(Math.sin(this.gaitPhase * Math.PI * 2)) * 1.5 : 0
+        : Math.abs(Math.sin(time * 9 * e.speed + e.id)) * 1.5
     this.root.position.set(x, y - (e.air ? 10 + bob : bob))
 
     let diff = e.heading - this.heading
@@ -173,6 +203,7 @@ export class EnemyView {
     while (diff < -Math.PI) diff += Math.PI * 2
     this.heading += diff * Math.min(1, dt * 10)
     this.body.rotation = this.heading
+    if (this.gait) this.gait.rotation = this.heading
     if (this.spinner) {
       this.spinner.rotation += dt * (e.def.id === 'grand-orrery' ? 0.6 : e.def.id === 'magnet-drone' ? 2 : 30)
       if (e.def.id !== 'grand-orrery') this.spinner.rotation = e.def.id === 'magnet-drone' ? this.heading : this.spinner.rotation
@@ -192,6 +223,7 @@ export class EnemyView {
     if (s.corrode > 0) tint = mix(tint, 0xc08050, Math.min(0.4, s.corrode * 0.03))
     if (this.flash > 0) tint = mix(tint, 0xffffff, this.flash)
     this.body.tint = tint
+    if (this.gait) this.gait.tint = tint
     this.flash = Math.max(0, this.flash - dt * 8)
 
     const cloaked = e.cloaked && e.revealedUntil <= now
