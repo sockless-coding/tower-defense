@@ -19,6 +19,7 @@ services:
       retries: 20
 
   app:
+    image: ${REGISTRY:-docker-registry.sockless.local}/${IMAGE:-sockless-tower-defense}:${TAG:-latest}
     build: .
     depends_on:
       db:
