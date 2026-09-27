@@ -73,6 +73,8 @@ export class Simulation {
   private waveCleared: boolean[] = []
   interactionReadyAt = 0
   private nextId = 1
+  /** Towers are numbered by build order so the server can follow upgrades and sales in the action log. */
+  private nextTowerId = 1
   private readonly rules: Set<string>
 
   constructor(config: SimConfig) {
@@ -222,7 +224,7 @@ export class Simulation {
     const cost = this.costOf(def)
     const i = this.grid.index(x, y)
     const tower: TowerState = {
-      id: this.newId(),
+      id: this.nextTowerId++,
       def,
       cell: { x, y },
       pos: { x: x + 0.5, y: y + 0.5 },

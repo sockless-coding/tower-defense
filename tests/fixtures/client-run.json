@@ -1,0 +1,278 @@
+{
+ "config": {
+  "level": {
+   "id": "contract-level",
+   "mode": "campaign",
+   "number": 1,
+   "mapId": "industrial-city",
+   "name": "Test",
+   "briefing": "",
+   "variant": 0,
+   "activeSpawns": [
+    0
+   ],
+   "startingGold": 900,
+   "cores": 20,
+   "mechanicIntensity": 1,
+   "waves": [
+    {
+     "number": 1,
+     "clearBonus": 20,
+     "groups": [
+      {
+       "enemy": "automaton-scout",
+       "count": 10,
+       "interval": 0.8,
+       "spawn": 0,
+       "delay": 0,
+       "elite": false,
+       "hpMul": 1
+      },
+      {
+       "enemy": "clockwork-swarm",
+       "count": 20,
+       "interval": 0.3,
+       "spawn": 0,
+       "delay": 2,
+       "elite": false,
+       "hpMul": 1
+      }
+     ]
+    },
+    {
+     "number": 2,
+     "clearBonus": 20,
+     "groups": [
+      {
+       "enemy": "steam-golem",
+       "count": 3,
+       "interval": 0.8,
+       "spawn": 0,
+       "delay": 0,
+       "elite": false,
+       "hpMul": 1
+      },
+      {
+       "enemy": "automaton-scout",
+       "count": 8,
+       "interval": 0.8,
+       "spawn": 0,
+       "delay": 1,
+       "elite": false,
+       "hpMul": 1
+      }
+     ]
+    },
+    {
+     "number": 3,
+     "clearBonus": 20,
+     "groups": [
+      {
+       "enemy": "gyrocopter",
+       "count": 5,
+       "interval": 0.8,
+       "spawn": 0,
+       "delay": 0,
+       "elite": false,
+       "hpMul": 1
+      },
+      {
+       "enemy": "rivet-rat",
+       "count": 6,
+       "interval": 0.8,
+       "spawn": 0,
+       "delay": 2,
+       "elite": false,
+       "hpMul": 1
+      }
+     ]
+    }
+   ],
+   "bossId": null,
+   "unlocksTowers": [],
+   "allowedTowers": null,
+   "rules": []
+  },
+  "modifiers": {
+   "enemySpeed": 1,
+   "enemyHealth": 1,
+   "enemyArmor": 1,
+   "towerCost": 1.15,
+   "towerDamage": 1,
+   "economy": 1.1,
+   "fog": 0,
+   "eliteChance": 0,
+   "bossFrequency": 1
+  },
+  "presetId": null,
+  "rewardMultiplier": 1,
+  "seed": 424242,
+  "bonuses": [
+   {
+    "target": "economy",
+    "stat": "towerCostMul",
+    "op": "mul",
+    "value": 0.97
+   },
+   {
+    "target": "economy",
+    "stat": "upgradeCostMul",
+    "op": "mul",
+    "value": 0.95
+   },
+   {
+    "target": "economy",
+    "stat": "startingGold",
+    "op": "add",
+    "value": 40
+   },
+   {
+    "target": "economy",
+    "stat": "sellRefund",
+    "op": "add",
+    "value": 0.05
+   },
+   {
+    "target": "category:electrical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "prestige": {},
+  "unlockedTowers": [
+   "rivet-cannon",
+   "gatling-nest",
+   "railgun-turret",
+   "mortar-tower",
+   "flak-battery",
+   "harpoon-launcher",
+   "tesla-coil",
+   "arc-tower",
+   "storm-generator",
+   "galvanic-mine-layer",
+   "incinerator",
+   "furnace-tower",
+   "napalm-projector",
+   "boiler-bomb",
+   "acid-sprayer",
+   "corrosion-pump",
+   "toxic-diffuser",
+   "alchemical-still",
+   "amplifier-beacon",
+   "spotter-tower",
+   "steam-pressure-booster",
+   "gear-forge",
+   "signal-relay",
+   "clockwork-snare",
+   "steam-hammer",
+   "sawblade-launcher",
+   "time-distortion-tower",
+   "gravity-manipulator",
+   "singularium-engine",
+   "aether-prism",
+   "phase-lance"
+  ]
+ },
+ "actions": [
+  {
+   "type": "build",
+   "tower": "gatling-nest",
+   "x": 20,
+   "y": 3,
+   "t": 0
+  },
+  {
+   "type": "build",
+   "tower": "tesla-coil",
+   "x": 19,
+   "y": 3,
+   "t": 0
+  },
+  {
+   "type": "build",
+   "tower": "rivet-cannon",
+   "x": 20,
+   "y": 2,
+   "t": 0
+  },
+  {
+   "type": "callWave",
+   "t": 60
+  },
+  {
+   "type": "upgrade",
+   "id": 2,
+   "upgrade": "tesla-coil.2a",
+   "t": 300
+  },
+  {
+   "type": "sell",
+   "id": 3,
+   "t": 300
+  },
+  {
+   "type": "build",
+   "tower": "mortar-tower",
+   "x": 20,
+   "y": 10,
+   "t": 300
+  },
+  {
+   "type": "target",
+   "id": 1,
+   "mode": "strong",
+   "t": 300
+  },
+  {
+   "type": "interact",
+   "x": 16.817986901220348,
+   "y": 5.499984229579672,
+   "t": 388
+  },
+  {
+   "type": "upgrade",
+   "id": 1,
+   "upgrade": "gatling-nest.2b",
+   "t": 900
+  },
+  {
+   "type": "interact",
+   "x": 17.821397185613986,
+   "y": 5.59531237392826,
+   "t": 1746
+  }
+ ],
+ "result": {
+  "outcome": "victory",
+  "ticks": 2105,
+  "coresRemaining": 18,
+  "coresTotal": 20,
+  "wavesCleared": 3,
+  "stats": {
+   "kills": {
+    "clockwork-swarm": 20,
+    "automaton-scout": 18,
+    "rivet-rat": 6,
+    "gyrocopter": 3,
+    "steam-golem": 3
+   },
+   "bossesDefeated": 0,
+   "towersBuilt": 4,
+   "towersBuiltById": {
+    "gatling-nest": 1,
+    "tesla-coil": 1,
+    "rivet-cannon": 1,
+    "mortar-tower": 1
+   },
+   "upgradesPurchased": 2,
+   "ultimatesPurchased": 0,
+   "goldEarned": 391,
+   "goldSpent": 909,
+   "coresRecovered": 14,
+   "interactionsUsed": 2,
+   "wavesCleared": 3,
+   "damageDealt": 6654.076344537368
+  }
+ }
+}

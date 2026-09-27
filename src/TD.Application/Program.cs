@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
 using FluentValidation;
-using TD.Application.Features.Content;
 using Microsoft.AspNetCore.HttpOverrides;
+using TD.Application.Features.Content;
+using TD.Application.Features.DailyChallenges;
+using TD.Application.Features.Sessions;
 using TD.Application.Infrastructure.Audit;
 using TD.Application.Infrastructure.Auth;
 using TD.Application.Infrastructure.Data;
@@ -23,6 +25,8 @@ builder.Services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true)
 builder.Services.AddFeatureHandlers(assembly);
 builder.Services.AddScoped<AuditLog>();
 builder.Services.AddContent();
+builder.Services.AddGameSessions(builder.Configuration);
+builder.Services.AddHostedService<EventRotationService>();
 builder.Services.AddSingleton<LiveNotifier>();
 builder.Services.AddSignalR();
 builder.Services.AddProblemDetails();
