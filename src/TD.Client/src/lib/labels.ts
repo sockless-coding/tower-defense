@@ -106,3 +106,24 @@ export function titleCase(id: string): string {
 export function roman(n: number): string {
   return ['I', 'II', 'III', 'IV', 'V'][n] ?? String(n + 1)
 }
+
+/** Human wording for level rule keys such as "maxTowers:14". */
+export function formatRule(rule: string): string {
+  const [key, value] = rule.split(':')
+  switch (key) {
+    case 'noSell':
+      return 'No selling'
+    case 'maxTowers':
+      return `Max ${value} towers`
+    case 'cores':
+      return `${value} core${value === '1' ? '' : 's'}`
+    case 'startingGoldMul':
+      return `${Math.round(Number(value) * 100)}% starting gold`
+    case 'maxTier':
+      return `Upgrades to tier ${value}`
+    case 'noInteraction':
+      return 'No map interaction'
+    default:
+      return rule
+  }
+}

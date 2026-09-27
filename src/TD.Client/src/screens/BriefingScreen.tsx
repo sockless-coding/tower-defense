@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useProfile } from '../api/account'
 import { useLoadedContent } from '../api/content'
 import { api } from '../api/http'
+import { formatRule } from '../lib/labels'
 import { startSession, useProgression } from '../api/sessions'
 import { useActiveSession } from '../state/game'
 import type { LevelDefinition } from '../api/types'
@@ -128,7 +129,7 @@ export function BriefingScreen() {
                     )
                   })}
               </ul>
-              {l.rules.length > 0 && <p className="muted">{l.rules.join(' · ')}</p>}
+              {l.rules.length > 0 && <p className="muted">{l.rules.map(formatRule).join(' · ')}</p>}
               {l.unlocksTowers.map((t) => {
                 const tower = content.towers.get(t)!
                 return (

@@ -70,12 +70,35 @@ export function TitleScreen() {
         <Button size="lg" icon="play" disabled={busy} onClick={() => ensureSignedIn('/campaign')}>
           {session ? 'Campaign' : 'Play'}
         </Button>
-        <Button size="lg" variant="iron" icon="book" onClick={() => navigate('/codex')}>
-          Engineer's Codex
-        </Button>
-        <Button size="lg" variant="iron" icon="gear" onClick={() => navigate('/settings')}>
-          Settings
-        </Button>
+        {session && (
+          <Button size="lg" variant="copper" icon="calendar" onClick={() => navigate('/modes')}>
+            Operations
+          </Button>
+        )}
+        <div className="title-grid">
+          {session && (
+            <>
+              <Button variant="iron" icon="flask" onClick={() => navigate('/research')}>
+                Research
+              </Button>
+              <Button variant="iron" icon="user" onClick={() => navigate('/commander')}>
+                Commander
+              </Button>
+              <Button variant="iron" icon="trophy" onClick={() => navigate('/achievements')}>
+                Achievements
+              </Button>
+              <Button variant="iron" icon="star" onClick={() => navigate('/leaderboards')}>
+                Rankings
+              </Button>
+            </>
+          )}
+          <Button variant="iron" icon="book" onClick={() => navigate('/codex')}>
+            Codex
+          </Button>
+          <Button variant="iron" icon="gear" onClick={() => navigate('/settings')}>
+            Settings
+          </Button>
+        </div>
         {error && <p className="error-text">{error}</p>}
       </nav>
 

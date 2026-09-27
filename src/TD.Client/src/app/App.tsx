@@ -6,12 +6,17 @@ import { play } from '../game/audio/synth'
 import { useProfile } from '../api/account'
 import { useContent } from '../api/content'
 import { startLive } from '../api/live'
+import { AchievementsScreen } from '../screens/AchievementsScreen'
 import { AuthScreen } from '../screens/AuthScreen'
 import { BriefingScreen } from '../screens/BriefingScreen'
 import { CampaignScreen } from '../screens/CampaignScreen'
 import { CodexScreen } from '../screens/CodexScreen'
+import { CommanderScreen } from '../screens/CommanderScreen'
 import { GameScreen } from '../screens/game/GameScreen'
 import { Sandbox } from '../screens/game/Sandbox'
+import { LeaderboardsScreen } from '../screens/LeaderboardsScreen'
+import { ModesScreen } from '../screens/ModesScreen'
+import { ResearchScreen } from '../screens/ResearchScreen'
 import { SettingsScreen } from '../screens/SettingsScreen'
 import { TitleScreen } from '../screens/TitleScreen'
 import { useAuth } from '../state/auth'
@@ -82,6 +87,11 @@ export function App() {
         <Route path="/campaign" element={<RequireAccount><CampaignScreen /></RequireAccount>} />
         <Route path="/level/:id" element={<RequireAccount><BriefingScreen /></RequireAccount>} />
         <Route path="/play/:sessionId" element={<RequireAccount><GameScreen /></RequireAccount>} />
+        <Route path="/modes" element={<RequireAccount><ModesScreen /></RequireAccount>} />
+        <Route path="/research" element={<RequireAccount><ResearchScreen /></RequireAccount>} />
+        <Route path="/commander" element={<RequireAccount><CommanderScreen /></RequireAccount>} />
+        <Route path="/achievements" element={<RequireAccount><AchievementsScreen /></RequireAccount>} />
+        <Route path="/leaderboards" element={<RequireAccount><LeaderboardsScreen /></RequireAccount>} />
         {import.meta.env.DEV && <Route path="/dev/sandbox" element={<Sandbox />} />}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
