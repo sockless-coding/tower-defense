@@ -78,7 +78,7 @@ app.MapFeatureEndpoints(assembly);
 app.MapHub<LiveHub>(LiveHub.Path);
 
 // Client-side routes fall back to the SPA shell; unknown API and hub routes stay 404.
-app.MapFallbackToFile("{*path:regex(^(?!api/|hubs/).*$)}", "index.html");
+app.MapFallbackToFile("{*path:nonfile:regex(^(?!api/|hubs/).*$)}", "index.html");
 
 await app.Services.MigrateDatabaseAsync();
 await app.Services.SeedContentAsync();

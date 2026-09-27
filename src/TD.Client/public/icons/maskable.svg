@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+<radialGradient id="bg" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#3a2a1c"/><stop offset="1" stop-color="#0e0a07"/></radialGradient>
+<linearGradient id="brass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6d98a"/><stop offset=".45" stop-color="#c8923e"/><stop offset="1" stop-color="#6a4418"/></linearGradient>
+<linearGradient id="copper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#7a3a1a"/></linearGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#e6f7ff"/><stop offset=".35" stop-color="#7fd4ff"/><stop offset="1" stop-color="#7fd4ff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="512" height="512" fill="#120d0a"/>
+<g transform="translate(256 256) scale(0.78) translate(-256 -256)">
+<path d="M256.00,50.00 L276.57,20.90 L296.98,23.59 L309.32,57.02 L326.46,62.42 L355.74,42.11 L374.00,51.62 L374.16,87.25 L388.41,98.19 L422.88,89.12 L436.79,104.30 L424.75,137.84 L434.40,153.00 L469.89,156.26 L477.77,175.28 L454.98,202.68 L458.87,220.23 L491.10,235.43 L492.00,256.00 L461.22,273.95 L458.87,291.77 L483.96,317.08 L477.77,336.72 L442.70,343.06 L434.40,359.00 L449.32,391.36 L436.79,407.70 L401.66,401.66 L388.41,413.81 L391.36,449.32 L374.00,460.38 L343.06,442.70 L326.46,449.58 L317.08,483.96 L296.98,488.41 L273.95,461.22 L256.00,462.00 L235.43,491.10 L215.02,488.41 L202.68,454.98 L185.54,449.58 L156.26,469.89 L138.00,460.38 L137.84,424.75 L123.59,413.81 L89.12,422.88 L75.21,407.70 L87.25,374.16 L77.60,359.00 L42.11,355.74 L34.23,336.72 L57.02,309.32 L53.13,291.77 L20.90,276.57 L20.00,256.00 L50.78,238.05 L53.13,220.23 L28.04,194.92 L34.23,175.28 L69.30,168.94 L77.60,153.00 L62.68,120.64 L75.21,104.30 L110.34,110.34 L123.59,98.19 L120.64,62.68 L138.00,51.62 L168.94,69.30 L185.54,62.42 L194.92,28.04 L215.02,23.59 L238.05,50.78 Z" fill="url(#brass)" stroke="#3a2410" stroke-width="4"/>
+<circle cx="256" cy="256" r="178" fill="#1b130d" stroke="#8a6030" stroke-width="6"/>
+<circle cx="256" cy="256" r="160" fill="none" stroke="#5a3c1c" stroke-width="2" stroke-dasharray="6 10"/>
+<circle cx="256" cy="150" r="70" fill="url(#glow)"/>
+<path d="M226 372 L236 230 L276 230 L286 372 Z" fill="url(#copper)" stroke="#3a1a08" stroke-width="4"/>
+<rect x="212" y="366" width="88" height="22" rx="4" fill="url(#brass)" stroke="#3a2410" stroke-width="3"/>
+<g fill="none" stroke="url(#brass)" stroke-width="9">
+<ellipse cx="256" cy="250" rx="34" ry="9"/><ellipse cx="256" cy="226" rx="30" ry="8"/><ellipse cx="256" cy="204" rx="26" ry="7"/>
+</g>
+<circle cx="256" cy="168" r="24" fill="url(#brass)" stroke="#3a2410" stroke-width="3"/>
+<path d="M256 150 L238 118 L258 122 L244 84 L282 128 L262 124 L276 150" fill="#dff6ff" stroke="#7fd4ff" stroke-width="3" stroke-linejoin="round"/>
+<g fill="#e8c070"><circle cx="444.0" cy="256.0" r="5"/><circle cx="418.8" cy="350.0" r="5"/><circle cx="350.0" cy="418.8" r="5"/><circle cx="256.0" cy="444.0" r="5"/><circle cx="162.0" cy="418.8" r="5"/><circle cx="93.2" cy="350.0" r="5"/><circle cx="68.0" cy="256.0" r="5"/><circle cx="93.2" cy="162.0" r="5"/><circle cx="162.0" cy="93.2" r="5"/><circle cx="256.0" cy="68.0" r="5"/><circle cx="350.0" cy="93.2" r="5"/><circle cx="418.8" cy="162.0" r="5"/></g>
+</g>
+</svg>
