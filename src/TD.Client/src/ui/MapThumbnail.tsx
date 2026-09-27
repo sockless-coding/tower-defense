@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import type { MapDefinition } from '../api/types'
+import { shade, withAlpha } from '../lib/color'
 
 /** Renders a map's grid as a small lit schematic, used on level cards and briefings. */
 export function MapThumbnail({ map, width = 240, activeSpawns }: { map: MapDefinition; width?: number; activeSpawns?: number }) {
@@ -95,18 +96,4 @@ export function MapThumbnail({ map, width = 240, activeSpawns }: { map: MapDefin
   }, [map, width, height, cols, rows, activeSpawns])
 
   return <canvas ref={ref} className="map-thumb" style={{ width, height }} />
-}
-
-export function shade(hex: string, amount: number): string {
-  const n = parseInt(hex.slice(1), 16)
-  const mix = (c: number) => Math.round(amount >= 0 ? c + (255 - c) * amount : c * (1 + amount))
-  const r = mix((n >> 16) & 255)
-  const g = mix((n >> 8) & 255)
-  const b = mix(n & 255)
-  return `rgb(${r},${g},${b})`
-}
-
-export function withAlpha(hex: string, alpha: number): string {
-  const n = parseInt(hex.slice(1), 16)
-  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`
 }

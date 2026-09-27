@@ -6,7 +6,8 @@ import type { TargetMode } from '../../game/sim/types'
 import { formatStat, statLabel, titleCase } from '../../lib/labels'
 import { useHud } from '../../state/game'
 import { Button, Gauge } from '../../ui/components'
-import { Icon, categoryIcon } from '../../ui/Icon'
+import { categoryIcon } from '../../ui/categoryIcon'
+import { Icon } from '../../ui/Icon'
 import { TowerPortrait } from '../../ui/Portraits'
 
 const CATEGORIES: TowerCategory[] = ['ballistic', 'electrical', 'flame', 'chemical', 'support', 'mechanical', 'experimental']

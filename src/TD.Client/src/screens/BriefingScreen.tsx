@@ -1,28 +1,19 @@
-import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useProfile } from '../api/account'
 import { useLoadedContent } from '../api/content'
-import { api } from '../api/http'
+import { useLevel } from '../api/levels'
 import { formatRule } from '../lib/labels'
 import { startSession, useProgression } from '../api/sessions'
 import { useActiveSession } from '../state/game'
-import type { LevelDefinition } from '../api/types'
 import { Button, GearBackdrop, GearSpinner, Panel, ScreenHeader } from '../ui/components'
-import { Icon, categoryIcon } from '../ui/Icon'
+import { categoryIcon } from '../ui/categoryIcon'
+import { Icon } from '../ui/Icon'
 import { MapThumbnail } from '../ui/MapThumbnail'
 import { EnemyPortrait } from '../ui/Portraits'
-import { DifficultyPicker, useDifficultyChoice } from './DifficultyPicker'
+import { useDifficultyChoice } from '../state/difficulty'
+import { DifficultyPicker } from './DifficultyPicker'
 import './screens.css'
-
-export function useLevel(id: string | undefined) {
-  return useQuery({
-    queryKey: ['level', id],
-    queryFn: () => api<LevelDefinition>(`/api/levels/${id}`, { auth: false }),
-    enabled: !!id,
-    staleTime: Infinity,
-  })
-}
 
 export function BriefingScreen() {
   const { id } = useParams()

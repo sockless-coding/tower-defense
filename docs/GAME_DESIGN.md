@@ -271,6 +271,13 @@ JWT authentication, refresh tokens, validation, rate limiting, anti-cheat protec
 | API style | Minimal APIs, one endpoint module per slice. |
 | Client sim | Deterministic, fixed 30 Hz tick, seeded RNG, pure TypeScript with no rendering dependencies. |
 | Pathing | Flow fields per exit on a build-pad grid, so placing towers can reroute enemies (Defense Grid style). Placement that would fully block every route is rejected. |
+| Power cores | Defense Grid style: enemies steal cores from the vault and carry them to an exit; killed carriers drop cores that float home unless another enemy picks them up. The level is lost when every core has left the map. |
+| Tower ids | Numbered by build order in the simulation so the server can follow upgrades and sales in the action log. |
+| Saves | A save is session id + action log + tick; resuming replays the deterministic simulation to that tick. |
+| Session anti-cheat | `RunValidator` replays the log's economy exactly (costs, refunds, placement incl. route sealing, upgrade order, rules, interaction cooldowns) and bounds income, kills, bosses, cores and timing. `tests/fixtures/client-run.json` keeps client and server rules in lockstep. |
+| Audio | Fully procedural (Web Audio synthesis, generative score, ambience). `AUDIO_MANIFEST` in `src/TD.Client/src/game/audio/engine.ts` swaps any recipe or stem for a recorded asset. |
+| Art | Canvas2D-baked procedural textures (terrain, 31 tower models, 23 enemy designs) rendered by PixiJS with a multiplied light map, GPU particles, bloom, weather and fog; quality tiers auto-downgrade on slow devices. |
+| Dev tooling | `/dev/sandbox?map=<id>&tier=<1-4>` (development builds only) renders any map with every tower for visual review. |
 
 ### Repository layout
 

@@ -27,6 +27,12 @@ tests/TD.Application.Tests/  xUnit integration tests
 docs/GAME_DESIGN.md          specification
 ```
 
+## Client/server contract
+
+- The simulation (`src/TD.Client/src/game/sim`) and the server validator (`Features/Sessions`) must agree on economy and rules. Cost formulas live in `sim/stats.ts` and `Sessions/Commands/RunEconomy.cs` (JS `Math.round` semantics). Changing either requires regenerating `tests/fixtures/client-run.json` (`npm run test` in the client) and passing `dotnet test`.
+- The simulation must stay deterministic: no `Math.random`, no wall-clock time, iteration in insertion order. Rendering/audio may use `Math.random` freely.
+- Visual review: `npm run dev` then `/dev/sandbox?map=<mapId>&tier=<1-4>`.
+
 ## Commands
 
 - Backend build/test: `dotnet build TD.slnx`, `dotnet test TD.slnx`

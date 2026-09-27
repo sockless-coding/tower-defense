@@ -11,7 +11,7 @@ import { MapThumbnail } from '../ui/MapThumbnail'
 import './screens.css'
 
 function useCountdown(until: string | undefined): string {
-  const [now, setNow] = useState(Date.now())
+  const [now, setNow] = useState(() => Date.now())
   useEffect(() => {
     const t = window.setInterval(() => setNow(Date.now()), 1000)
     return () => window.clearInterval(t)

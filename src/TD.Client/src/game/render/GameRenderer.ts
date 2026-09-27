@@ -1,3 +1,4 @@
+import 'pixi.js/unsafe-eval'
 import { AdvancedBloomFilter } from 'pixi-filters'
 import { Application, Container, Graphics, Sprite, Texture, TilingSprite } from 'pixi.js'
 import type { TowerDefinition } from '../../api/types'

@@ -15,6 +15,9 @@ using TD.Application.Infrastructure.Telemetry;
 var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
 
+// A full action log for the longest run is well under this; anything larger is abuse.
+builder.WebHost.ConfigureKestrel(o => o.Limits.MaxRequestBodySize = 2 * 1024 * 1024);
+
 builder.AddAppTelemetry();
 
 builder.Services.AddSingleton(TimeProvider.System);
@@ -55,18 +58,28 @@ app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.UseStatusCodePages();
 
-if (!app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment() && !app.Environment.IsEnvironment("Testing"))
 {
     app.UseHsts();
+    app.UseHttpsRedirection();
 }
+
+// Strict CSP: only same-origin scripts (no eval: Pixi's CSP-safe shader path is imported client-side),
+// inline style attributes for React, and blob workers for Pixi's image decoding.
+const string ContentSecurityPolicy =
+    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; " +
+    "font-src 'self'; connect-src 'self' ws: wss:; worker-src 'self' blob:; manifest-src 'self'; media-src 'self' blob:; " +
+    "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'";
 
 app.Use(async (context, next) =>
 {
     var headers = context.Response.Headers;
     headers.XContentTypeOptions = "nosniff";
     headers.XFrameOptions = "DENY";
+    headers.ContentSecurityPolicy = ContentSecurityPolicy;
     headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
-    headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()";
+    headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=(), payment=()";
+    headers["Cross-Origin-Opener-Policy"] = "same-origin";
     await next();
 });
 
