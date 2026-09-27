@@ -11,6 +11,7 @@ import {
   hash2,
   IRON,
   makeCanvas,
+  type Metal,
   metalGradient,
   pipe,
   radialMetal,
@@ -115,6 +116,9 @@ export function bakeTerrain(map: MapDefinition, scale: number): BakedTerrain {
       }
     }
   }
+
+  // Pipework spans several roof tiles, so it goes down only once every tile is painted.
+  drawPipeRuns(ctx, cols, rows, P, at, seed)
 
   // Ambient occlusion: structures shade the walkways at their feet.
   for (let y = 0; y < rows; y++) {
@@ -414,10 +418,108 @@ function drawRoof(ctx: Ctx, px: number, py: number, P: number, pal: MapDefinitio
       ctx.stroke()
     }
   }
-  // Pipes run along some roof edges.
-  if (hash2(x, y, seed + 2) > 0.7) {
-    const yy = py + P * (0.2 + hash2(x, y, seed + 4) * 0.6)
-    pipe(ctx, px - 1, yy, px + P + 1, yy, P * 0.09, hash2(x, y, seed + 8) > 0.5 ? COPPER : BRASS)
+}
+
+/** Roof tiles without a chimney, vent, flywheel or crates; only these carry pipework. */
+function isPlainRoof(at: (x: number, y: number) => string, x: number, y: number, seed: number): boolean {
+  return at(x, y) === '#' && hash2(x, y, seed + 1) <= 0.4
+}
+
+/**
+ * Lays pipework across runs of adjacent plain roof tiles, bracketed at both ends and flanged at every tile joint, so
+ * pipes read as continuous plumbing instead of stray lines that stop at tile edges or cut through rooftop features.
+ */
+function drawPipeRuns(ctx: Ctx, cols: number, rows: number, P: number, at: (x: number, y: number) => string, seed: number) {
+  const used = new Set<number>()
+  const free = (x: number, y: number) => isPlainRoof(at, x, y, seed) && !used.has(y * cols + x)
+  for (const horizontal of [true, false]) {
+    const outer = horizontal ? rows : cols
+    const inner = horizontal ? cols : rows
+    for (let o = 0; o < outer; o++) {
+      let i = 0
+      while (i < inner) {
+        const cell = (k: number): [number, number] => (horizontal ? [k, o] : [o, k])
+        if (!free(...cell(i))) {
+          i++
+          continue
+        }
+        let end = i
+        while (end + 1 < inner && end - i < 5 && free(...cell(end + 1))) end++
+        const [sx, sy] = cell(i)
+        if (end > i && hash2(sx, sy, seed + (horizontal ? 2 : 12)) > 0.4) {
+          for (let k = i; k <= end; k++) {
+            const [cx, cy] = cell(k)
+            used.add(cy * cols + cx)
+          }
+          const [ex, ey] = cell(end)
+          // Keep clear of lamps (tile edges/centre-line) and the south wall face (bottom fifth of a tile).
+          const across = 0.3 + hash2(sx, sy, seed + 4) * 0.1
+          const metal = hash2(sx, sy, seed + 8) > 0.5 ? COPPER : BRASS
+          if (horizontal) drawPipeRun(ctx, (sx + 0.22) * P, (sy + across) * P, (ex + 0.78) * P, (ey + across) * P, P, metal)
+          else drawPipeRun(ctx, (sx + across) * P, (sy + 0.22) * P, (ex + across) * P, (ey + 0.68) * P, P, metal)
+        }
+        i = end + 1
+      }
+    }
+  }
+}
+
+function drawPipeRun(ctx: Ctx, x0: number, y0: number, x1: number, y1: number, P: number, m: Metal) {
+  const w = P * 0.11
+  const horizontal = y0 === y1
+  // Cast shadow offset down-right, matching the rest of the rooftop art.
+  ctx.save()
+  ctx.strokeStyle = 'rgba(0,0,0,0.4)'
+  ctx.lineWidth = w
+  ctx.lineCap = 'round'
+  ctx.beginPath()
+  ctx.moveTo(x0 + P * 0.03, y0 + P * 0.05)
+  ctx.lineTo(x1 + P * 0.03, y1 + P * 0.05)
+  ctx.stroke()
+  ctx.restore()
+  pipe(ctx, x0, y0, x1, y1, w, m)
+  // Flanged couplings at each tile joint along the run.
+  const len = horizontal ? x1 - x0 : y1 - y0
+  const first = Math.ceil((horizontal ? x0 : y0) / P) * P
+  for (let s = first; s < (horizontal ? x1 : y1); s += P) {
+    const fx = horizontal ? s : x0
+    const fy = horizontal ? y0 : s
+    const fw = horizontal ? P * 0.05 : w * 1.5
+    const fh = horizontal ? w * 1.5 : P * 0.05
+    ctx.fillStyle = 'rgba(0,0,0,0.35)'
+    ctx.fillRect(fx - fw / 2 + P * 0.02, fy - fh / 2 + P * 0.03, fw, fh)
+    ctx.fillStyle = metalGradient(ctx, fx - fw / 2, fy - fh / 2, fx + fw / 2, fy + fh / 2, m)
+    ctx.fillRect(fx - fw / 2, fy - fh / 2, fw, fh)
+  }
+  // Riveted mounting brackets where the pipe drops into the roof.
+  if (len > 0) {
+    for (const [bx, by] of [
+      [x0, y0],
+      [x1, y1],
+    ]) {
+      const s = P * 0.2
+      ctx.fillStyle = 'rgba(0,0,0,0.45)'
+      ctx.beginPath()
+      ctx.roundRect(bx - s / 2 + P * 0.03, by - s / 2 + P * 0.05, s, s, P * 0.03)
+      ctx.fill()
+      ctx.fillStyle = metalGradient(ctx, bx - s / 2, by - s / 2, bx + s / 2, by + s / 2, IRON)
+      ctx.beginPath()
+      ctx.roundRect(bx - s / 2, by - s / 2, s, s, P * 0.03)
+      ctx.fill()
+      ctx.fillStyle = radialMetal(ctx, bx, by, w * 0.75, m)
+      circle(ctx, bx, by, w * 0.75)
+      ctx.fill()
+      ctx.fillStyle = 'rgba(0,0,0,0.6)'
+      circle(ctx, bx, by, w * 0.35)
+      ctx.fill()
+      for (const [rx, ry] of [
+        [-1, -1],
+        [1, -1],
+        [-1, 1],
+        [1, 1],
+      ])
+        rivet(ctx, bx + rx * s * 0.32, by + ry * s * 0.32, P * 0.018)
+    }
   }
 }
 
