@@ -35,6 +35,7 @@ const paths = {
   speaker: 'M4 9.5h3.5L12 5v14l-4.5-4.5H4v-5Zm12 0a3.5 3.5 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10',
   plus: 'M12 5v14M5 12h14',
   check: 'm4.5 12.5 5 5 10-11',
+  coffee: 'M4 9.5h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-5Zm12 1.5h1.5a2.5 2.5 0 0 1 0 5H16M8 2.5c-.7.8-.7 1.7 0 2.5s.7 1.7 0 2.5M12 2.5c-.7.8-.7 1.7 0 2.5s.7 1.7 0 2.5',
 } as const
 
 export type IconName = keyof typeof paths

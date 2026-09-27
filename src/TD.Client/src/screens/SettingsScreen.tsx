@@ -3,6 +3,8 @@ import { saveSettings } from '../api/account'
 import { useAuth } from '../state/auth'
 import { type QualityTier, type Settings, useSettings } from '../state/settings'
 import { GearBackdrop, Panel, ScreenHeader, Tabs } from '../ui/components'
+import { SUPPORT_URL } from '../lib/links'
+import { Icon } from '../ui/Icon'
 import './screens.css'
 
 const volumes: [keyof Settings, string][] = [
@@ -71,6 +73,13 @@ export function SettingsScreen() {
               <span>{label}</span>
             </label>
           ))}
+        </Panel>
+        <Panel title="Support">
+          <p className="muted small">Sockless Tower Defense is free to play, with no ads or purchases. If you enjoy it, you can support development with a coffee.</p>
+          <a className="btn btn-copper btn-md support-link" href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">
+            <Icon name="coffee" size={18} />
+            <span>Buy me a coffee</span>
+          </a>
         </Panel>
       </div>
     </div>

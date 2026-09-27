@@ -107,6 +107,16 @@
 .version {
   font-size: 11px;
 }
+.title-footer-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.support-link {
+  justify-self: start;
+  margin-top: 4px;
+}
 
 /* ---------------------------------------------------------------- Auth */
 .auth-wrap {

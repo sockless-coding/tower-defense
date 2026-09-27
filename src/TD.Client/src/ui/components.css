@@ -82,6 +82,7 @@
   box-shadow: var(--bevel), 0 3px 0 rgba(0, 0, 0, 0.55), 0 6px 14px rgba(0, 0, 0, 0.45);
   white-space: nowrap;
 }
+a.btn { text-decoration: none; }
 .btn:hover:not(:disabled) { filter: brightness(1.12); }
 .btn:active:not(:disabled) {
   transform: translateY(2px);

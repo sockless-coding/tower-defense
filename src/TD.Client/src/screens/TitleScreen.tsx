@@ -4,6 +4,7 @@ import { logout, playAsGuest, useProfile } from '../api/account'
 import { useLoadedContent } from '../api/content'
 import { useSaves } from '../api/sessions'
 import { AUTOSAVE_SLOT } from '../game/GameController'
+import { SUPPORT_URL } from '../lib/links'
 import { useActiveSession } from '../state/game'
 import { useAuth } from '../state/auth'
 import { Button, GearBackdrop } from '../ui/components'
@@ -127,7 +128,13 @@ export function TitleScreen() {
             </Button>
           )}
         </div>
-        <span className="muted version">Content {content.bundle.version}</span>
+        <div className="title-footer-end">
+          <a className="btn btn-copper btn-sm" href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">
+            <Icon name="coffee" size={15} />
+            <span>Buy me a coffee</span>
+          </a>
+          <span className="muted version">Content {content.bundle.version}</span>
+        </div>
       </footer>
     </div>
   )
