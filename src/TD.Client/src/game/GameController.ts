@@ -3,6 +3,7 @@ import { completeSession, putSave, type SessionStart } from '../api/sessions'
 import { ApiError } from '../api/http'
 import { initialHud, useHud, type HudState, type SelectedTowerInfo, type Toast, type UpgradeOption } from '../state/game'
 import type { Settings } from '../state/settings'
+import { GameAudio } from './audio/gameAudio'
 import { GameRenderer } from './render/GameRenderer'
 import { FrameGovernor, lowerTier, resolveQuality, type QualityProfile } from './render/quality'
 import { canPurchase } from './sim/stats'
@@ -73,6 +74,7 @@ export class GameController {
   private touchGhost: { x: number; y: number } | null = null
   private readonly maxSpeed: number
   private readonly cleanup: (() => void)[] = []
+  private readonly audio: GameAudio
 
   private constructor(options: GameControllerOptions, sim: Simulation, renderer: GameRenderer, quality: QualityProfile) {
     this.options = options
@@ -83,6 +85,7 @@ export class GameController {
     this.quality = quality
     this.maxSpeed = options.features.includes('feature.speed3x') ? 3 : options.features.includes('feature.speed2x') ? 2 : 1
     renderer.screenShakeEnabled = options.settings.screenShake
+    this.audio = new GameAudio(sim)
     this.bindInput()
     useHud.setState({ ...initialHud, ready: true, maxSpeed: this.maxSpeed })
     this.publish()
@@ -117,6 +120,7 @@ export class GameController {
         sim.tick()
         const events = sim.drainEvents()
         this.renderer.handleEvents(events)
+        this.audio.handle(events)
         this.onEvents(events)
         this.options.onEvents?.(events, sim)
         this.acc -= step
@@ -126,6 +130,7 @@ export class GameController {
     }
 
     this.renderer.frame(dt, this.paused ? 1 : Math.min(1, this.acc / sim.dt))
+    if (!this.paused) this.audio.update(dt)
 
     if (this.options.settings.quality === 'auto' && this.governor.sample(dt)) {
       const next = lowerTier(this.quality.tier)
@@ -151,6 +156,7 @@ export class GameController {
 
     if (sim.outcome !== 'playing' && !this.submitted) {
       this.submitted = true
+      this.audio.finish(sim.outcome)
       this.publish()
       void this.submit()
     }
@@ -547,6 +553,7 @@ export class GameController {
     this.destroyed = true
     cancelAnimationFrame(this.raf)
     for (const fn of this.cleanup) fn()
+    this.audio.destroy()
     this.renderer.destroy()
     void this.saveVersion
   }

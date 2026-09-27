@@ -181,7 +181,7 @@ export function TowerPanel({ game, content }: { game: GameController; content: C
           Kills <b>{selected.kills}</b>
         </span>
         <span>
-          Damage <b>{Math.round(selected.damage).toLocaleString()}</b>
+          Dealt <b>{Math.round(selected.damage).toLocaleString()}</b>
         </span>
       </div>
       {selected.synergies.length > 0 && <p className="synergy-line">⚙ {selected.synergies.join(' · ')}</p>}

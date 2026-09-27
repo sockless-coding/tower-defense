@@ -1,6 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { MusicDirector } from '../game/audio/music'
+import { play } from '../game/audio/synth'
 import { useProfile } from '../api/account'
 import { useContent } from '../api/content'
 import { startLive } from '../api/live'
@@ -24,6 +26,28 @@ export function App() {
   const hydrate = useSettings((s) => s.hydrate)
 
   useEffect(() => startLive(queryClient), [queryClient])
+
+  // Menus get the calm workshop theme; battles drive their own score.
+  const location = useLocation()
+  const inBattle = location.pathname.startsWith('/play') || location.pathname.startsWith('/dev/')
+  useEffect(() => {
+    const start = () => {
+      if (!inBattle) MusicDirector.get().setMode('menu')
+    }
+    start()
+    window.addEventListener('pointerdown', start, { once: true })
+    return () => window.removeEventListener('pointerdown', start)
+  }, [inBattle])
+
+  // Mechanical click on every control.
+  useEffect(() => {
+    const onDown = (e: PointerEvent) => {
+      const el = (e.target as HTMLElement | null)?.closest('.btn, .tab, .build-card, .codex-item, .level-card, .speed-btn, .upgrade-btn, .difficulty-preset')
+      if (el && !(el as HTMLButtonElement).disabled) play('click', { bus: 'ui', volume: 0.7, cooldown: 0.02 })
+    }
+    window.addEventListener('pointerdown', onDown)
+    return () => window.removeEventListener('pointerdown', onDown)
+  }, [])
 
   // Pull synced preferences once the profile arrives.
   useEffect(() => {
