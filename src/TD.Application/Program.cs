@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FluentValidation;
+using TD.Application.Features.Content;
 using Microsoft.AspNetCore.HttpOverrides;
 using TD.Application.Infrastructure.Audit;
 using TD.Application.Infrastructure.Auth;
@@ -21,6 +22,7 @@ builder.Services.AddAppRateLimiting(builder.Configuration);
 builder.Services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true);
 builder.Services.AddFeatureHandlers(assembly);
 builder.Services.AddScoped<AuditLog>();
+builder.Services.AddContent();
 builder.Services.AddSingleton<LiveNotifier>();
 builder.Services.AddSignalR();
 builder.Services.AddProblemDetails();
@@ -79,6 +81,7 @@ app.MapHub<LiveHub>(LiveHub.Path);
 app.MapFallbackToFile("{*path:regex(^(?!api/|hubs/).*$)}", "index.html");
 
 await app.Services.MigrateDatabaseAsync();
+await app.Services.SeedContentAsync();
 await app.RunAsync();
 
 public partial class Program;

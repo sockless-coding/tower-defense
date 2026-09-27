@@ -1,0 +1,1562 @@
+[
+ {
+  "id": "sp-boiler-efficiency",
+  "name": "Boiler Efficiency",
+  "category": "steamPower",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "All towers fire 3% faster.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "rate",
+    "op": "mul",
+    "value": 1.03
+   }
+  ],
+  "x": 0,
+  "y": 0
+ },
+ {
+  "id": "sp-pressure-gauges",
+  "name": "Pressure Gauges",
+  "category": "steamPower",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "+40 starting gold.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "startingGold",
+    "op": "add",
+    "value": 40
+   }
+  ],
+  "x": 1,
+  "y": 0
+ },
+ {
+  "id": "sp-coal-stockpile",
+  "name": "Coal Stockpile",
+  "category": "steamPower",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Interest cap +20.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "interestCap",
+    "op": "add",
+    "value": 20
+   }
+  ],
+  "x": 2,
+  "y": 0
+ },
+ {
+  "id": "sp-high-pressure",
+  "name": "High Pressure Lines",
+  "category": "steamPower",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "sp-boiler-efficiency"
+  ],
+  "description": "Flame towers deal 8% more damage.",
+  "effects": [
+   {
+    "target": "category:flame",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 0,
+  "y": 1
+ },
+ {
+  "id": "sp-steam-turbines",
+  "name": "Steam Turbines",
+  "category": "steamPower",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "sp-pressure-gauges"
+  ],
+  "description": "Support towers gain 10% range.",
+  "effects": [
+   {
+    "target": "category:support",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 1,
+  "y": 1
+ },
+ {
+  "id": "sp-regenerative",
+  "name": "Regenerative Braking",
+  "category": "steamPower",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "sp-coal-stockpile"
+  ],
+  "description": "Selling refunds 5% more.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "sellRefund",
+    "op": "add",
+    "value": 0.05
+   }
+  ],
+  "x": 2,
+  "y": 1
+ },
+ {
+  "id": "sp-superheaters",
+  "name": "Superheaters",
+  "category": "steamPower",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "sp-high-pressure"
+  ],
+  "description": "Burn damage +15%.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "burnDps",
+    "op": "mul",
+    "value": 1.15
+   }
+  ],
+  "x": 0,
+  "y": 2
+ },
+ {
+  "id": "sp-compound-engines",
+  "name": "Compound Engines",
+  "category": "steamPower",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "sp-steam-turbines",
+   "eng-rifled-barrels"
+  ],
+  "description": "All towers fire 4% faster.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "rate",
+    "op": "mul",
+    "value": 1.04
+   }
+  ],
+  "x": 1,
+  "y": 2
+ },
+ {
+  "id": "sp-steam-logistics",
+  "name": "Steam Logistics",
+  "category": "steamPower",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "sp-regenerative"
+  ],
+  "description": "Wave clear bonuses +15%.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "clearBonusMul",
+    "op": "mul",
+    "value": 1.15
+   }
+  ],
+  "x": 2,
+  "y": 2
+ },
+ {
+  "id": "sp-furnace-mastery",
+  "name": "Furnace Mastery",
+  "category": "steamPower",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "sp-superheaters"
+  ],
+  "description": "Furnace Towers +15% damage; Incinerators +10% range.",
+  "effects": [
+   {
+    "target": "tower:furnace-tower",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.15
+   },
+   {
+    "target": "tower:incinerator",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 0,
+  "y": 3
+ },
+ {
+  "id": "sp-pressure-vessels",
+  "name": "Pressure Vessels",
+  "category": "steamPower",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "sp-compound-engines"
+  ],
+  "description": "Steam Pressure Boosters grant +5% more fire rate.",
+  "effects": [
+   {
+    "target": "tower:steam-pressure-booster",
+    "stat": "buffRate",
+    "op": "add",
+    "value": 0.05
+   }
+  ],
+  "x": 1,
+  "y": 3
+ },
+ {
+  "id": "sp-triple-expansion",
+  "name": "Triple Expansion",
+  "category": "steamPower",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "sp-steam-logistics"
+  ],
+  "description": "Enemy bounties +8%.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "bountyMul",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 2,
+  "y": 3
+ },
+ {
+  "id": "sp-steam-age",
+  "name": "The Steam Age",
+  "category": "steamPower",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "sp-furnace-mastery",
+   "ms-combined-arms"
+  ],
+  "description": "All towers deal 5% more damage.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 0,
+  "y": 4
+ },
+ {
+  "id": "sp-grand-engine",
+  "name": "The Grand Engine",
+  "category": "steamPower",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "sp-pressure-vessels"
+  ],
+  "description": "+2 power cores in every level.",
+  "effects": [
+   {
+    "target": "cores",
+    "stat": "cores",
+    "op": "add",
+    "value": 2
+   }
+  ],
+  "x": 1,
+  "y": 4
+ },
+ {
+  "id": "sp-infinite-boiler",
+  "name": "Infinite Boiler",
+  "category": "steamPower",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "sp-triple-expansion"
+  ],
+  "description": "+100 starting gold.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "startingGold",
+    "op": "add",
+    "value": 100
+   }
+  ],
+  "x": 2,
+  "y": 4
+ },
+ {
+  "id": "eng-precision-tooling",
+  "name": "Precision Tooling",
+  "category": "engineering",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Ballistic towers deal 5% more damage.",
+  "effects": [
+   {
+    "target": "category:ballistic",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 3,
+  "y": 0
+ },
+ {
+  "id": "eng-standard-parts",
+  "name": "Standard Parts",
+  "category": "engineering",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Towers cost 3% less.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "towerCostMul",
+    "op": "mul",
+    "value": 0.97
+   }
+  ],
+  "x": 4,
+  "y": 0
+ },
+ {
+  "id": "eng-reinforced-mounts",
+  "name": "Reinforced Mounts",
+  "category": "engineering",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Mechanical towers deal 6% more damage.",
+  "effects": [
+   {
+    "target": "category:mechanical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.06
+   }
+  ],
+  "x": 5,
+  "y": 0
+ },
+ {
+  "id": "eng-rifled-barrels",
+  "name": "Rifled Barrels",
+  "category": "engineering",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "eng-precision-tooling"
+  ],
+  "description": "Ballistic towers gain 8% range.",
+  "effects": [
+   {
+    "target": "category:ballistic",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 3,
+  "y": 1
+ },
+ {
+  "id": "eng-interchangeable",
+  "name": "Interchangeable Parts",
+  "category": "engineering",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "eng-standard-parts"
+  ],
+  "description": "Upgrades cost 5% less.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "upgradeCostMul",
+    "op": "mul",
+    "value": 0.95
+   }
+  ],
+  "x": 4,
+  "y": 1
+ },
+ {
+  "id": "eng-gearing",
+  "name": "Reduction Gearing",
+  "category": "engineering",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "eng-reinforced-mounts"
+  ],
+  "description": "Mechanical towers fire 8% faster.",
+  "effects": [
+   {
+    "target": "category:mechanical",
+    "stat": "rate",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 5,
+  "y": 1
+ },
+ {
+  "id": "eng-armour-piercing",
+  "name": "Armour-Piercing Rounds",
+  "category": "engineering",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "eng-rifled-barrels"
+  ],
+  "description": "Ballistic towers ignore 2 armour.",
+  "effects": [
+   {
+    "target": "category:ballistic",
+    "stat": "armorPierce",
+    "op": "add",
+    "value": 2
+   }
+  ],
+  "x": 3,
+  "y": 2
+ },
+ {
+  "id": "eng-mass-production",
+  "name": "Mass Production",
+  "category": "engineering",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "eng-interchangeable"
+  ],
+  "description": "Towers cost 5% less.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "towerCostMul",
+    "op": "mul",
+    "value": 0.95
+   }
+  ],
+  "x": 4,
+  "y": 2
+ },
+ {
+  "id": "eng-hydraulics",
+  "name": "Hydraulics",
+  "category": "engineering",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "eng-gearing"
+  ],
+  "description": "Steam Hammers deal 15% more damage.",
+  "effects": [
+   {
+    "target": "tower:steam-hammer",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.15
+   }
+  ],
+  "x": 5,
+  "y": 2
+ },
+ {
+  "id": "eng-rail-theory",
+  "name": "Rail Theory",
+  "category": "engineering",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "eng-armour-piercing",
+   "el-capacitors"
+  ],
+  "description": "Railgun Turrets deal 15% more damage.",
+  "effects": [
+   {
+    "target": "tower:railgun-turret",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.15
+   }
+  ],
+  "x": 3,
+  "y": 3
+ },
+ {
+  "id": "eng-ballistics-tables",
+  "name": "Ballistics Tables",
+  "category": "engineering",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "eng-mass-production"
+  ],
+  "description": "Mortar blast radius +15%.",
+  "effects": [
+   {
+    "target": "tower:mortar-tower",
+    "stat": "splash",
+    "op": "mul",
+    "value": 1.15
+   }
+  ],
+  "x": 4,
+  "y": 3
+ },
+ {
+  "id": "eng-harpoon-winches",
+  "name": "Harpoon Winches",
+  "category": "engineering",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "eng-hydraulics"
+  ],
+  "description": "Harpoons pull 0.3 tiles further.",
+  "effects": [
+   {
+    "target": "tower:harpoon-launcher",
+    "stat": "pullDistance",
+    "op": "add",
+    "value": 0.3
+   }
+  ],
+  "x": 5,
+  "y": 3
+ },
+ {
+  "id": "eng-master-machinist",
+  "name": "Master Machinist",
+  "category": "engineering",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "eng-rail-theory"
+  ],
+  "description": "Ballistic towers deal 10% more damage.",
+  "effects": [
+   {
+    "target": "category:ballistic",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 3,
+  "y": 4
+ },
+ {
+  "id": "eng-automated-assembly",
+  "name": "Automated Assembly",
+  "category": "engineering",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "eng-ballistics-tables"
+  ],
+  "description": "Upgrades cost 10% less.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "upgradeCostMul",
+    "op": "mul",
+    "value": 0.9
+   }
+  ],
+  "x": 4,
+  "y": 4
+ },
+ {
+  "id": "eng-sawmill",
+  "name": "Industrial Sawmill",
+  "category": "engineering",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "eng-harpoon-winches"
+  ],
+  "description": "Sawblades pierce 2 more enemies.",
+  "effects": [
+   {
+    "target": "tower:sawblade-launcher",
+    "stat": "pierce",
+    "op": "add",
+    "value": 2
+   }
+  ],
+  "x": 5,
+  "y": 4
+ },
+ {
+  "id": "el-copper-wiring",
+  "name": "Copper Wiring",
+  "category": "electricity",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Electrical towers deal 5% more damage.",
+  "effects": [
+   {
+    "target": "category:electrical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 6,
+  "y": 0
+ },
+ {
+  "id": "el-insulation",
+  "name": "Gutta-Percha Insulation",
+  "category": "electricity",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Electrical towers gain 5% range.",
+  "effects": [
+   {
+    "target": "category:electrical",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 7,
+  "y": 0
+ },
+ {
+  "id": "el-dynamos",
+  "name": "Dynamos",
+  "category": "electricity",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "+25 starting gold.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "startingGold",
+    "op": "add",
+    "value": 25
+   }
+  ],
+  "x": 8,
+  "y": 0
+ },
+ {
+  "id": "el-capacitors",
+  "name": "Leyden Capacitors",
+  "category": "electricity",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "el-copper-wiring"
+  ],
+  "description": "Electrical towers fire 8% faster.",
+  "effects": [
+   {
+    "target": "category:electrical",
+    "stat": "rate",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 6,
+  "y": 1
+ },
+ {
+  "id": "el-conductive-alloys",
+  "name": "Conductive Alloys",
+  "category": "electricity",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "el-insulation"
+  ],
+  "description": "Tesla Coils chain to 1 more target.",
+  "effects": [
+   {
+    "target": "tower:tesla-coil",
+    "stat": "chains",
+    "op": "add",
+    "value": 1
+   }
+  ],
+  "x": 7,
+  "y": 1
+ },
+ {
+  "id": "el-arc-stability",
+  "name": "Arc Stability",
+  "category": "electricity",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "el-dynamos"
+  ],
+  "description": "Arc Towers ramp 50% higher.",
+  "effects": [
+   {
+    "target": "tower:arc-tower",
+    "stat": "beamRampMax",
+    "op": "add",
+    "value": 0.5
+   }
+  ],
+  "x": 8,
+  "y": 1
+ },
+ {
+  "id": "el-induction",
+  "name": "Induction",
+  "category": "electricity",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "el-capacitors"
+  ],
+  "description": "Electrical towers deal 8% more damage.",
+  "effects": [
+   {
+    "target": "category:electrical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 6,
+  "y": 2
+ },
+ {
+  "id": "el-storm-theory",
+  "name": "Storm Theory",
+  "category": "electricity",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "el-conductive-alloys"
+  ],
+  "description": "Storm Generators gain 10% range.",
+  "effects": [
+   {
+    "target": "tower:storm-generator",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 7,
+  "y": 2
+ },
+ {
+  "id": "el-mine-fuses",
+  "name": "Galvanic Fuses",
+  "category": "electricity",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "el-arc-stability"
+  ],
+  "description": "Mine Layers keep 2 more mines.",
+  "effects": [
+   {
+    "target": "tower:galvanic-mine-layer",
+    "stat": "mineCount",
+    "op": "add",
+    "value": 2
+   }
+  ],
+  "x": 8,
+  "y": 2
+ },
+ {
+  "id": "el-alternating-current",
+  "name": "Alternating Current",
+  "category": "electricity",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "el-induction",
+   "ch-electrolytes"
+  ],
+  "description": "Electrical towers fire 8% faster.",
+  "effects": [
+   {
+    "target": "category:electrical",
+    "stat": "rate",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 6,
+  "y": 3
+ },
+ {
+  "id": "exp-aether",
+  "name": "Aether Optics",
+  "category": "electricity",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "el-storm-theory",
+   "ch-catalysts"
+  ],
+  "description": "Unlocks the Aether Prism.",
+  "effects": [
+   {
+    "target": "unlock",
+    "stat": "tower:aether-prism",
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "x": 7,
+  "y": 3
+ },
+ {
+  "id": "el-wireless-power",
+  "name": "Wireless Power",
+  "category": "electricity",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "el-mine-fuses"
+  ],
+  "description": "Support towers gain 10% range.",
+  "effects": [
+   {
+    "target": "category:support",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 8,
+  "y": 3
+ },
+ {
+  "id": "el-tesla-legacy",
+  "name": "Tesla's Legacy",
+  "category": "electricity",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "el-alternating-current"
+  ],
+  "description": "Tesla Coils deal 20% more damage.",
+  "effects": [
+   {
+    "target": "tower:tesla-coil",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.2
+   }
+  ],
+  "x": 6,
+  "y": 4
+ },
+ {
+  "id": "exp-phase",
+  "name": "Phase Mechanics",
+  "category": "electricity",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "exp-aether",
+   "ms-siege-doctrine"
+  ],
+  "description": "Unlocks the Phase Lance.",
+  "effects": [
+   {
+    "target": "unlock",
+    "stat": "tower:phase-lance",
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "x": 7,
+  "y": 4
+ },
+ {
+  "id": "el-grid-mastery",
+  "name": "Grid Mastery",
+  "category": "electricity",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "el-wireless-power"
+  ],
+  "description": "Electrical towers deal 10% more damage.",
+  "effects": [
+   {
+    "target": "category:electrical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 8,
+  "y": 4
+ },
+ {
+  "id": "ch-reagents",
+  "name": "Pure Reagents",
+  "category": "chemistry",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Chemical towers deal 5% more damage.",
+  "effects": [
+   {
+    "target": "category:chemical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 9,
+  "y": 0
+ },
+ {
+  "id": "ch-corrosives",
+  "name": "Corrosives",
+  "category": "chemistry",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Corrosion builds 10% faster.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "corrodePerHit",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 10,
+  "y": 0
+ },
+ {
+  "id": "ch-volatile-oils",
+  "name": "Volatile Oils",
+  "category": "chemistry",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Flame towers deal 5% more damage.",
+  "effects": [
+   {
+    "target": "category:flame",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 11,
+  "y": 0
+ },
+ {
+  "id": "ch-catalysts",
+  "name": "Catalysts",
+  "category": "chemistry",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "ch-reagents"
+  ],
+  "description": "Chemical towers fire 8% faster.",
+  "effects": [
+   {
+    "target": "category:chemical",
+    "stat": "rate",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 9,
+  "y": 1
+ },
+ {
+  "id": "ch-toxins",
+  "name": "Refined Toxins",
+  "category": "chemistry",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "ch-corrosives"
+  ],
+  "description": "Poison damage +15%.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "poisonDps",
+    "op": "mul",
+    "value": 1.15
+   }
+  ],
+  "x": 10,
+  "y": 1
+ },
+ {
+  "id": "ch-electrolytes",
+  "name": "Electrolytes",
+  "category": "chemistry",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "ch-volatile-oils"
+  ],
+  "description": "Electrical towers deal 5% more damage.",
+  "effects": [
+   {
+    "target": "category:electrical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 11,
+  "y": 1
+ },
+ {
+  "id": "ch-aerosols",
+  "name": "Aerosols",
+  "category": "chemistry",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "ch-catalysts"
+  ],
+  "description": "Chemical towers gain 8% range.",
+  "effects": [
+   {
+    "target": "category:chemical",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.08
+   }
+  ],
+  "x": 9,
+  "y": 2
+ },
+ {
+  "id": "ch-accelerants",
+  "name": "Accelerants",
+  "category": "chemistry",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "ch-toxins"
+  ],
+  "description": "Burn damage +15%.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "burnDps",
+    "op": "mul",
+    "value": 1.15
+   }
+  ],
+  "x": 10,
+  "y": 2
+ },
+ {
+  "id": "ch-alchemy",
+  "name": "Practical Alchemy",
+  "category": "chemistry",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "ch-electrolytes"
+  ],
+  "description": "Enemy bounties +5%.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "bountyMul",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 11,
+  "y": 2
+ },
+ {
+  "id": "ch-napalm-formula",
+  "name": "Napalm Formula",
+  "category": "chemistry",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "ch-aerosols"
+  ],
+  "description": "Napalm Projectors deal 20% more damage.",
+  "effects": [
+   {
+    "target": "tower:napalm-projector",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.2
+   }
+  ],
+  "x": 9,
+  "y": 3
+ },
+ {
+  "id": "ch-transmutation",
+  "name": "Transmutation",
+  "category": "chemistry",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "ch-accelerants"
+  ],
+  "description": "Alchemical Stills yield 10% more gold.",
+  "effects": [
+   {
+    "target": "tower:alchemical-still",
+    "stat": "bountyBonus",
+    "op": "add",
+    "value": 0.1
+   }
+  ],
+  "x": 10,
+  "y": 3
+ },
+ {
+  "id": "exp-chronometry",
+  "name": "Chronometry",
+  "category": "chemistry",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "ch-alchemy",
+   "el-capacitors"
+  ],
+  "description": "Unlocks the Time Distortion Tower.",
+  "effects": [
+   {
+    "target": "unlock",
+    "stat": "tower:time-distortion-tower",
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "x": 11,
+  "y": 3
+ },
+ {
+  "id": "ch-grand-elixir",
+  "name": "The Grand Elixir",
+  "category": "chemistry",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "ch-napalm-formula"
+  ],
+  "description": "Chemical towers deal 12% more damage.",
+  "effects": [
+   {
+    "target": "category:chemical",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.12
+   }
+  ],
+  "x": 9,
+  "y": 4
+ },
+ {
+  "id": "ch-universal-solvent",
+  "name": "Universal Solvent",
+  "category": "chemistry",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "ch-transmutation"
+  ],
+  "description": "All towers ignore 2 armour.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "armorPierce",
+    "op": "add",
+    "value": 2
+   }
+  ],
+  "x": 10,
+  "y": 4
+ },
+ {
+  "id": "exp-gravitics",
+  "name": "Gravitics",
+  "category": "chemistry",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "exp-chronometry",
+   "eng-ballistics-tables"
+  ],
+  "description": "Unlocks the Gravity Manipulator.",
+  "effects": [
+   {
+    "target": "unlock",
+    "stat": "tower:gravity-manipulator",
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "x": 11,
+  "y": 4
+ },
+ {
+  "id": "ms-drill",
+  "name": "Drill and Discipline",
+  "category": "militaryScience",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "All towers deal 3% more damage.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.03
+   }
+  ],
+  "x": 12,
+  "y": 0
+ },
+ {
+  "id": "ms-scouting",
+  "name": "Scouting",
+  "category": "militaryScience",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "Spotter Towers gain 10% range.",
+  "effects": [
+   {
+    "target": "tower:spotter-tower",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.1
+   }
+  ],
+  "x": 13,
+  "y": 0
+ },
+ {
+  "id": "ms-fortified-vault",
+  "name": "Fortified Vault",
+  "category": "militaryScience",
+  "tier": 1,
+  "cost": 1,
+  "requires": [],
+  "description": "+1 power core in every level.",
+  "effects": [
+   {
+    "target": "cores",
+    "stat": "cores",
+    "op": "add",
+    "value": 1
+   }
+  ],
+  "x": 14,
+  "y": 0
+ },
+ {
+  "id": "ms-target-priority",
+  "name": "Target Priority",
+  "category": "militaryScience",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "ms-drill"
+  ],
+  "description": "All towers gain 3% critical chance.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "critChance",
+    "op": "add",
+    "value": 0.03
+   }
+  ],
+  "x": 12,
+  "y": 1
+ },
+ {
+  "id": "ms-logistics",
+  "name": "Logistics",
+  "category": "militaryScience",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "ms-scouting"
+  ],
+  "description": "+50 starting gold.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "startingGold",
+    "op": "add",
+    "value": 50
+   }
+  ],
+  "x": 13,
+  "y": 1
+ },
+ {
+  "id": "ms-field-command",
+  "name": "Field Command",
+  "category": "militaryScience",
+  "tier": 2,
+  "cost": 2,
+  "requires": [
+   "ms-fortified-vault"
+  ],
+  "description": "Map interactions recharge 10% faster.",
+  "effects": [
+   {
+    "target": "interaction",
+    "stat": "cooldownMul",
+    "op": "mul",
+    "value": 0.9
+   }
+  ],
+  "x": 14,
+  "y": 1
+ },
+ {
+  "id": "ms-combined-arms",
+  "name": "Combined Arms",
+  "category": "militaryScience",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "ms-target-priority"
+  ],
+  "description": "All towers deal 4% more damage.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.04
+   }
+  ],
+  "x": 12,
+  "y": 2
+ },
+ {
+  "id": "ms-anti-air",
+  "name": "Anti-Air Doctrine",
+  "category": "militaryScience",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "ms-logistics"
+  ],
+  "description": "All towers deal 10% more damage to air units.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "airDamageMul",
+    "op": "add",
+    "value": 0.1
+   }
+  ],
+  "x": 13,
+  "y": 2
+ },
+ {
+  "id": "ms-war-chest",
+  "name": "War Chest",
+  "category": "militaryScience",
+  "tier": 3,
+  "cost": 4,
+  "requires": [
+   "ms-field-command"
+  ],
+  "description": "+0.5% interest per wave.",
+  "effects": [
+   {
+    "target": "economy",
+    "stat": "interestRate",
+    "op": "add",
+    "value": 0.005
+   }
+  ],
+  "x": 14,
+  "y": 2
+ },
+ {
+  "id": "ms-siege-doctrine",
+  "name": "Siege Doctrine",
+  "category": "militaryScience",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "ms-combined-arms"
+  ],
+  "description": "All towers deal 10% more damage to bosses.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "bossDamageMul",
+    "op": "add",
+    "value": 0.1
+   }
+  ],
+  "x": 12,
+  "y": 3
+ },
+ {
+  "id": "ms-vault-doors",
+  "name": "Vault Doors",
+  "category": "militaryScience",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "ms-anti-air"
+  ],
+  "description": "+2 power cores in every level.",
+  "effects": [
+   {
+    "target": "cores",
+    "stat": "cores",
+    "op": "add",
+    "value": 2
+   }
+  ],
+  "x": 13,
+  "y": 3
+ },
+ {
+  "id": "ms-rapid-response",
+  "name": "Rapid Response",
+  "category": "militaryScience",
+  "tier": 4,
+  "cost": 6,
+  "requires": [
+   "ms-war-chest"
+  ],
+  "description": "Map interactions recharge 15% faster.",
+  "effects": [
+   {
+    "target": "interaction",
+    "stat": "cooldownMul",
+    "op": "mul",
+    "value": 0.85
+   }
+  ],
+  "x": 14,
+  "y": 3
+ },
+ {
+  "id": "ms-grand-strategy",
+  "name": "Grand Strategy",
+  "category": "militaryScience",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "ms-siege-doctrine"
+  ],
+  "description": "All towers deal 6% more damage.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "damage",
+    "op": "mul",
+    "value": 1.06
+   }
+  ],
+  "x": 12,
+  "y": 4
+ },
+ {
+  "id": "exp-singularity",
+  "name": "Singularity Containment",
+  "category": "militaryScience",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "ms-vault-doors",
+   "exp-gravitics"
+  ],
+  "description": "Unlocks the Singularium Engine.",
+  "effects": [
+   {
+    "target": "unlock",
+    "stat": "tower:singularium-engine",
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "x": 13,
+  "y": 4
+ },
+ {
+  "id": "ms-field-marshal",
+  "name": "Field Marshal",
+  "category": "militaryScience",
+  "tier": 5,
+  "cost": 10,
+  "requires": [
+   "ms-rapid-response"
+  ],
+  "description": "All towers gain 5% range.",
+  "effects": [
+   {
+    "target": "all",
+    "stat": "range",
+    "op": "mul",
+    "value": 1.05
+   }
+  ],
+  "x": 14,
+  "y": 4
+ }
+]

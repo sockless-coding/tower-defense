@@ -1,0 +1,1843 @@
+{
+ "maxLevel": 100,
+ "baseXp": 80,
+ "exponent": 1.3,
+ "rewards": [
+  {
+   "level": 2,
+   "kind": "feature",
+   "id": "feature.speed2x",
+   "name": "Double Time",
+   "description": "Unlocks 2x game speed.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 2,
+   "kind": "gears",
+   "id": "gears.2",
+   "name": "Gear Bounty",
+   "description": "20 gears.",
+   "amount": 20,
+   "effects": []
+  },
+  {
+   "level": 3,
+   "kind": "gears",
+   "id": "gears.3",
+   "name": "Gear Bounty",
+   "description": "30 gears.",
+   "amount": 30,
+   "effects": []
+  },
+  {
+   "level": 3,
+   "kind": "perk",
+   "id": "perk.quartermaster",
+   "name": "Quartermaster",
+   "description": "+25 starting gold.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "economy",
+     "stat": "startingGold",
+     "op": "add",
+     "value": 25
+    }
+   ]
+  },
+  {
+   "level": 4,
+   "kind": "feature",
+   "id": "feature.daily",
+   "name": "Daily Challenges",
+   "description": "Unlocks Daily Challenges.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 4,
+   "kind": "gears",
+   "id": "gears.4",
+   "name": "Gear Bounty",
+   "description": "40 gears.",
+   "amount": 40,
+   "effects": []
+  },
+  {
+   "level": 5,
+   "kind": "cosmetic",
+   "id": "banner.copper",
+   "name": "Copper Pennant",
+   "description": "A burnished copper pennant.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 5,
+   "kind": "feature",
+   "id": "feature.customDifficulty",
+   "name": "Custom Difficulty",
+   "description": "Unlocks custom difficulty modifiers.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 5,
+   "kind": "gears",
+   "id": "gears.5",
+   "name": "Gear Bounty",
+   "description": "50 gears.",
+   "amount": 50,
+   "effects": []
+  },
+  {
+   "level": 5,
+   "kind": "researchPoints",
+   "id": "rp.5",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 6,
+   "kind": "feature",
+   "id": "feature.weekly",
+   "name": "Weekly Events",
+   "description": "Unlocks Weekly Events.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 6,
+   "kind": "gears",
+   "id": "gears.6",
+   "name": "Gear Bounty",
+   "description": "60 gears.",
+   "amount": 60,
+   "effects": []
+  },
+  {
+   "level": 7,
+   "kind": "gears",
+   "id": "gears.7",
+   "name": "Gear Bounty",
+   "description": "70 gears.",
+   "amount": 70,
+   "effects": []
+  },
+  {
+   "level": 7,
+   "kind": "perk",
+   "id": "perk.drillmaster",
+   "name": "Drillmaster",
+   "description": "All towers deal 2% more damage.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "all",
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.02
+    }
+   ]
+  },
+  {
+   "level": 8,
+   "kind": "feature",
+   "id": "feature.survival",
+   "name": "Survival Mode",
+   "description": "Unlocks Survival mode.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 8,
+   "kind": "gears",
+   "id": "gears.8",
+   "name": "Gear Bounty",
+   "description": "80 gears.",
+   "amount": 80,
+   "effects": []
+  },
+  {
+   "level": 9,
+   "kind": "gears",
+   "id": "gears.9",
+   "name": "Gear Bounty",
+   "description": "90 gears.",
+   "amount": 90,
+   "effects": []
+  },
+  {
+   "level": 10,
+   "kind": "cosmetic",
+   "id": "title.engineer",
+   "name": "Engineer",
+   "description": "A qualified engineer.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 10,
+   "kind": "feature",
+   "id": "feature.speed3x",
+   "name": "Triple Time",
+   "description": "Unlocks 3x game speed.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 10,
+   "kind": "gears",
+   "id": "gears.10",
+   "name": "Gear Bounty",
+   "description": "100 gears.",
+   "amount": 100,
+   "effects": []
+  },
+  {
+   "level": 10,
+   "kind": "researchPoints",
+   "id": "rp.10",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 11,
+   "kind": "gears",
+   "id": "gears.11",
+   "name": "Gear Bounty",
+   "description": "110 gears.",
+   "amount": 110,
+   "effects": []
+  },
+  {
+   "level": 12,
+   "kind": "gears",
+   "id": "gears.12",
+   "name": "Gear Bounty",
+   "description": "120 gears.",
+   "amount": 120,
+   "effects": []
+  },
+  {
+   "level": 12,
+   "kind": "perk",
+   "id": "perk.vault-warden",
+   "name": "Vault Warden",
+   "description": "+1 power core.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "cores",
+     "stat": "cores",
+     "op": "add",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "level": 13,
+   "kind": "gears",
+   "id": "gears.13",
+   "name": "Gear Bounty",
+   "description": "130 gears.",
+   "amount": 130,
+   "effects": []
+  },
+  {
+   "level": 14,
+   "kind": "feature",
+   "id": "feature.prestige",
+   "name": "Tower Prestige",
+   "description": "Unlocks tower prestige ranks.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 14,
+   "kind": "gears",
+   "id": "gears.14",
+   "name": "Gear Bounty",
+   "description": "140 gears.",
+   "amount": 140,
+   "effects": []
+  },
+  {
+   "level": 15,
+   "kind": "cosmetic",
+   "id": "banner.tesla",
+   "name": "Tesla Standard",
+   "description": "Crackles faintly.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 15,
+   "kind": "feature",
+   "id": "feature.challenge",
+   "name": "Challenge Mode",
+   "description": "Unlocks Challenge mode.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 15,
+   "kind": "gears",
+   "id": "gears.15",
+   "name": "Gear Bounty",
+   "description": "150 gears.",
+   "amount": 150,
+   "effects": []
+  },
+  {
+   "level": 15,
+   "kind": "researchPoints",
+   "id": "rp.15",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 16,
+   "kind": "gears",
+   "id": "gears.16",
+   "name": "Gear Bounty",
+   "description": "160 gears.",
+   "amount": 160,
+   "effects": []
+  },
+  {
+   "level": 17,
+   "kind": "gears",
+   "id": "gears.17",
+   "name": "Gear Bounty",
+   "description": "170 gears.",
+   "amount": 170,
+   "effects": []
+  },
+  {
+   "level": 18,
+   "kind": "gears",
+   "id": "gears.18",
+   "name": "Gear Bounty",
+   "description": "180 gears.",
+   "amount": 180,
+   "effects": []
+  },
+  {
+   "level": 18,
+   "kind": "perk",
+   "id": "perk.banker",
+   "name": "Banker",
+   "description": "Interest cap +10.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "economy",
+     "stat": "interestCap",
+     "op": "add",
+     "value": 10
+    }
+   ]
+  },
+  {
+   "level": 19,
+   "kind": "gears",
+   "id": "gears.19",
+   "name": "Gear Bounty",
+   "description": "190 gears.",
+   "amount": 190,
+   "effects": []
+  },
+  {
+   "level": 20,
+   "kind": "cosmetic",
+   "id": "title.veteran",
+   "name": "Veteran",
+   "description": "Seen a few sieges.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 20,
+   "kind": "feature",
+   "id": "feature.endless",
+   "name": "Endless Nightmare",
+   "description": "Unlocks Endless Nightmare mode.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 20,
+   "kind": "gears",
+   "id": "gears.20",
+   "name": "Gear Bounty",
+   "description": "200 gears.",
+   "amount": 200,
+   "effects": []
+  },
+  {
+   "level": 20,
+   "kind": "researchPoints",
+   "id": "rp.20",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 21,
+   "kind": "gears",
+   "id": "gears.21",
+   "name": "Gear Bounty",
+   "description": "210 gears.",
+   "amount": 210,
+   "effects": []
+  },
+  {
+   "level": 22,
+   "kind": "gears",
+   "id": "gears.22",
+   "name": "Gear Bounty",
+   "description": "220 gears.",
+   "amount": 220,
+   "effects": []
+  },
+  {
+   "level": 23,
+   "kind": "gears",
+   "id": "gears.23",
+   "name": "Gear Bounty",
+   "description": "230 gears.",
+   "amount": 230,
+   "effects": []
+  },
+  {
+   "level": 24,
+   "kind": "gears",
+   "id": "gears.24",
+   "name": "Gear Bounty",
+   "description": "240 gears.",
+   "amount": 240,
+   "effects": []
+  },
+  {
+   "level": 25,
+   "kind": "gears",
+   "id": "gears.25",
+   "name": "Gear Bounty",
+   "description": "250 gears.",
+   "amount": 250,
+   "effects": []
+  },
+  {
+   "level": 25,
+   "kind": "perk",
+   "id": "perk.stoker",
+   "name": "Stoker",
+   "description": "All towers fire 2% faster.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "all",
+     "stat": "rate",
+     "op": "mul",
+     "value": 1.02
+    }
+   ]
+  },
+  {
+   "level": 25,
+   "kind": "researchPoints",
+   "id": "rp.25",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 26,
+   "kind": "gears",
+   "id": "gears.26",
+   "name": "Gear Bounty",
+   "description": "260 gears.",
+   "amount": 260,
+   "effects": []
+  },
+  {
+   "level": 27,
+   "kind": "gears",
+   "id": "gears.27",
+   "name": "Gear Bounty",
+   "description": "270 gears.",
+   "amount": 270,
+   "effects": []
+  },
+  {
+   "level": 28,
+   "kind": "gears",
+   "id": "gears.28",
+   "name": "Gear Bounty",
+   "description": "280 gears.",
+   "amount": 280,
+   "effects": []
+  },
+  {
+   "level": 29,
+   "kind": "gears",
+   "id": "gears.29",
+   "name": "Gear Bounty",
+   "description": "290 gears.",
+   "amount": 290,
+   "effects": []
+  },
+  {
+   "level": 30,
+   "kind": "cosmetic",
+   "id": "banner.aether",
+   "name": "Aether Banner",
+   "description": "Woven with luminous thread.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 30,
+   "kind": "gears",
+   "id": "gears.30",
+   "name": "Gear Bounty",
+   "description": "300 gears.",
+   "amount": 300,
+   "effects": []
+  },
+  {
+   "level": 30,
+   "kind": "researchPoints",
+   "id": "rp.30",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 31,
+   "kind": "gears",
+   "id": "gears.31",
+   "name": "Gear Bounty",
+   "description": "310 gears.",
+   "amount": 310,
+   "effects": []
+  },
+  {
+   "level": 32,
+   "kind": "gears",
+   "id": "gears.32",
+   "name": "Gear Bounty",
+   "description": "320 gears.",
+   "amount": 320,
+   "effects": []
+  },
+  {
+   "level": 33,
+   "kind": "gears",
+   "id": "gears.33",
+   "name": "Gear Bounty",
+   "description": "330 gears.",
+   "amount": 330,
+   "effects": []
+  },
+  {
+   "level": 33,
+   "kind": "perk",
+   "id": "perk.financier",
+   "name": "Financier",
+   "description": "+50 starting gold.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "economy",
+     "stat": "startingGold",
+     "op": "add",
+     "value": 50
+    }
+   ]
+  },
+  {
+   "level": 34,
+   "kind": "gears",
+   "id": "gears.34",
+   "name": "Gear Bounty",
+   "description": "340 gears.",
+   "amount": 340,
+   "effects": []
+  },
+  {
+   "level": 35,
+   "kind": "cosmetic",
+   "id": "title.inventor",
+   "name": "Inventor",
+   "description": "Patents pending.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 35,
+   "kind": "gears",
+   "id": "gears.35",
+   "name": "Gear Bounty",
+   "description": "350 gears.",
+   "amount": 350,
+   "effects": []
+  },
+  {
+   "level": 35,
+   "kind": "researchPoints",
+   "id": "rp.35",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 36,
+   "kind": "gears",
+   "id": "gears.36",
+   "name": "Gear Bounty",
+   "description": "360 gears.",
+   "amount": 360,
+   "effects": []
+  },
+  {
+   "level": 37,
+   "kind": "gears",
+   "id": "gears.37",
+   "name": "Gear Bounty",
+   "description": "370 gears.",
+   "amount": 370,
+   "effects": []
+  },
+  {
+   "level": 38,
+   "kind": "gears",
+   "id": "gears.38",
+   "name": "Gear Bounty",
+   "description": "380 gears.",
+   "amount": 380,
+   "effects": []
+  },
+  {
+   "level": 39,
+   "kind": "gears",
+   "id": "gears.39",
+   "name": "Gear Bounty",
+   "description": "390 gears.",
+   "amount": 390,
+   "effects": []
+  },
+  {
+   "level": 40,
+   "kind": "gears",
+   "id": "gears.40",
+   "name": "Gear Bounty",
+   "description": "400 gears.",
+   "amount": 400,
+   "effects": []
+  },
+  {
+   "level": 40,
+   "kind": "perk",
+   "id": "perk.bounty-hunter",
+   "name": "Bounty Hunter",
+   "description": "Enemy bounties +3%.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "economy",
+     "stat": "bountyMul",
+     "op": "mul",
+     "value": 1.03
+    }
+   ]
+  },
+  {
+   "level": 40,
+   "kind": "researchPoints",
+   "id": "rp.40",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 41,
+   "kind": "gears",
+   "id": "gears.41",
+   "name": "Gear Bounty",
+   "description": "410 gears.",
+   "amount": 410,
+   "effects": []
+  },
+  {
+   "level": 42,
+   "kind": "gears",
+   "id": "gears.42",
+   "name": "Gear Bounty",
+   "description": "420 gears.",
+   "amount": 420,
+   "effects": []
+  },
+  {
+   "level": 43,
+   "kind": "gears",
+   "id": "gears.43",
+   "name": "Gear Bounty",
+   "description": "430 gears.",
+   "amount": 430,
+   "effects": []
+  },
+  {
+   "level": 44,
+   "kind": "gears",
+   "id": "gears.44",
+   "name": "Gear Bounty",
+   "description": "440 gears.",
+   "amount": 440,
+   "effects": []
+  },
+  {
+   "level": 45,
+   "kind": "cosmetic",
+   "id": "banner.obsidian",
+   "name": "Obsidian Banner",
+   "description": "Forged in the caldera.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 45,
+   "kind": "gears",
+   "id": "gears.45",
+   "name": "Gear Bounty",
+   "description": "450 gears.",
+   "amount": 450,
+   "effects": []
+  },
+  {
+   "level": 45,
+   "kind": "researchPoints",
+   "id": "rp.45",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 46,
+   "kind": "gears",
+   "id": "gears.46",
+   "name": "Gear Bounty",
+   "description": "460 gears.",
+   "amount": 460,
+   "effects": []
+  },
+  {
+   "level": 47,
+   "kind": "gears",
+   "id": "gears.47",
+   "name": "Gear Bounty",
+   "description": "470 gears.",
+   "amount": 470,
+   "effects": []
+  },
+  {
+   "level": 48,
+   "kind": "gears",
+   "id": "gears.48",
+   "name": "Gear Bounty",
+   "description": "480 gears.",
+   "amount": 480,
+   "effects": []
+  },
+  {
+   "level": 49,
+   "kind": "gears",
+   "id": "gears.49",
+   "name": "Gear Bounty",
+   "description": "490 gears.",
+   "amount": 490,
+   "effects": []
+  },
+  {
+   "level": 50,
+   "kind": "cosmetic",
+   "id": "title.master-artificer",
+   "name": "Master Artificer",
+   "description": "A true master of the craft.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 50,
+   "kind": "gears",
+   "id": "gears.50",
+   "name": "Gear Bounty",
+   "description": "500 gears.",
+   "amount": 500,
+   "effects": []
+  },
+  {
+   "level": 50,
+   "kind": "perk",
+   "id": "perk.marshal",
+   "name": "Marshal",
+   "description": "All towers deal 3% more damage.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "all",
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.03
+    }
+   ]
+  },
+  {
+   "level": 50,
+   "kind": "researchPoints",
+   "id": "rp.50",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 51,
+   "kind": "gears",
+   "id": "gears.51",
+   "name": "Gear Bounty",
+   "description": "510 gears.",
+   "amount": 510,
+   "effects": []
+  },
+  {
+   "level": 52,
+   "kind": "gears",
+   "id": "gears.52",
+   "name": "Gear Bounty",
+   "description": "520 gears.",
+   "amount": 520,
+   "effects": []
+  },
+  {
+   "level": 53,
+   "kind": "gears",
+   "id": "gears.53",
+   "name": "Gear Bounty",
+   "description": "530 gears.",
+   "amount": 530,
+   "effects": []
+  },
+  {
+   "level": 54,
+   "kind": "gears",
+   "id": "gears.54",
+   "name": "Gear Bounty",
+   "description": "540 gears.",
+   "amount": 540,
+   "effects": []
+  },
+  {
+   "level": 55,
+   "kind": "gears",
+   "id": "gears.55",
+   "name": "Gear Bounty",
+   "description": "550 gears.",
+   "amount": 550,
+   "effects": []
+  },
+  {
+   "level": 55,
+   "kind": "researchPoints",
+   "id": "rp.55",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 56,
+   "kind": "gears",
+   "id": "gears.56",
+   "name": "Gear Bounty",
+   "description": "560 gears.",
+   "amount": 560,
+   "effects": []
+  },
+  {
+   "level": 57,
+   "kind": "gears",
+   "id": "gears.57",
+   "name": "Gear Bounty",
+   "description": "570 gears.",
+   "amount": 570,
+   "effects": []
+  },
+  {
+   "level": 58,
+   "kind": "gears",
+   "id": "gears.58",
+   "name": "Gear Bounty",
+   "description": "580 gears.",
+   "amount": 580,
+   "effects": []
+  },
+  {
+   "level": 59,
+   "kind": "gears",
+   "id": "gears.59",
+   "name": "Gear Bounty",
+   "description": "590 gears.",
+   "amount": 590,
+   "effects": []
+  },
+  {
+   "level": 60,
+   "kind": "gears",
+   "id": "gears.60",
+   "name": "Gear Bounty",
+   "description": "600 gears.",
+   "amount": 600,
+   "effects": []
+  },
+  {
+   "level": 60,
+   "kind": "perk",
+   "id": "perk.keeper",
+   "name": "Keeper of Cores",
+   "description": "+1 power core.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "cores",
+     "stat": "cores",
+     "op": "add",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "level": 60,
+   "kind": "researchPoints",
+   "id": "rp.60",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 61,
+   "kind": "gears",
+   "id": "gears.61",
+   "name": "Gear Bounty",
+   "description": "610 gears.",
+   "amount": 610,
+   "effects": []
+  },
+  {
+   "level": 62,
+   "kind": "gears",
+   "id": "gears.62",
+   "name": "Gear Bounty",
+   "description": "620 gears.",
+   "amount": 620,
+   "effects": []
+  },
+  {
+   "level": 63,
+   "kind": "gears",
+   "id": "gears.63",
+   "name": "Gear Bounty",
+   "description": "630 gears.",
+   "amount": 630,
+   "effects": []
+  },
+  {
+   "level": 64,
+   "kind": "gears",
+   "id": "gears.64",
+   "name": "Gear Bounty",
+   "description": "640 gears.",
+   "amount": 640,
+   "effects": []
+  },
+  {
+   "level": 65,
+   "kind": "cosmetic",
+   "id": "banner.gilded",
+   "name": "Gilded Banner",
+   "description": "Leafed in gold.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 65,
+   "kind": "gears",
+   "id": "gears.65",
+   "name": "Gear Bounty",
+   "description": "650 gears.",
+   "amount": 650,
+   "effects": []
+  },
+  {
+   "level": 65,
+   "kind": "researchPoints",
+   "id": "rp.65",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 66,
+   "kind": "gears",
+   "id": "gears.66",
+   "name": "Gear Bounty",
+   "description": "660 gears.",
+   "amount": 660,
+   "effects": []
+  },
+  {
+   "level": 67,
+   "kind": "gears",
+   "id": "gears.67",
+   "name": "Gear Bounty",
+   "description": "670 gears.",
+   "amount": 670,
+   "effects": []
+  },
+  {
+   "level": 68,
+   "kind": "gears",
+   "id": "gears.68",
+   "name": "Gear Bounty",
+   "description": "680 gears.",
+   "amount": 680,
+   "effects": []
+  },
+  {
+   "level": 69,
+   "kind": "gears",
+   "id": "gears.69",
+   "name": "Gear Bounty",
+   "description": "690 gears.",
+   "amount": 690,
+   "effects": []
+  },
+  {
+   "level": 70,
+   "kind": "gears",
+   "id": "gears.70",
+   "name": "Gear Bounty",
+   "description": "700 gears.",
+   "amount": 700,
+   "effects": []
+  },
+  {
+   "level": 70,
+   "kind": "perk",
+   "id": "perk.surveyor",
+   "name": "Surveyor",
+   "description": "All towers gain 2% range.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "all",
+     "stat": "range",
+     "op": "mul",
+     "value": 1.02
+    }
+   ]
+  },
+  {
+   "level": 70,
+   "kind": "researchPoints",
+   "id": "rp.70",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 71,
+   "kind": "gears",
+   "id": "gears.71",
+   "name": "Gear Bounty",
+   "description": "710 gears.",
+   "amount": 710,
+   "effects": []
+  },
+  {
+   "level": 72,
+   "kind": "gears",
+   "id": "gears.72",
+   "name": "Gear Bounty",
+   "description": "720 gears.",
+   "amount": 720,
+   "effects": []
+  },
+  {
+   "level": 73,
+   "kind": "gears",
+   "id": "gears.73",
+   "name": "Gear Bounty",
+   "description": "730 gears.",
+   "amount": 730,
+   "effects": []
+  },
+  {
+   "level": 74,
+   "kind": "gears",
+   "id": "gears.74",
+   "name": "Gear Bounty",
+   "description": "740 gears.",
+   "amount": 740,
+   "effects": []
+  },
+  {
+   "level": 75,
+   "kind": "cosmetic",
+   "id": "title.grand-mechanist",
+   "name": "Grand Mechanist",
+   "description": "Keeper of the great machines.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 75,
+   "kind": "gears",
+   "id": "gears.75",
+   "name": "Gear Bounty",
+   "description": "750 gears.",
+   "amount": 750,
+   "effects": []
+  },
+  {
+   "level": 75,
+   "kind": "researchPoints",
+   "id": "rp.75",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 76,
+   "kind": "gears",
+   "id": "gears.76",
+   "name": "Gear Bounty",
+   "description": "760 gears.",
+   "amount": 760,
+   "effects": []
+  },
+  {
+   "level": 77,
+   "kind": "gears",
+   "id": "gears.77",
+   "name": "Gear Bounty",
+   "description": "770 gears.",
+   "amount": 770,
+   "effects": []
+  },
+  {
+   "level": 78,
+   "kind": "gears",
+   "id": "gears.78",
+   "name": "Gear Bounty",
+   "description": "780 gears.",
+   "amount": 780,
+   "effects": []
+  },
+  {
+   "level": 79,
+   "kind": "gears",
+   "id": "gears.79",
+   "name": "Gear Bounty",
+   "description": "790 gears.",
+   "amount": 790,
+   "effects": []
+  },
+  {
+   "level": 80,
+   "kind": "gears",
+   "id": "gears.80",
+   "name": "Gear Bounty",
+   "description": "800 gears.",
+   "amount": 800,
+   "effects": []
+  },
+  {
+   "level": 80,
+   "kind": "perk",
+   "id": "perk.foreman",
+   "name": "Foreman",
+   "description": "Upgrades cost 3% less.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "economy",
+     "stat": "upgradeCostMul",
+     "op": "mul",
+     "value": 0.97
+    }
+   ]
+  },
+  {
+   "level": 80,
+   "kind": "researchPoints",
+   "id": "rp.80",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 81,
+   "kind": "gears",
+   "id": "gears.81",
+   "name": "Gear Bounty",
+   "description": "810 gears.",
+   "amount": 810,
+   "effects": []
+  },
+  {
+   "level": 82,
+   "kind": "gears",
+   "id": "gears.82",
+   "name": "Gear Bounty",
+   "description": "820 gears.",
+   "amount": 820,
+   "effects": []
+  },
+  {
+   "level": 83,
+   "kind": "gears",
+   "id": "gears.83",
+   "name": "Gear Bounty",
+   "description": "830 gears.",
+   "amount": 830,
+   "effects": []
+  },
+  {
+   "level": 84,
+   "kind": "gears",
+   "id": "gears.84",
+   "name": "Gear Bounty",
+   "description": "840 gears.",
+   "amount": 840,
+   "effects": []
+  },
+  {
+   "level": 85,
+   "kind": "gears",
+   "id": "gears.85",
+   "name": "Gear Bounty",
+   "description": "850 gears.",
+   "amount": 850,
+   "effects": []
+  },
+  {
+   "level": 85,
+   "kind": "researchPoints",
+   "id": "rp.85",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 86,
+   "kind": "gears",
+   "id": "gears.86",
+   "name": "Gear Bounty",
+   "description": "860 gears.",
+   "amount": 860,
+   "effects": []
+  },
+  {
+   "level": 87,
+   "kind": "gears",
+   "id": "gears.87",
+   "name": "Gear Bounty",
+   "description": "870 gears.",
+   "amount": 870,
+   "effects": []
+  },
+  {
+   "level": 88,
+   "kind": "gears",
+   "id": "gears.88",
+   "name": "Gear Bounty",
+   "description": "880 gears.",
+   "amount": 880,
+   "effects": []
+  },
+  {
+   "level": 89,
+   "kind": "gears",
+   "id": "gears.89",
+   "name": "Gear Bounty",
+   "description": "890 gears.",
+   "amount": 890,
+   "effects": []
+  },
+  {
+   "level": 90,
+   "kind": "cosmetic",
+   "id": "banner.orrery",
+   "name": "Orrery Banner",
+   "description": "Planets wheel across it.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 90,
+   "kind": "gears",
+   "id": "gears.90",
+   "name": "Gear Bounty",
+   "description": "900 gears.",
+   "amount": 900,
+   "effects": []
+  },
+  {
+   "level": 90,
+   "kind": "perk",
+   "id": "perk.warlord",
+   "name": "Warlord",
+   "description": "All towers deal 3% more damage.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "all",
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.03
+    }
+   ]
+  },
+  {
+   "level": 90,
+   "kind": "researchPoints",
+   "id": "rp.90",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 91,
+   "kind": "gears",
+   "id": "gears.91",
+   "name": "Gear Bounty",
+   "description": "910 gears.",
+   "amount": 910,
+   "effects": []
+  },
+  {
+   "level": 92,
+   "kind": "gears",
+   "id": "gears.92",
+   "name": "Gear Bounty",
+   "description": "920 gears.",
+   "amount": 920,
+   "effects": []
+  },
+  {
+   "level": 93,
+   "kind": "gears",
+   "id": "gears.93",
+   "name": "Gear Bounty",
+   "description": "930 gears.",
+   "amount": 930,
+   "effects": []
+  },
+  {
+   "level": 94,
+   "kind": "gears",
+   "id": "gears.94",
+   "name": "Gear Bounty",
+   "description": "940 gears.",
+   "amount": 940,
+   "effects": []
+  },
+  {
+   "level": 95,
+   "kind": "gears",
+   "id": "gears.95",
+   "name": "Gear Bounty",
+   "description": "950 gears.",
+   "amount": 950,
+   "effects": []
+  },
+  {
+   "level": 95,
+   "kind": "researchPoints",
+   "id": "rp.95",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  },
+  {
+   "level": 96,
+   "kind": "gears",
+   "id": "gears.96",
+   "name": "Gear Bounty",
+   "description": "960 gears.",
+   "amount": 960,
+   "effects": []
+  },
+  {
+   "level": 97,
+   "kind": "gears",
+   "id": "gears.97",
+   "name": "Gear Bounty",
+   "description": "970 gears.",
+   "amount": 970,
+   "effects": []
+  },
+  {
+   "level": 98,
+   "kind": "gears",
+   "id": "gears.98",
+   "name": "Gear Bounty",
+   "description": "980 gears.",
+   "amount": 980,
+   "effects": []
+  },
+  {
+   "level": 99,
+   "kind": "gears",
+   "id": "gears.99",
+   "name": "Gear Bounty",
+   "description": "990 gears.",
+   "amount": 990,
+   "effects": []
+  },
+  {
+   "level": 100,
+   "kind": "cosmetic",
+   "id": "title.legend",
+   "name": "Legend",
+   "description": "They will write songs.",
+   "amount": 0,
+   "effects": []
+  },
+  {
+   "level": 100,
+   "kind": "gears",
+   "id": "gears.100",
+   "name": "Gear Bounty",
+   "description": "1000 gears.",
+   "amount": 1000,
+   "effects": []
+  },
+  {
+   "level": 100,
+   "kind": "perk",
+   "id": "perk.legend",
+   "name": "Legend",
+   "description": "All towers deal 5% more damage.",
+   "amount": 0,
+   "effects": [
+    {
+     "target": "all",
+     "stat": "damage",
+     "op": "mul",
+     "value": 1.05
+    }
+   ]
+  },
+  {
+   "level": 100,
+   "kind": "researchPoints",
+   "id": "rp.100",
+   "name": "Research Grant",
+   "description": "3 research points.",
+   "amount": 3,
+   "effects": []
+  }
+ ],
+ "cosmetics": [
+  {
+   "id": "banner.brass",
+   "kind": "banner",
+   "name": "Brass Standard",
+   "description": "The standard-issue brass banner."
+  },
+  {
+   "id": "title.recruit",
+   "kind": "title",
+   "name": "Recruit",
+   "description": "Everyone starts somewhere."
+  },
+  {
+   "id": "banner.copper",
+   "kind": "banner",
+   "name": "Copper Pennant",
+   "description": "A burnished copper pennant."
+  },
+  {
+   "id": "title.engineer",
+   "kind": "title",
+   "name": "Engineer",
+   "description": "A qualified engineer."
+  },
+  {
+   "id": "banner.tesla",
+   "kind": "banner",
+   "name": "Tesla Standard",
+   "description": "Crackles faintly."
+  },
+  {
+   "id": "title.veteran",
+   "kind": "title",
+   "name": "Veteran",
+   "description": "Seen a few sieges."
+  },
+  {
+   "id": "banner.aether",
+   "kind": "banner",
+   "name": "Aether Banner",
+   "description": "Woven with luminous thread."
+  },
+  {
+   "id": "title.inventor",
+   "kind": "title",
+   "name": "Inventor",
+   "description": "Patents pending."
+  },
+  {
+   "id": "banner.obsidian",
+   "kind": "banner",
+   "name": "Obsidian Banner",
+   "description": "Forged in the caldera."
+  },
+  {
+   "id": "title.master-artificer",
+   "kind": "title",
+   "name": "Master Artificer",
+   "description": "A true master of the craft."
+  },
+  {
+   "id": "banner.gilded",
+   "kind": "banner",
+   "name": "Gilded Banner",
+   "description": "Leafed in gold."
+  },
+  {
+   "id": "title.grand-mechanist",
+   "kind": "title",
+   "name": "Grand Mechanist",
+   "description": "Keeper of the great machines."
+  },
+  {
+   "id": "banner.orrery",
+   "kind": "banner",
+   "name": "Orrery Banner",
+   "description": "Planets wheel across it."
+  },
+  {
+   "id": "title.legend",
+   "kind": "title",
+   "name": "Legend",
+   "description": "They will write songs."
+  },
+  {
+   "id": "title.defender",
+   "kind": "title",
+   "name": "Defender of the Empire",
+   "description": "Awarded for: Complete campaign level 100."
+  },
+  {
+   "id": "banner.constellation",
+   "kind": "banner",
+   "name": "Constellation",
+   "description": "Awarded for: Earn 150 stars."
+  },
+  {
+   "id": "title.astronomer",
+   "kind": "title",
+   "name": "The Full Orrery",
+   "description": "Awarded for: Earn 300 stars."
+  },
+  {
+   "id": "title.untouchable",
+   "kind": "title",
+   "name": "Untouchable",
+   "description": "Awarded for: Finish 75 levels without losing a core."
+  },
+  {
+   "id": "banner.scrapheap",
+   "kind": "banner",
+   "name": "Scrap Emperor",
+   "description": "Awarded for: Destroy 250,000 enemies."
+  },
+  {
+   "id": "title.ghostbuster",
+   "kind": "title",
+   "name": "Ghostbuster",
+   "description": "Awarded for: Destroy 300 Smog Phantoms."
+  },
+  {
+   "id": "banner.ironclad",
+   "kind": "banner",
+   "name": "Behemoth Breaker",
+   "description": "Awarded for: Defeat the Ironclad Behemoth."
+  },
+  {
+   "id": "title.timebreaker",
+   "kind": "title",
+   "name": "Stopped the Clock",
+   "description": "Awarded for: Defeat The Grand Orrery."
+  },
+  {
+   "id": "banner.skyline",
+   "kind": "banner",
+   "name": "City of Towers",
+   "description": "Awarded for: Build 10,000 towers."
+  },
+  {
+   "id": "title.industrialist",
+   "kind": "title",
+   "name": "Industrialist",
+   "description": "Awarded for: Earn 1,000,000 gold across all levels."
+  },
+  {
+   "id": "banner.laststand",
+   "kind": "banner",
+   "name": "Last Stand",
+   "description": "Awarded for: Reach wave 50 in Survival."
+  },
+  {
+   "id": "title.abysswalker",
+   "kind": "title",
+   "name": "Abyss Walker",
+   "description": "Awarded for: Reach wave 75 in Endless Nightmare."
+  },
+  {
+   "id": "banner.calendar",
+   "kind": "banner",
+   "name": "Dedicated",
+   "description": "Awarded for: Complete 30 Daily Challenges."
+  },
+  {
+   "id": "title.impossible",
+   "kind": "title",
+   "name": "The Impossible",
+   "description": "Awarded for: Complete a level on Impossible."
+  },
+  {
+   "id": "title.polymath",
+   "kind": "title",
+   "name": "Polymath",
+   "description": "Awarded for: Complete every research project."
+  },
+  {
+   "id": "banner.legend",
+   "kind": "banner",
+   "name": "Living Legend",
+   "description": "Awarded for: Reach Commander level 100."
+  },
+  {
+   "id": "skin.rivet-cannon.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Rivet Cannon",
+   "description": "Awarded for reaching prestige rank 5 with the Rivet Cannon."
+  },
+  {
+   "id": "skin.gatling-nest.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Gatling Nest",
+   "description": "Awarded for reaching prestige rank 5 with the Gatling Nest."
+  },
+  {
+   "id": "skin.railgun-turret.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Railgun Turret",
+   "description": "Awarded for reaching prestige rank 5 with the Railgun Turret."
+  },
+  {
+   "id": "skin.mortar-tower.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Mortar Tower",
+   "description": "Awarded for reaching prestige rank 5 with the Mortar Tower."
+  },
+  {
+   "id": "skin.flak-battery.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Flak Battery",
+   "description": "Awarded for reaching prestige rank 5 with the Flak Battery."
+  },
+  {
+   "id": "skin.harpoon-launcher.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Harpoon Launcher",
+   "description": "Awarded for reaching prestige rank 5 with the Harpoon Launcher."
+  },
+  {
+   "id": "skin.tesla-coil.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Tesla Coil",
+   "description": "Awarded for reaching prestige rank 5 with the Tesla Coil."
+  },
+  {
+   "id": "skin.arc-tower.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Arc Tower",
+   "description": "Awarded for reaching prestige rank 5 with the Arc Tower."
+  },
+  {
+   "id": "skin.storm-generator.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Storm Generator",
+   "description": "Awarded for reaching prestige rank 5 with the Storm Generator."
+  },
+  {
+   "id": "skin.galvanic-mine-layer.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Galvanic Mine Layer",
+   "description": "Awarded for reaching prestige rank 5 with the Galvanic Mine Layer."
+  },
+  {
+   "id": "skin.incinerator.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Incinerator",
+   "description": "Awarded for reaching prestige rank 5 with the Incinerator."
+  },
+  {
+   "id": "skin.furnace-tower.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Furnace Tower",
+   "description": "Awarded for reaching prestige rank 5 with the Furnace Tower."
+  },
+  {
+   "id": "skin.napalm-projector.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Napalm Projector",
+   "description": "Awarded for reaching prestige rank 5 with the Napalm Projector."
+  },
+  {
+   "id": "skin.boiler-bomb.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Boiler Bomb",
+   "description": "Awarded for reaching prestige rank 5 with the Boiler Bomb."
+  },
+  {
+   "id": "skin.acid-sprayer.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Acid Sprayer",
+   "description": "Awarded for reaching prestige rank 5 with the Acid Sprayer."
+  },
+  {
+   "id": "skin.corrosion-pump.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Corrosion Pump",
+   "description": "Awarded for reaching prestige rank 5 with the Corrosion Pump."
+  },
+  {
+   "id": "skin.toxic-diffuser.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Toxic Diffuser",
+   "description": "Awarded for reaching prestige rank 5 with the Toxic Diffuser."
+  },
+  {
+   "id": "skin.alchemical-still.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Alchemical Still",
+   "description": "Awarded for reaching prestige rank 5 with the Alchemical Still."
+  },
+  {
+   "id": "skin.amplifier-beacon.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Amplifier Beacon",
+   "description": "Awarded for reaching prestige rank 5 with the Amplifier Beacon."
+  },
+  {
+   "id": "skin.spotter-tower.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Spotter Tower",
+   "description": "Awarded for reaching prestige rank 5 with the Spotter Tower."
+  },
+  {
+   "id": "skin.steam-pressure-booster.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Steam Pressure Booster",
+   "description": "Awarded for reaching prestige rank 5 with the Steam Pressure Booster."
+  },
+  {
+   "id": "skin.gear-forge.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Gear Forge",
+   "description": "Awarded for reaching prestige rank 5 with the Gear Forge."
+  },
+  {
+   "id": "skin.signal-relay.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Signal Relay",
+   "description": "Awarded for reaching prestige rank 5 with the Signal Relay."
+  },
+  {
+   "id": "skin.clockwork-snare.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Clockwork Snare",
+   "description": "Awarded for reaching prestige rank 5 with the Clockwork Snare."
+  },
+  {
+   "id": "skin.steam-hammer.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Steam Hammer",
+   "description": "Awarded for reaching prestige rank 5 with the Steam Hammer."
+  },
+  {
+   "id": "skin.sawblade-launcher.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Sawblade Launcher",
+   "description": "Awarded for reaching prestige rank 5 with the Sawblade Launcher."
+  },
+  {
+   "id": "skin.time-distortion-tower.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Time Distortion Tower",
+   "description": "Awarded for reaching prestige rank 5 with the Time Distortion Tower."
+  },
+  {
+   "id": "skin.gravity-manipulator.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Gravity Manipulator",
+   "description": "Awarded for reaching prestige rank 5 with the Gravity Manipulator."
+  },
+  {
+   "id": "skin.singularium-engine.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Singularium Engine",
+   "description": "Awarded for reaching prestige rank 5 with the Singularium Engine."
+  },
+  {
+   "id": "skin.aether-prism.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Aether Prism",
+   "description": "Awarded for reaching prestige rank 5 with the Aether Prism."
+  },
+  {
+   "id": "skin.phase-lance.gilded",
+   "kind": "towerSkin",
+   "name": "Gilded Phase Lance",
+   "description": "Awarded for reaching prestige rank 5 with the Phase Lance."
+  }
+ ]
+}

@@ -114,6 +114,45 @@ namespace TD.Application.Migrations.Sqlite
                     b.ToTable("RefreshTokens");
                 });
 
+            modelBuilder.Entity("TD.Application.Features.Content.ContentDocument", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Hash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsOverride")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Json")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Kind", "Key")
+                        .IsUnique();
+
+                    b.ToTable("ContentDocuments");
+                });
+
             modelBuilder.Entity("TD.Application.Features.Profiles.PlayerProfile", b =>
                 {
                     b.Property<Guid>("AccountId")

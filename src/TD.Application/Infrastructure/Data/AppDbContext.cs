@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TD.Application.Features.Accounts;
+using TD.Application.Features.Content;
 using TD.Application.Features.Profiles;
 using TD.Application.Infrastructure.Audit;
 
@@ -15,6 +16,7 @@ public abstract partial class AppDbContext(DbContextOptions options) : DbContext
     public DbSet<Account> Accounts => Set<Account>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
     public DbSet<PlayerProfile> Profiles => Set<PlayerProfile>();
+    public DbSet<ContentDocument> ContentDocuments => Set<ContentDocument>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

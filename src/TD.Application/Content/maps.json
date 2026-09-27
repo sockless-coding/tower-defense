@@ -1,0 +1,1252 @@
+[
+ {
+  "id": "industrial-city",
+  "name": "Industrial City",
+  "theme": "city",
+  "description": "Soot-black tenements and chimney stacks crowd a rail line that cuts the district in two.",
+  "weather": "ashfall",
+  "palette": {
+   "ground": "#2b2622",
+   "accent": "#c8742c",
+   "metal": "#8a6a3a",
+   "light": "#ffb866",
+   "fog": "#3c342e",
+   "sky": "#1a1614"
+  },
+  "mechanic": {
+   "kind": "trainCrossing",
+   "name": "Freight Line",
+   "description": "Freight trains thunder across the crossing, closing the gates and flattening anything on the tracks.",
+   "params": {
+    "interval": 28,
+    "duration": 4,
+    "damage": 600
+   }
+  },
+  "interaction": {
+   "kind": "trainNow",
+   "name": "Signal Override",
+   "description": "Throw the signal to send a freight train through immediately.",
+   "cooldown": 45,
+   "params": {
+    "damage": 900
+   }
+  },
+  "grid": [
+   "########################",
+   "S.......####...........#",
+   "#.......####.......BB..#",
+   "#..BB...####...##..BB..#",
+   "#..BB.......G..##......#",
+   "#...........G.......####",
+   "####....BB..G..BB.....C#",
+   "####....BB..G..BB.....##",
+   "#...........G.......####",
+   "#..BB.......G..##......#",
+   "#..BB...####...##..BB..#",
+   "#.......####.......BB..#",
+   "S.......####...........#",
+   "########################"
+  ]
+ },
+ {
+  "id": "steam-foundry",
+  "name": "Steam Foundry",
+  "theme": "foundry",
+  "description": "Molten iron pours between cathedral-sized boilers; vents in the floor exhale scalding steam.",
+  "weather": "steam",
+  "palette": {
+   "ground": "#2a1f1a",
+   "accent": "#ff7a2a",
+   "metal": "#9b6b3c",
+   "light": "#ffa54a",
+   "fog": "#4a3a30",
+   "sky": "#140e0b"
+  },
+  "mechanic": {
+   "kind": "steamVents",
+   "name": "Scalding Vents",
+   "description": "Floor vents erupt on a cycle, scalding anything standing on them.",
+   "params": {
+    "interval": 9,
+    "duration": 1.5,
+    "dps": 70
+   }
+  },
+  "interaction": {
+   "kind": "ventBlast",
+   "name": "Blow-Off Valve",
+   "description": "Open every valve at once for a massive steam blast at a chosen spot.",
+   "cooldown": 40,
+   "params": {
+    "radius": 2,
+    "damage": 450
+   }
+  },
+  "grid": [
+   "###########S############",
+   "#..........=..........##",
+   "#..BB......=......BB..##",
+   "#..BB..~~~~=~~~~..BB..##",
+   "#......~.......~......##",
+   "####...~..BB...~...#####",
+   "#......~..BB...~......##",
+   "#..BB..~~~~.~~~~..BB..##",
+   "#..BB.............BB..##",
+   "#......##.....##......##",
+   "S......##.....##......##",
+   "#.........BB..........##",
+   "#.........BB....C.....##",
+   "########################"
+  ]
+ },
+ {
+  "id": "airship-dockyard",
+  "name": "Airship Dockyard",
+  "theme": "dockyard",
+  "description": "Moored dirigibles bob above gantries; retractable bridges connect the loading piers.",
+  "weather": "wind",
+  "palette": {
+   "ground": "#27303a",
+   "accent": "#e0a040",
+   "metal": "#8c7a5a",
+   "light": "#ffd28a",
+   "fog": "#56606a",
+   "sky": "#9fb3c8"
+  },
+  "mechanic": {
+   "kind": "drawbridge",
+   "name": "Gantry Bridges",
+   "description": "Loading gantries raise and lower on a schedule, opening and closing routes.",
+   "params": {
+    "interval": 30
+   }
+  },
+  "interaction": {
+   "kind": "cargoDrop",
+   "name": "Cargo Drop",
+   "description": "Release a crane's payload onto a target area.",
+   "cooldown": 35,
+   "params": {
+    "radius": 1.5,
+    "damage": 500
+   }
+  },
+  "grid": [
+   "########################",
+   "S...........#######....#",
+   "#..BB.......#######....#",
+   "#..BB...BB..GGGG....BB.#",
+   "#.......BB..#######.BB.#",
+   "#...........#######....#",
+   "######..###########...C#",
+   "######..###########....#",
+   "#...........#######....#",
+   "#.......BB..#######.BB.#",
+   "#..BB...BB..GGGG....BB.#",
+   "#..BB.......#######....#",
+   "S...........===========#",
+   "########################"
+  ]
+ },
+ {
+  "id": "underground-tunnels",
+  "name": "Underground Tunnels",
+  "theme": "tunnels",
+  "description": "Brick-lined service tunnels lit only by flickering gas lamps. Tower sight is short in the gloom.",
+  "weather": "darkness",
+  "palette": {
+   "ground": "#1c1a19",
+   "accent": "#e8b060",
+   "metal": "#6f5a44",
+   "light": "#ffcf7a",
+   "fog": "#0d0c0b",
+   "sky": "#050404"
+  },
+  "mechanic": {
+   "kind": "darkness",
+   "name": "Pitch Black",
+   "description": "Towers see 25% less far unless a Spotter or flare lights the way.",
+   "params": {
+    "rangeMul": 0.75
+   }
+  },
+  "interaction": {
+   "kind": "flare",
+   "name": "Magnesium Flare",
+   "description": "Light a flare that restores full sight and reveals cloaked enemies.",
+   "cooldown": 40,
+   "params": {
+    "duration": 10,
+    "radius": 5
+   }
+  },
+  "grid": [
+   "########################",
+   "S....#.......#.........#",
+   "#....#..BB...#...BB....#",
+   "#....#..BB...#...BB....#",
+   "#....#.......#.........#",
+   "#.......###.......###..#",
+   "#..BB...###...BB..###..#",
+   "#..BB...###...BB..###.C#",
+   "#.......###.......###..#",
+   "#....#.......#.........#",
+   "#....#..BB...#...BB....#",
+   "#....#..BB...#...BB....#",
+   "S....#.......#.........#",
+   "########################"
+  ]
+ },
+ {
+  "id": "flooded-factory",
+  "name": "Flooded Factory",
+  "theme": "flooded",
+  "description": "A drowned textile mill. Knee-deep water slows every step, and the old floodgates still work.",
+  "weather": "rain",
+  "palette": {
+   "ground": "#1f2a2c",
+   "accent": "#5cc2c8",
+   "metal": "#6b7a72",
+   "light": "#a8f0ff",
+   "fog": "#2c3c40",
+   "sky": "#12191b"
+  },
+  "mechanic": {
+   "kind": "floodgates",
+   "name": "Floodwater",
+   "description": "Water tiles slow ground enemies by 35%; the floodgates cycle open and shut.",
+   "params": {
+    "slowPct": 0.35,
+    "interval": 40
+   }
+  },
+  "interaction": {
+   "kind": "floodRelease",
+   "name": "Release the Sluice",
+   "description": "A wave rushes over flooded tiles, damaging and slowing everything in the water.",
+   "cooldown": 45,
+   "params": {
+    "damage": 300,
+    "slowPct": 0.5,
+    "duration": 4
+   }
+  },
+  "grid": [
+   "########################",
+   "S.....~~~~......~~~~...#",
+   "#.....~~~~..BB..~~~~...#",
+   "#..BB.......BB.........#",
+   "#..BB..####....####....#",
+   "#......####G..G####..BB#",
+   "#~~~...####....####..BB#",
+   "#~~~...####....####...C#",
+   "#......####G..G####....#",
+   "#..BB..####....####....#",
+   "#..BB.......BB.........#",
+   "#.....~~~~..BB..~~~~...#",
+   "S.....~~~~......~~~~...#",
+   "########################"
+  ]
+ },
+ {
+  "id": "clockwork-citadel",
+  "name": "Clockwork Citadel",
+  "theme": "citadel",
+  "description": "A fortress built inside a colossal clock. Its internal walls rotate on the hour, reshaping the maze.",
+  "weather": "clear",
+  "palette": {
+   "ground": "#2a2420",
+   "accent": "#d4a64a",
+   "metal": "#b08a4a",
+   "light": "#ffe0a0",
+   "fog": "#3a322a",
+   "sky": "#1c1814"
+  },
+  "mechanic": {
+   "kind": "rotatingTurntable",
+   "name": "Rotating Walls",
+   "description": "Two sets of gates alternate open and shut every 20 seconds.",
+   "params": {
+    "interval": 20
+   }
+  },
+  "interaction": {
+   "kind": "toggleGates",
+   "name": "Ring the Great Bell",
+   "description": "Force the walls to rotate immediately.",
+   "cooldown": 30,
+   "params": {}
+  },
+  "grid": [
+   "########################",
+   "S......................#",
+   "#..BB..####~####..BB...#",
+   "#..BB..#.......#..BB...#",
+   "#......#..BB...G.......#",
+   "#......~..BB...#..###..#",
+   "###....#...C...#..###..#",
+   "###....#.......~.......#",
+   "#......G..BB...#..###..#",
+   "#......#..BB...#..###..#",
+   "#..BB..#.......#..BB...#",
+   "#..BB..####G####..BB...#",
+   "S......................S",
+   "########################"
+  ]
+ },
+ {
+  "id": "arctic-generator-station",
+  "name": "Arctic Generator Station",
+  "theme": "arctic",
+  "description": "A geothermal generator marooned in a polar waste. Ice sheets slick the approaches.",
+  "weather": "snow",
+  "palette": {
+   "ground": "#c8d4dc",
+   "accent": "#60c8ff",
+   "metal": "#7a8a96",
+   "light": "#e8fbff",
+   "fog": "#dce8f0",
+   "sky": "#8aa4b8"
+  },
+  "mechanic": {
+   "kind": "freezing",
+   "name": "Black Ice",
+   "description": "Ice tiles slow ground enemies by 30%; blizzards periodically slow everything.",
+   "params": {
+    "slowPct": 0.3,
+    "interval": 35,
+    "duration": 6,
+    "globalSlowPct": 0.2
+   }
+  },
+  "interaction": {
+   "kind": "freezeBlast",
+   "name": "Coolant Dump",
+   "description": "Vent liquid coolant to freeze enemies solid in an area.",
+   "cooldown": 40,
+   "params": {
+    "radius": 2,
+    "duration": 3
+   }
+  },
+  "grid": [
+   "########################",
+   "S....~~~~~~............#",
+   "#....~~~~~~....BB......#",
+   "#..BB........#####..BB.#",
+   "#..BB..BB....#####..BB.#",
+   "#......BB....~~~~~.....#",
+   "#............~~~~~....C#",
+   "#......BB....~~~~~.....#",
+   "#..BB..BB....#####..BB.#",
+   "#..BB........#####..BB.#",
+   "#....~~~~~~....BB......#",
+   "#....~~~~~~............#",
+   "S......................#",
+   "########################"
+  ]
+ },
+ {
+  "id": "magnetic-research-facility",
+  "name": "Magnetic Research Facility",
+  "theme": "laboratory",
+  "description": "Humming electromagnets the size of houses. Periodic pulses drag airships from the sky.",
+  "weather": "aurora",
+  "palette": {
+   "ground": "#1c2230",
+   "accent": "#7a9cff",
+   "metal": "#8a8fa0",
+   "light": "#c0d0ff",
+   "fog": "#2a3040",
+   "sky": "#0c1020"
+  },
+  "mechanic": {
+   "kind": "magneticPulse",
+   "name": "Field Pulse",
+   "description": "Every 15s the magnets pulse, slowing air units by 50% and jamming ballistic towers briefly.",
+   "params": {
+    "interval": 15,
+    "duration": 3,
+    "airSlowPct": 0.5,
+    "ballisticJam": 1
+   }
+  },
+  "interaction": {
+   "kind": "magnetYank",
+   "name": "Polarity Reversal",
+   "description": "Reverse the magnets to drag air units to the ground in an area.",
+   "cooldown": 45,
+   "params": {
+    "radius": 3,
+    "duration": 5
+   }
+  },
+  "grid": [
+   "########################",
+   "S..........##..........S",
+   "#..BB......##......BB..#",
+   "#..BB..BB..##..BB..BB..#",
+   "#......BB......BB......#",
+   "#......................#",
+   "####..###..BB..###..####",
+   "####..###..BB..###..####",
+   "#......................#",
+   "#..................BB..#",
+   "#..BB..BB......BB..BB..#",
+   "#......BB..##..BB......#",
+   "#..........##....C.....#",
+   "########################"
+  ]
+ },
+ {
+  "id": "ashvale-coal-mines",
+  "name": "Ashvale Coal Mines",
+  "theme": "mines",
+  "description": "Timber-shored galleries under a mountain of slag. Old shafts collapse under heavy traffic.",
+  "weather": "dust",
+  "palette": {
+   "ground": "#1e1a17",
+   "accent": "#e08040",
+   "metal": "#5a4a3a",
+   "light": "#ffb070",
+   "fog": "#2c2622",
+   "sky": "#0a0908"
+  },
+  "mechanic": {
+   "kind": "crumblingFloor",
+   "name": "Unstable Shafts",
+   "description": "Cracked floor tiles collapse after 30 enemies cross them, blocking that route for good.",
+   "params": {
+    "threshold": 30
+   }
+  },
+  "interaction": {
+   "kind": "cargoDrop",
+   "name": "Minecart Avalanche",
+   "description": "Send a runaway minecart into a target area.",
+   "cooldown": 35,
+   "params": {
+    "radius": 1.5,
+    "damage": 550
+   }
+  },
+  "grid": [
+   "########################",
+   "S.........~~~~.........#",
+   "#..BB.....~~~~....BB...#",
+   "#..BB..###....###.BB...#",
+   "#......###....###......#",
+   "#..........BB..........#",
+   "####..~~~..BB..~~~..####",
+   "####..~~~......~~~....C#",
+   "#..........BB..........#",
+   "#......###.BB.###......#",
+   "#..BB..###....###.BB...#",
+   "#..BB.....~~~~....BB...#",
+   "S.........~~~~.........#",
+   "########################"
+  ]
+ },
+ {
+  "id": "canal-locks",
+  "name": "Canal Locks",
+  "theme": "canal",
+  "description": "A staircase of lock chambers on a busy industrial canal. Lock gates swing to reroute traffic.",
+  "weather": "fog",
+  "palette": {
+   "ground": "#233033",
+   "accent": "#d0a050",
+   "metal": "#6a7a70",
+   "light": "#ffd890",
+   "fog": "#3a4a4c",
+   "sky": "#182224"
+  },
+  "mechanic": {
+   "kind": "floodgates",
+   "name": "Lock Chambers",
+   "description": "Canal tiles slow ground enemies by 40%; lock gates cycle every 35s.",
+   "params": {
+    "slowPct": 0.4,
+    "interval": 35
+   }
+  },
+  "interaction": {
+   "kind": "toggleGates",
+   "name": "Operate the Locks",
+   "description": "Swing every lock gate immediately.",
+   "cooldown": 25,
+   "params": {}
+  },
+  "grid": [
+   "########################",
+   "S......~~~~~~~~~~......#",
+   "#..BB..~~~~~~~~~~..BB..#",
+   "#..BB..G########G..BB..#",
+   "#......G########G......#",
+   "#......................#",
+   "###..BB....BB....BB..C##",
+   "###..BB....BB....BB..###",
+   "#......................#",
+   "#......G########G......#",
+   "#..BB..G########G..BB..#",
+   "#..BB..~~~~~~~~~~..BB..#",
+   "S......~~~~~~~~~~......#",
+   "########################"
+  ]
+ },
+ {
+  "id": "rail-yard-junction",
+  "name": "Rail Yard Junction",
+  "theme": "railyard",
+  "description": "A tangle of sidings and turntables where three main lines meet. Trains cross constantly.",
+  "weather": "smoke",
+  "palette": {
+   "ground": "#26221e",
+   "accent": "#e0b050",
+   "metal": "#7c6a54",
+   "light": "#ffc870",
+   "fog": "#3a342c",
+   "sky": "#16130f"
+  },
+  "mechanic": {
+   "kind": "trainCrossing",
+   "name": "Junction Traffic",
+   "description": "Trains cross the junction every 22s, closing the crossings and crushing anything caught.",
+   "params": {
+    "interval": 22,
+    "duration": 3.5,
+    "damage": 700
+   }
+  },
+  "interaction": {
+   "kind": "trainNow",
+   "name": "Dispatch Express",
+   "description": "Send an express through every crossing at once.",
+   "cooldown": 40,
+   "params": {
+    "damage": 1000
+   }
+  },
+  "grid": [
+   "########################",
+   "S.....G.......G........#",
+   "#..BB.G..BB...G..BB....#",
+   "#..BB.G..BB...G..BB....#",
+   "#.....G.......G........#",
+   "======G=======G========S",
+   "#.....G..BB...G..BB....#",
+   "#.....G..BB...G..BB..C.#",
+   "#.....G.......G........#",
+   "#..BB.G..BB...G..BB....#",
+   "#..BB.G..BB...G..BB....#",
+   "#.....G.......G........#",
+   "S.....G.......G........#",
+   "########################"
+  ]
+ },
+ {
+  "id": "sky-bridge",
+  "name": "Sky Bridge",
+  "theme": "skybridge",
+  "description": "A lattice of iron bridges strung between spires high above the clouds. Air raids are relentless.",
+  "weather": "wind",
+  "palette": {
+   "ground": "#3a4250",
+   "accent": "#f0c060",
+   "metal": "#9a9aa8",
+   "light": "#fff0c0",
+   "fog": "#b8c8d8",
+   "sky": "#c8d8ea"
+  },
+  "mechanic": {
+   "kind": "drawbridge",
+   "name": "Swing Spans",
+   "description": "Bridge spans swing aside every 25s, cutting one crossing while opening another.",
+   "params": {
+    "interval": 25
+   }
+  },
+  "interaction": {
+   "kind": "empPulse",
+   "name": "Beacon Flash",
+   "description": "Fire the spire beacon to stun everything in a wide area.",
+   "cooldown": 40,
+   "params": {
+    "radius": 3,
+    "duration": 2.5
+   }
+  },
+  "grid": [
+   "########################",
+   "S....##########....#####",
+   "#....##########....#####",
+   "#..................BB..#",
+   "#..BB..GGGGGG..BB......#",
+   "#....##########....##..#",
+   "#....##########....##.C#",
+   "#....##########....##..#",
+   "#..BB..GGGGGG..BB......#",
+   "#..................BB..#",
+   "#....##########....#####",
+   "#....##########....#####",
+   "S....##########....#####",
+   "########################"
+  ]
+ },
+ {
+  "id": "clocktower-square",
+  "name": "Clocktower Square",
+  "theme": "square",
+  "description": "A cobbled civic square beneath a vast clock face whose hands sweep across the plaza.",
+  "weather": "rain",
+  "palette": {
+   "ground": "#2c2826",
+   "accent": "#d8b060",
+   "metal": "#a08050",
+   "light": "#ffe8a8",
+   "fog": "#3c3632",
+   "sky": "#1a1716"
+  },
+  "mechanic": {
+   "kind": "rotatingTurntable",
+   "name": "Sweeping Hands",
+   "description": "The clock hands sweep the square; two gate sets alternate every 18s.",
+   "params": {
+    "interval": 18
+   }
+  },
+  "interaction": {
+   "kind": "toggleGates",
+   "name": "Strike the Hour",
+   "description": "Advance the hands immediately.",
+   "cooldown": 25,
+   "params": {}
+  },
+  "grid": [
+   "###########S############",
+   "#......................#",
+   "#..BB..BB.....BB..BB...#",
+   "#......###G~###........#",
+   "#..BB..#.......#..BB...#",
+   "#......~...C...G.......#",
+   "S......#.......#.......S",
+   "#......G.......~.......#",
+   "#..BB..#.......#..BB...#",
+   "#......###~G###........#",
+   "#..BB..BB.....BB..BB...#",
+   "#......................#",
+   "#......................#",
+   "########################"
+  ]
+ },
+ {
+  "id": "aether-refinery",
+  "name": "Aether Refinery",
+  "theme": "refinery",
+  "description": "Glass conduits carry luminous aether between distillation towers. Surges supercharge nearby machines.",
+  "weather": "sparks",
+  "palette": {
+   "ground": "#1a1a2a",
+   "accent": "#b070ff",
+   "metal": "#7a70a0",
+   "light": "#e0c0ff",
+   "fog": "#2a2440",
+   "sky": "#0c0a18"
+  },
+  "mechanic": {
+   "kind": "aetherSurge",
+   "name": "Aether Surge",
+   "description": "Every 20s the conduits surge: towers within 1.5 tiles of a conduit deal +35% damage for 6s.",
+   "params": {
+    "interval": 20,
+    "duration": 6,
+    "damageMul": 1.35,
+    "radius": 1.5
+   }
+  },
+  "interaction": {
+   "kind": "overchargeTowers",
+   "name": "Divert the Flow",
+   "description": "Channel raw aether into towers in an area: +50% fire rate for 8s.",
+   "cooldown": 45,
+   "params": {
+    "radius": 2.5,
+    "duration": 8,
+    "rateMul": 1.5
+   }
+  },
+  "grid": [
+   "########################",
+   "S......~...............#",
+   "#..BB..~..BB....BB.....#",
+   "#..BB..~..BB....BB.....#",
+   "#......~~~~~~~~~~......#",
+   "#..............~.......#",
+   "####..BB..BB...~..BB..C#",
+   "####..BB..BB...~..BB...#",
+   "#..............~.......#",
+   "#......~~~~~~~~~~......#",
+   "#..BB..~..BB....BB.....#",
+   "#..BB..~..BB....BB.....#",
+   "S......~...............#",
+   "########################"
+  ]
+ },
+ {
+  "id": "volcanic-forge",
+  "name": "Volcanic Forge",
+  "theme": "volcanic",
+  "description": "A dwarf-scale forge built into a live caldera. Embers rain down and lava rivers glow below.",
+  "weather": "embers",
+  "palette": {
+   "ground": "#241612",
+   "accent": "#ff5a1a",
+   "metal": "#7a4a30",
+   "light": "#ff9a40",
+   "fog": "#3a2018",
+   "sky": "#120806"
+  },
+  "mechanic": {
+   "kind": "emberRain",
+   "name": "Ember Rain",
+   "description": "Every 12s, five molten embers strike random enemies for 120 fire damage.",
+   "params": {
+    "interval": 12,
+    "strikes": 5,
+    "damage": 120
+   }
+  },
+  "interaction": {
+   "kind": "ventBlast",
+   "name": "Lava Breach",
+   "description": "Breach a lava channel onto a target area.",
+   "cooldown": 40,
+   "params": {
+    "radius": 1.8,
+    "damage": 500
+   }
+  },
+  "grid": [
+   "########################",
+   "S......##......##......#",
+   "#..BB..##..BB..##..BB..#",
+   "#..BB......BB......BB..#",
+   "#......##......##......#",
+   "###..####..##..####..###",
+   "#......................#",
+   "#..BB......BB......BB.C#",
+   "#......................#",
+   "###..####..##..####..###",
+   "#......##......##......#",
+   "#..BB..##..BB..##..BB..#",
+   "S......##......##......#",
+   "########################"
+  ]
+ },
+ {
+  "id": "sewer-labyrinth",
+  "name": "Sewer Labyrinth",
+  "theme": "sewers",
+  "description": "A maze of vaulted brick sewers choked with foul vapour. Things move unseen in the murk.",
+  "weather": "smog",
+  "palette": {
+   "ground": "#1d221c",
+   "accent": "#9ac050",
+   "metal": "#5a6450",
+   "light": "#d0f090",
+   "fog": "#2a3226",
+   "sky": "#0c100b"
+  },
+  "mechanic": {
+   "kind": "smog",
+   "name": "Sewer Gas",
+   "description": "Towers see 20% less far and 15% of enemies arrive cloaked.",
+   "params": {
+    "rangeMul": 0.8,
+    "cloakChance": 0.15
+   }
+  },
+  "interaction": {
+   "kind": "flare",
+   "name": "Ignite the Gas",
+   "description": "Burn off the gas, revealing cloaked enemies and restoring sight.",
+   "cooldown": 40,
+   "params": {
+    "duration": 10,
+    "radius": 6
+   }
+  },
+  "grid": [
+   "########################",
+   "S..#.....#.....#.......#",
+   "#..#..B..#..B..#..BB...#",
+   "#..#..B..#..B..#..BB...#",
+   "#.....B.....B..........#",
+   "####.####.####.####.####",
+   "#......................#",
+   "#..BB..BB..BB..BB..BB..#",
+   "#.....................C#",
+   "####.####.####.####.####",
+   "#.....B.....B..........#",
+   "#..#..B..#..B..#..BB...#",
+   "S..#.....#.....#.......#",
+   "########################"
+  ]
+ },
+ {
+  "id": "observatory-summit",
+  "name": "Observatory Summit",
+  "theme": "observatory",
+  "description": "A brass observatory on a storm-lashed peak, bristling with lightning rods.",
+  "weather": "storm",
+  "palette": {
+   "ground": "#20242e",
+   "accent": "#ffd050",
+   "metal": "#8a8a9a",
+   "light": "#fff4b0",
+   "fog": "#343a48",
+   "sky": "#10121a"
+  },
+  "mechanic": {
+   "kind": "lightningRods",
+   "name": "Lightning Rods",
+   "description": "Every 7s lightning strikes rod tiles for 150 damage; electrical towers near rods deal +20% damage.",
+   "params": {
+    "interval": 7,
+    "damage": 150,
+    "radius": 1.2,
+    "electricBuff": 0.2
+   }
+  },
+  "interaction": {
+   "kind": "empPulse",
+   "name": "Discharge Array",
+   "description": "Dump the capacitor array to stun enemies in a wide area.",
+   "cooldown": 40,
+   "params": {
+    "radius": 3,
+    "duration": 2.5
+   }
+  },
+  "grid": [
+   "########################",
+   "S......................#",
+   "#..BB..~.....BB..~.....#",
+   "#..BB........BB........#",
+   "#......####......####..#",
+   "#..~...####..~...####..#",
+   "####.......BB.........C#",
+   "####.......BB..........#",
+   "#..~...####..~...####..#",
+   "#......####......####..#",
+   "#..BB........BB........#",
+   "#..BB..~.....BB..~.....#",
+   "S......................#",
+   "########################"
+  ]
+ },
+ {
+  "id": "dirigible-graveyard",
+  "name": "Dirigible Graveyard",
+  "theme": "graveyard",
+  "description": "The ribbed carcasses of crashed airships rust in a fog-bound valley. Old pressure valves still vent.",
+  "weather": "fog",
+  "palette": {
+   "ground": "#2a2a26",
+   "accent": "#c09060",
+   "metal": "#7a6a5a",
+   "light": "#f0c898",
+   "fog": "#4a4a44",
+   "sky": "#22221e"
+  },
+  "mechanic": {
+   "kind": "pressureValves",
+   "name": "Leaking Valves",
+   "description": "Every 10s, valves blast steam across their tiles, pushing enemies back 1.5 tiles.",
+   "params": {
+    "interval": 10,
+    "pushback": 1.5
+   }
+  },
+  "interaction": {
+   "kind": "ventBlast",
+   "name": "Rupture a Gasbag",
+   "description": "Ignite a trapped gasbag above a target area.",
+   "cooldown": 40,
+   "params": {
+    "radius": 2,
+    "damage": 480
+   }
+  },
+  "grid": [
+   "########################",
+   "S........###...........#",
+   "#..BB....###....BB.....#",
+   "#..BB..~.......~BB.....#",
+   "#......~..BB...~.......#",
+   "#......~..BB...~...##..#",
+   "###..........C.....##..S",
+   "###................##..#",
+   "#......~..BB...~.......#",
+   "#......~..BB...~.......#",
+   "#..BB..~.......~BB.....#",
+   "#..BB....###....BB.....#",
+   "S........###...........#",
+   "########################"
+  ]
+ },
+ {
+  "id": "tidal-pumping-station",
+  "name": "Tidal Pumping Station",
+  "theme": "tidal",
+  "description": "Great beam engines hold back the sea. At high tide the lower channels flood completely.",
+  "weather": "rain",
+  "palette": {
+   "ground": "#1c2830",
+   "accent": "#50b0d0",
+   "metal": "#607078",
+   "light": "#a0e8ff",
+   "fog": "#2a3a44",
+   "sky": "#101a20"
+  },
+  "mechanic": {
+   "kind": "tides",
+   "name": "High Tide",
+   "description": "Every 35s the tide rises for 12s, flooding the low channels and forcing a detour.",
+   "params": {
+    "interval": 35,
+    "duration": 12
+   }
+  },
+  "interaction": {
+   "kind": "floodRelease",
+   "name": "Open the Sluices",
+   "description": "Release a torrent over the channels, damaging and slowing enemies.",
+   "cooldown": 45,
+   "params": {
+    "damage": 320,
+    "slowPct": 0.5,
+    "duration": 4
+   }
+  },
+  "grid": [
+   "########################",
+   "S......................#",
+   "#..BB..BB....BB..BB....#",
+   "#......................#",
+   "#..~~~~~~~~~~~~~~~~~~..#",
+   "#..~.BB........BB..~...#",
+   "#..~...............~..C#",
+   "#..~.BB........BB..~...#",
+   "#..~~~~~~~~~~~~~~~~~~..#",
+   "#......................#",
+   "#..BB..BB....BB..BB....#",
+   "#......................#",
+   "S......................#",
+   "########################"
+  ]
+ },
+ {
+  "id": "glassworks",
+  "name": "Glassworks",
+  "theme": "glassworks",
+  "description": "Kilns and lens-grinding halls under a vaulted glass roof. Sunlight focuses through the panes.",
+  "weather": "sunbeams",
+  "palette": {
+   "ground": "#2c2a24",
+   "accent": "#80e0d0",
+   "metal": "#a09a88",
+   "light": "#e8fff8",
+   "fog": "#484438",
+   "sky": "#e0e8e0"
+  },
+  "mechanic": {
+   "kind": "aetherSurge",
+   "name": "Focused Sunlight",
+   "description": "Every 18s the roof lenses align: towers near lens tiles deal +30% damage for 6s.",
+   "params": {
+    "interval": 18,
+    "duration": 6,
+    "damageMul": 1.3,
+    "radius": 1.5
+   }
+  },
+  "interaction": {
+   "kind": "cargoDrop",
+   "name": "Burning Lens",
+   "description": "Focus the great lens on a target area.",
+   "cooldown": 35,
+   "params": {
+    "radius": 1.2,
+    "damage": 600
+   }
+  },
+  "grid": [
+   "########################",
+   "S.........~~~~.........#",
+   "#..BB.....~..~....BB...#",
+   "#..BB..BB.~..~.BB.BB...#",
+   "#.........~..~.........#",
+   "#......................#",
+   "####..BB..........BB..C#",
+   "####..BB..........BB...#",
+   "#......................#",
+   "#.........~..~.........#",
+   "#..BB..BB.~..~.BB.BB...#",
+   "#..BB.....~..~....BB...#",
+   "S.........~~~~.........#",
+   "########################"
+  ]
+ },
+ {
+  "id": "lightning-farm",
+  "name": "Lightning Farm",
+  "theme": "lightningfarm",
+  "description": "Fields of towering Tesla masts harvest the storm. Anything on the rod tiles gets fried.",
+  "weather": "storm",
+  "palette": {
+   "ground": "#1a1e26",
+   "accent": "#80d0ff",
+   "metal": "#6a7a8a",
+   "light": "#d0f4ff",
+   "fog": "#282e3a",
+   "sky": "#0a0c12"
+  },
+  "mechanic": {
+   "kind": "lightningRods",
+   "name": "Harvest Masts",
+   "description": "Every 6s lightning strikes rod tiles for 180 damage; electrical towers near rods deal +25% damage.",
+   "params": {
+    "interval": 6,
+    "damage": 180,
+    "radius": 1.2,
+    "electricBuff": 0.25
+   }
+  },
+  "interaction": {
+   "kind": "empPulse",
+   "name": "Grid Discharge",
+   "description": "Discharge the farm into an area, stunning enemies.",
+   "cooldown": 40,
+   "params": {
+    "radius": 3.5,
+    "duration": 2
+   }
+  },
+  "grid": [
+   "########################",
+   "S...~.....~.....~......#",
+   "#..BB..BB...BB..BB..BB.#",
+   "#......................#",
+   "#.~.....~.....~.....~..#",
+   "#..BB..BB...BB..BB..BB.#",
+   "S.....................C#",
+   "#..BB..BB...BB..BB..BB.#",
+   "#.~.....~.....~.....~..#",
+   "#......................#",
+   "#..BB..BB...BB..BB..BB.#",
+   "S...~.....~.....~......#",
+   "#......................#",
+   "########################"
+  ]
+ },
+ {
+  "id": "brass-bazaar",
+  "name": "Brass Bazaar",
+  "theme": "bazaar",
+  "description": "A covered market of clockwork stalls, where conveyor walkways carry goods and invaders alike.",
+  "weather": "lanterns",
+  "palette": {
+   "ground": "#2e241c",
+   "accent": "#f0a040",
+   "metal": "#b08a50",
+   "light": "#ffd890",
+   "fog": "#40342a",
+   "sky": "#1c1610"
+  },
+  "mechanic": {
+   "kind": "conveyor",
+   "name": "Market Conveyors",
+   "description": "Enemies on conveyor tiles move 50% faster.",
+   "params": {
+    "speedMul": 1.5
+   }
+  },
+  "interaction": {
+   "kind": "reverseConveyor",
+   "name": "Reverse the Belts",
+   "description": "Run the conveyors backwards, slowing enemies on them to a crawl.",
+   "cooldown": 35,
+   "params": {
+    "duration": 8,
+    "speedMul": 0.35
+   }
+  },
+  "grid": [
+   "########################",
+   "S~~~~~~~~~.............#",
+   "#..BB..BB~..BB..BB.....#",
+   "#........~.............#",
+   "#..BB..BB~~~~~~~~~~....#",
+   "#.................~....#",
+   "####..BB..BB..BB..~..C.#",
+   "####..BB..BB..BB..~....#",
+   "#.................~....#",
+   "#..BB..BB~~~~~~~~~~....#",
+   "#........~.............#",
+   "#..BB..BB~..BB..BB.....#",
+   "S~~~~~~~~~.............#",
+   "########################"
+  ]
+ },
+ {
+  "id": "assembly-line",
+  "name": "Assembly Line",
+  "theme": "factory",
+  "description": "An automaton factory floor. The enemy marches in along the very belts that built it.",
+  "weather": "sparks",
+  "palette": {
+   "ground": "#24242a",
+   "accent": "#ffb040",
+   "metal": "#8a8a90",
+   "light": "#ffe0a0",
+   "fog": "#34343c",
+   "sky": "#101014"
+  },
+  "mechanic": {
+   "kind": "conveyor",
+   "name": "Production Belts",
+   "description": "Enemies on belt tiles move 60% faster.",
+   "params": {
+    "speedMul": 1.6
+   }
+  },
+  "interaction": {
+   "kind": "reverseConveyor",
+   "name": "Emergency Stop",
+   "description": "Throw the belts into reverse, crawling enemies on them.",
+   "cooldown": 35,
+   "params": {
+    "duration": 8,
+    "speedMul": 0.3
+   }
+  },
+  "grid": [
+   "########################",
+   "S~~~~~~~~~~~~~~~~~~~~~.#",
+   "#..BB..BB..BB..BB..BB~.#",
+   "#....................~.#",
+   "#.~~~~~~~~~~~~~~~~~~~~.#",
+   "#.~..BB..BB..BB..BB....#",
+   "#.~...................C#",
+   "#.~..BB..BB..BB..BB....#",
+   "#.~~~~~~~~~~~~~~~~~~~~.#",
+   "#....................~.#",
+   "#..BB..BB..BB..BB..BB~.#",
+   "S~~~~~~~~~~~~~~~~~~~~~.#",
+   "#......................#",
+   "########################"
+  ]
+ },
+ {
+  "id": "smog-marshes",
+  "name": "Smog Marshes",
+  "theme": "marsh",
+  "description": "Industrial runoff has turned the fens into a reeking bog under a permanent yellow smog.",
+  "weather": "smog",
+  "palette": {
+   "ground": "#2a2c1c",
+   "accent": "#c0c040",
+   "metal": "#6a6a4a",
+   "light": "#f0f0a0",
+   "fog": "#4a4c30",
+   "sky": "#20221a"
+  },
+  "mechanic": {
+   "kind": "smog",
+   "name": "Choking Smog",
+   "description": "Towers see 25% less far and 20% of enemies arrive cloaked.",
+   "params": {
+    "rangeMul": 0.75,
+    "cloakChance": 0.2
+   }
+  },
+  "interaction": {
+   "kind": "flare",
+   "name": "Gas Flare",
+   "description": "Burn off the smog, revealing cloaked enemies.",
+   "cooldown": 40,
+   "params": {
+    "duration": 10,
+    "radius": 6
+   }
+  },
+  "grid": [
+   "########################",
+   "S..~~~.......~~~.......#",
+   "#..~~~..BB...~~~..BB...#",
+   "#.......BB........BB...#",
+   "#..BB.......BB.........#",
+   "#..BB..~~~..BB..~~~....#",
+   "S......~~~......~~~...C#",
+   "#..BB..~~~..BB..~~~....#",
+   "#..BB.......BB.........#",
+   "#.......BB........BB...#",
+   "#..~~~..BB...~~~..BB...#",
+   "S..~~~.......~~~.......#",
+   "#......................#",
+   "########################"
+  ]
+ },
+ {
+  "id": "royal-exhibition-hall",
+  "name": "Royal Exhibition Hall",
+  "theme": "exhibition",
+  "description": "The Empire's grandest glass palace, filled with prototype engines. Its rotating display floors reshape the halls.",
+  "weather": "confetti",
+  "palette": {
+   "ground": "#2c2830",
+   "accent": "#ffd070",
+   "metal": "#c0a060",
+   "light": "#fff0c8",
+   "fog": "#3c3640",
+   "sky": "#e8e0f0"
+  },
+  "mechanic": {
+   "kind": "rotatingTurntable",
+   "name": "Display Turntables",
+   "description": "Exhibit floors rotate every 16s, alternating two sets of gates.",
+   "params": {
+    "interval": 16
+   }
+  },
+  "interaction": {
+   "kind": "overchargeTowers",
+   "name": "Demonstration Mode",
+   "description": "Run the exhibits at full power: towers in an area fire 60% faster for 8s.",
+   "cooldown": 45,
+   "params": {
+    "radius": 2.5,
+    "duration": 8,
+    "rateMul": 1.6
+   }
+  },
+  "grid": [
+   "########################",
+   "S.........G..~.........S",
+   "#..BB.....#..#.....BB..#",
+   "#..BB..####..####..BB..#",
+   "#......#........#......#",
+   "#......~..BB....G......#",
+   "S......#...C....#......S",
+   "#......G..BB....~......#",
+   "#......#........#......#",
+   "#..BB..####..####..BB..#",
+   "#..BB.....#..#.....BB..#",
+   "S.........~..G.........S",
+   "#......................#",
+   "########################"
+  ]
+ }
+]

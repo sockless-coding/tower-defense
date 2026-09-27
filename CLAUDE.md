@@ -9,7 +9,8 @@ Premium Victorian-steampunk tower defense (Defense Grid–style) web game, insta
 - **Vertical Slice Architecture** in the backend. Each feature lives in `src/TD.Application/Features/<Slice>/` with `Commands/`, `Queries/`, `Dtos/`, `Validators/`, `Endpoints/`, `Entities/`. No repository pattern — handlers use `AppDbContext` (EF Core) directly. Hand-rolled handlers, no MediatR; FluentValidation for validation; Minimal API endpoint modules.
 - **Visual bar:** premium, modern, procedural high-fidelity art (brass, copper, gears, steam, Tesla electricity, dynamic lighting, particles, fog, weather). Never pixel art, retro graphics, placeholder assets or simplistic geometry.
 - **Security:** JWT access tokens + rotating refresh tokens, validation on every input, rate limiting, anti-cheat plausibility checks on session completion, audit logging of auth, progression and suspicious activity.
-- **Content is data.** Towers, enemies, maps, levels, waves, difficulty presets, research, achievements and commander rewards are JSON under `src/TD.Application/Content/`, seeded into the database and served to the client.
+- **Content is data.** Towers, enemies, maps, difficulty presets, research, achievements and commander rewards are JSON under `src/TD.Application/Content/`, seeded into the `ContentDocuments` table at startup and served via `GET /api/content`. Campaign (100) and challenge levels are generated deterministically by `CampaignGenerator`/`WaveGenerator` (Mulberry32 `SeededRandom`, never `System.Random`). `ContentValidator` runs at startup and in tests; startup fails on invalid content.
+- **Slice conventions:** one namespace per slice (`TD.Application.Features.<Slice>`) regardless of subfolder; handlers implement `IHandler` and return `Result<T>`; endpoint modules implement `IEndpointModule`; both are auto-registered. Add entities as `DbSet`s on `AppDbContext` and run `scripts/add-migration.sh <Name>` to create migrations for both providers.
 
 ## Stack
 
