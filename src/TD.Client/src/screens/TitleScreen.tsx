@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logout, playAsGuest, useProfile } from '../api/account'
 import { useLoadedContent } from '../api/content'
+import { useSaves } from '../api/sessions'
+import { AUTOSAVE_SLOT } from '../game/GameController'
+import { useActiveSession } from '../state/game'
 import { useAuth } from '../state/auth'
 import { Button, GearBackdrop } from '../ui/components'
 import { Icon } from '../ui/Icon'
@@ -12,6 +15,9 @@ export function TitleScreen() {
   const session = useAuth((s) => s.session)
   const profile = useProfile()
   const content = useLoadedContent()
+  const saves = useSaves()
+  const setActive = useActiveSession((s) => s.set)
+  const autosave = saves.data?.find((s) => s.slot === AUTOSAVE_SLOT)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -45,6 +51,22 @@ export function TitleScreen() {
       </div>
 
       <nav className="title-menu">
+        {session && autosave && (
+          <>
+            <Button
+              size="lg"
+              variant="copper"
+              icon="forward"
+              onClick={() => {
+                setActive(null, autosave.slot)
+                navigate('/play/' + autosave.sessionId)
+              }}
+            >
+              Continue battle
+            </Button>
+            <span className="continue-card">{autosave.summary}</span>
+          </>
+        )}
         <Button size="lg" icon="play" disabled={busy} onClick={() => ensureSignedIn('/campaign')}>
           {session ? 'Campaign' : 'Play'}
         </Button>

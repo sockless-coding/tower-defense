@@ -8,6 +8,8 @@ import { AuthScreen } from '../screens/AuthScreen'
 import { BriefingScreen } from '../screens/BriefingScreen'
 import { CampaignScreen } from '../screens/CampaignScreen'
 import { CodexScreen } from '../screens/CodexScreen'
+import { GameScreen } from '../screens/game/GameScreen'
+import { Sandbox } from '../screens/game/Sandbox'
 import { SettingsScreen } from '../screens/SettingsScreen'
 import { TitleScreen } from '../screens/TitleScreen'
 import { useAuth } from '../state/auth'
@@ -55,6 +57,8 @@ export function App() {
         <Route path="/settings" element={<SettingsScreen />} />
         <Route path="/campaign" element={<RequireAccount><CampaignScreen /></RequireAccount>} />
         <Route path="/level/:id" element={<RequireAccount><BriefingScreen /></RequireAccount>} />
+        <Route path="/play/:sessionId" element={<RequireAccount><GameScreen /></RequireAccount>} />
+        {import.meta.env.DEV && <Route path="/dev/sandbox" element={<Sandbox />} />}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <UpdatePrompt />

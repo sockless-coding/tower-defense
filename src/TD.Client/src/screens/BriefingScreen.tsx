@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useProfile } from '../api/account'
 import { useLoadedContent } from '../api/content'
 import { api } from '../api/http'
+import { startSession, useProgression } from '../api/sessions'
+import { useActiveSession } from '../state/game'
 import type { LevelDefinition } from '../api/types'
-import { GearBackdrop, GearSpinner, Panel, ScreenHeader } from '../ui/components'
+import { Button, GearBackdrop, GearSpinner, Panel, ScreenHeader } from '../ui/components'
 import { Icon, categoryIcon } from '../ui/Icon'
 import { MapThumbnail } from '../ui/MapThumbnail'
-import { DifficultyPicker } from './DifficultyPicker'
+import { EnemyPortrait } from '../ui/Portraits'
+import { DifficultyPicker, useDifficultyChoice } from './DifficultyPicker'
 import './screens.css'
 
 export function useLevel(id: string | undefined) {
@@ -24,6 +28,12 @@ export function BriefingScreen() {
   const content = useLoadedContent()
   const profile = useProfile()
   const level = useLevel(id)
+  const progression = useProgression()
+  const navigate = useNavigate()
+  const choice = useDifficultyChoice()
+  const setActive = useActiveSession((s) => s.set)
+  const [deploying, setDeploying] = useState(false)
+  const [deployError, setDeployError] = useState<string | null>(null)
 
   if (!level.data) {
     return (
@@ -42,7 +52,29 @@ export function BriefingScreen() {
       composition.set(group.enemy, (composition.get(group.enemy) ?? 0) + group.count)
     }
   }
-  const back = l.mode === 'campaign' ? '/campaign' : '/'
+  const back = l.mode === 'campaign' ? '/campaign' : '/modes'
+  const p = progression.data
+  const unlocked =
+    !p ||
+    (l.mode === 'campaign'
+      ? l.number <= p.highestCampaignLevel + 1
+      : l.mode === 'challenge'
+        ? p.features.includes('feature.challenge') && p.completedMaps.includes(l.mapId)
+        : true)
+  const best = p?.levels[l.id]
+
+  const deploy = async () => {
+    setDeploying(true)
+    setDeployError(null)
+    try {
+      const session = await startSession({ mode: l.mode, levelId: l.id, presetId: choice.presetId, custom: choice.custom })
+      setActive(session)
+      navigate('/play/' + session.sessionId)
+    } catch (e) {
+      setDeployError((e as Error).message)
+      setDeploying(false)
+    }
+  }
 
   return (
     <div className="screen">
@@ -89,7 +121,7 @@ export function BriefingScreen() {
                     const enemy = content.enemies.get(enemyId)!
                     return (
                       <li key={enemyId} className={enemy.isBoss ? 'boss' : ''}>
-                        <Icon name={enemy.isBoss ? 'skull' : enemy.movement === 'air' ? 'wave' : 'shield'} size={14} />
+                        <EnemyPortrait enemy={enemy} size={28} />
                         <span>{enemy.name}</span>
                         <b>×{count}</b>
                       </li>
@@ -110,6 +142,21 @@ export function BriefingScreen() {
             <Panel title="Difficulty">
               <DifficultyPicker content={content} commanderLevel={profile.data?.commanderLevel ?? 1} />
             </Panel>
+
+            <div className="deploy">
+              {best && (
+                <span className="best">
+                  {[1, 2, 3].map((i) => (
+                    <Icon key={i} name="star" size={18} style={{ color: i <= best.stars ? '#ffd25a' : 'rgba(0,0,0,0.5)' }} />
+                  ))}
+                  <em>Best {best.bestScore.toLocaleString()}</em>
+                </span>
+              )}
+              <Button size="lg" icon={unlocked ? 'play' : 'lock'} disabled={!unlocked || deploying} onClick={() => void deploy()}>
+                {unlocked ? (deploying ? 'Deploying…' : 'Deploy') : 'Locked'}
+              </Button>
+              {deployError && <p className="error-text">{deployError}</p>}
+            </div>
 
           </div>
         </div>
