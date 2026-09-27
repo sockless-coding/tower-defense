@@ -6,7 +6,7 @@ import type { LevelDefinition, WaveDefinition } from '../../api/types'
 import { GameController } from '../../game/GameController'
 import { useHud } from '../../state/game'
 import { useSettings } from '../../state/settings'
-import { BossBar, BuildBar, InteractionButton, TopBar, Toasts, TowerPanel } from './Hud'
+import { GameHud } from './Hud'
 import './game.css'
 
 /**
@@ -23,6 +23,8 @@ export function Sandbox() {
   const mapId = params.get('map') ?? 'industrial-city'
   const tier = Number(params.get('tier') ?? '4')
   const towerFilter = params.get('towers')
+  // ?wait holds the first wave so the incoming-wave preview can be reviewed.
+  const wait = params.has('wait')
 
   useEffect(() => {
     if (!host.current) return
@@ -45,28 +47,19 @@ export function Sandbox() {
         const path = i % 2 === 0 ? ['2a', '3a', 'u'] : ['2b', '3b', 'u']
         for (const key of path.slice(0, Math.max(0, tier - 1))) sim.perform({ type: 'upgrade', id: built.id, upgrade: `${id}.${key}` })
       })
-      sim.perform({ type: 'callWave' })
+      if (!wait) sim.perform({ type: 'callWave' })
       setGame(controller)
     })()
     return () => {
       cancelled = true
       controller?.destroy()
     }
-  }, [mapId, tier, towerFilter]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [mapId, tier, towerFilter, wait]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="game-screen">
       <div className="game-host" ref={host} />
-      {game && ready && (
-        <>
-          <TopBar game={game} onMenu={() => game.togglePause()} />
-          <BossBar />
-          <Toasts />
-          <BuildBar game={game} content={content} />
-          <TowerPanel game={game} content={content} />
-          <InteractionButton game={game} />
-        </>
-      )}
+      {game && ready && <GameHud game={game} content={content} onMenu={() => game.togglePause()} />}
     </div>
   )
 }

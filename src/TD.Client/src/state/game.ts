@@ -39,6 +39,25 @@ export interface Toast {
   tone: 'info' | 'warn' | 'boss' | 'good'
 }
 
+/** One enemy type in the upcoming wave, merged across groups. */
+export interface WaveIntelEntry {
+  enemyId: string
+  name: string
+  count: number
+  elite: boolean
+  air: boolean
+  boss: boolean
+  /** Entrance letters this enemy comes through; empty when the level has a single entrance. */
+  gates: string[]
+}
+
+export interface WaveIntel {
+  number: number
+  boss: boolean
+  total: number
+  entries: WaveIntelEntry[]
+}
+
 /** HUD snapshot published by the GameController a few times per second. React never reads the sim directly. */
 export interface HudState {
   ready: boolean
@@ -61,6 +80,7 @@ export interface HudState {
   selected: SelectedTowerInfo | null
   interaction: { name: string; description: string; ready: boolean; cooldownLeft: number; cooldown: number; targeting: boolean; disabled: boolean }
   boss: { name: string; hp: number; maxHp: number } | null
+  nextWave: WaveIntel | null
   toasts: Toast[]
   submitting: boolean
   result: CompletionResult | null
@@ -89,6 +109,7 @@ export const initialHud: HudState = {
   selected: null,
   interaction: { name: '', description: '', ready: false, cooldownLeft: 0, cooldown: 1, targeting: false, disabled: false },
   boss: null,
+  nextWave: null,
   toasts: [],
   submitting: false,
   result: null,

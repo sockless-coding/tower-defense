@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type Ref } from 'react'
 import type { Content } from '../../api/content'
 import type { TowerCategory } from '../../api/types'
 import type { GameController } from '../../game/GameController'
@@ -8,7 +8,7 @@ import { useHud } from '../../state/game'
 import { Button, Gauge } from '../../ui/components'
 import { categoryIcon } from '../../ui/categoryIcon'
 import { Icon } from '../../ui/Icon'
-import { TowerPortrait } from '../../ui/Portraits'
+import { EnemyPortrait, TowerPortrait } from '../../ui/Portraits'
 
 const CATEGORIES: TowerCategory[] = ['ballistic', 'electrical', 'flame', 'chemical', 'support', 'mechanical', 'experimental']
 const TARGET_MODES: { id: TargetMode; label: string }[] = [
@@ -19,40 +19,79 @@ const TARGET_MODES: { id: TargetMode; label: string }[] = [
   { id: 'close', label: 'Close' },
 ]
 
-export function TopBar({ game, onMenu }: { game: GameController; onMenu: () => void }) {
+/**
+ * The whole in-battle HUD. The top strip and bottom dock are solid bands; their measured heights are handed to the
+ * renderer so the map is framed between them, and exposed as CSS variables for the floating overlays.
+ */
+export function GameHud({ game, content, onMenu }: { game: GameController; content: Content; onMenu: () => void }) {
+  const buildSelection = useHud((s) => s.buildSelection)
+  const topRef = useRef<HTMLElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    const top = topRef.current
+    const bottom = bottomRef.current
+    const screen = top?.closest<HTMLElement>('.game-screen')
+    if (!top || !bottom || !screen) return
+    const sync = () => {
+      const frame = screen.getBoundingClientRect()
+      const topH = Math.round(top.getBoundingClientRect().bottom - frame.top)
+      const bottomH = Math.round(frame.bottom - bottom.getBoundingClientRect().top)
+      screen.style.setProperty('--hud-top-h', `${topH}px`)
+      screen.style.setProperty('--hud-bottom-h', `${bottomH}px`)
+      game.renderer.setHudInsets(topH, bottomH)
+    }
+    const observer = new ResizeObserver(sync)
+    observer.observe(top)
+    observer.observe(bottom)
+    observer.observe(screen)
+    sync()
+    return () => observer.disconnect()
+  }, [game])
+
+  return (
+    <>
+      <TopBar game={game} content={content} onMenu={onMenu} ref={topRef} />
+      <BossBar />
+      <Toasts />
+      <TowerPanel game={game} content={content} />
+      {buildSelection && (
+        <div className="build-hint">
+          Tap a tile to build · <button type="button" onClick={() => game.selectBuild(null)}>Cancel</button>
+        </div>
+      )}
+      <div className="hud-bottom" ref={bottomRef}>
+        <BuildBar game={game} content={content} />
+        <InteractionButton game={game} />
+      </div>
+    </>
+  )
+}
+
+function TopBar({ game, content, onMenu, ref }: { game: GameController; content: Content; onMenu: () => void; ref: Ref<HTMLElement> }) {
   const hud = useHud()
   return (
-    <div className="hud-top">
+    <header className="hud-top" ref={ref}>
       <div className="hud-cluster">
         <div className="hud-stat gold" title="Gold">
-          <Icon name="coin" size={20} />
+          <Icon name="coin" size={18} />
           <b>{Math.floor(hud.gold).toLocaleString()}</b>
         </div>
         <div className="hud-cores" title={`${hud.vaultCores} in the vault, ${hud.cores} of ${hud.coresTotal} not yet lost`}>
-          <Gauge value={hud.cores} max={hud.coresTotal} size={64} color={hud.cores / Math.max(1, hud.coresTotal) < 0.3 ? '#e0503a' : '#7fd4ff'} />
+          <Gauge value={hud.cores} max={hud.coresTotal} size={44} color={hud.cores / Math.max(1, hud.coresTotal) < 0.3 ? '#e0503a' : '#7fd4ff'} />
           <span>
-            <Icon name="core" size={14} /> {hud.cores}/{hud.coresTotal}
+            <Icon name="core" size={12} /> {hud.cores}/{hud.coresTotal}
           </span>
         </div>
         <div className="hud-stat" title="Wave">
-          <Icon name="wave" size={18} />
+          <Icon name="wave" size={16} />
           <b>
             {hud.wave}/{hud.waveCount}
           </b>
         </div>
       </div>
 
-      <div className="hud-cluster center">
-        {hud.canCallWave && (
-          <Button size="sm" variant={hud.waitingForFirstWave ? 'brass' : 'copper'} icon="flag" onClick={() => game.callWave()} className={hud.waitingForFirstWave ? 'pulse' : ''}>
-            {hud.waitingForFirstWave
-              ? 'Begin assault'
-              : hud.nextWaveIn !== null
-                ? `Next wave ${Math.ceil(hud.nextWaveIn)}s${hud.earlyBonus > 0 ? ` · +${hud.earlyBonus}` : ''}`
-                : 'Call next wave'}
-          </Button>
-        )}
-      </div>
+      <WaveConsole game={game} content={content} />
 
       <div className="hud-cluster right">
         {[1, 2, 3].filter((s) => s <= hud.maxSpeed).map((s) => (
@@ -62,6 +101,91 @@ export function TopBar({ game, onMenu }: { game: GameController; onMenu: () => v
         ))}
         <Button size="sm" variant="iron" icon={hud.paused ? 'play' : 'pause'} onClick={onMenu} aria-label="Pause" />
       </div>
+    </header>
+  )
+}
+
+const MAX_CHIPS = 6
+
+/** The next wave at a glance (enemy chips with counts and entrances) next to the call-wave control. */
+function WaveConsole({ game, content }: { game: GameController; content: Content }) {
+  const intel = useHud((s) => s.nextWave)
+  const canCall = useHud((s) => s.canCallWave)
+  const waiting = useHud((s) => s.waitingForFirstWave)
+  const nextWaveIn = useHud((s) => s.nextWaveIn)
+  const earlyBonus = useHud((s) => s.earlyBonus)
+  // Details are open for a specific wave, so they close by themselves once that wave is released.
+  const [openFor, setOpenFor] = useState<number | null>(null)
+  const open = intel !== null && openFor === intel.number
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    const close = (e: PointerEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpenFor(null)
+    }
+    document.addEventListener('pointerdown', close)
+    return () => document.removeEventListener('pointerdown', close)
+  }, [open])
+
+  if (!intel || !canCall) return <div className="wave-console empty" />
+  const shown = intel.entries.slice(0, MAX_CHIPS)
+  const extra = intel.entries.length - shown.length
+  return (
+    <div className={`wave-console ${intel.boss ? 'boss' : ''}`} ref={rootRef}>
+      <button type="button" className="wc-intel" onClick={() => setOpenFor(open ? null : intel.number)} aria-expanded={open} title="Show what the next wave holds">
+        <span className="wc-label">
+          <Icon name={intel.boss ? 'skull' : 'wave'} size={12} />
+          {intel.number}
+        </span>
+        <span className="wc-chips">
+          {shown.map((e) => {
+            const def = content.enemies.get(e.enemyId)
+            return (
+              <span key={`${e.enemyId}:${e.elite}`} className={`wc-chip ${e.boss ? 'boss' : e.elite ? 'elite' : ''}`}>
+                {def && <EnemyPortrait enemy={def} size={26} />}
+                <b>{e.count}</b>
+                {e.air && <i className="wc-air" aria-label="flying" />}
+                {e.gates.length > 0 && <span className="wc-gate">{e.gates.join('')}</span>}
+              </span>
+            )
+          })}
+          {extra > 0 && <span className="wc-more">+{extra}</span>}
+        </span>
+      </button>
+      <Button size="sm" variant={waiting ? 'brass' : 'copper'} icon="flag" onClick={() => game.callWave()} className={`wc-call ${waiting ? 'pulse' : ''}`}>
+        {waiting ? 'Begin' : nextWaveIn !== null ? `${Math.ceil(nextWaveIn)}s${earlyBonus > 0 ? ` +${earlyBonus}` : ''}` : 'Call'}
+      </Button>
+      {open && (
+        <div className="wc-details">
+          <header>
+            Wave {intel.number} · {intel.total} enemies
+          </header>
+          <ul>
+            {intel.entries.map((e) => {
+              const def = content.enemies.get(e.enemyId)
+              return (
+                <li key={`${e.enemyId}:${e.elite}`} className={e.boss ? 'boss' : e.elite ? 'elite' : ''} title={def?.description}>
+                  {def && <EnemyPortrait enemy={def} size={24} />}
+                  <span className="wc-name">
+                    {e.name}
+                    {e.elite && <Icon name="star" size={11} />}
+                    {e.air && <span className="wc-tag">air</span>}
+                  </span>
+                  {e.gates.length > 0 && (
+                    <span className="wc-gates">
+                      {e.gates.map((g) => (
+                        <span key={g}>{g}</span>
+                      ))}
+                    </span>
+                  )}
+                  <b>×{e.count}</b>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

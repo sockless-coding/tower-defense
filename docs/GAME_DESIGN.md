@@ -277,7 +277,9 @@ JWT authentication, refresh tokens, validation, rate limiting, anti-cheat protec
 | Session anti-cheat | `RunValidator` replays the log's economy exactly (costs, refunds, placement incl. route sealing, upgrade order, rules, interaction cooldowns) and bounds income, kills, bosses, cores and timing. `tests/fixtures/client-run.json` keeps client and server rules in lockstep. |
 | Audio | Fully procedural (Web Audio synthesis, generative score, ambience). `AUDIO_MANIFEST` in `src/TD.Client/src/game/audio/engine.ts` swaps any recipe or stem for a recorded asset. |
 | Art | Canvas2D-baked procedural textures (terrain, 31 tower models, 23 enemy designs) rendered by PixiJS with a multiplied light map, GPU particles, bloom, weather and fog; quality tiers auto-downgrade on slow devices. |
-| Dev tooling | `/dev/sandbox?map=<id>&tier=<1-4>` (development builds only) renders any map with every tower for visual review. |
+| Wave intel | Between waves the battlefield marks the entrances the next wave will use (lettered when a level has several) and animates the current route to the vault: chevrons along the flow field for ground units, a straight line for flyers. It updates live as towers reroute the maze. The top HUD strip shows the next wave as enemy chips (count, entrance letter, elite/air/boss marks) beside the call-wave button; tapping them opens a detailed list. All of it is read-only presentation derived from the level data. |
+| In-battle HUD | Two docked bands: a top command strip (gold, cores, wave · wave console · speed and pause) and a bottom dock (build bar and map interaction). The camera frames the map between their measured heights, so the HUD never covers the playfield at rest; only contextual panels (tower details, wave details, toasts) float over it. |
+| Dev tooling | `/dev/sandbox?map=<id>&tier=<1-4>` (development builds only) renders any map with every tower for visual review; add `&wait` to hold the first wave. |
 
 ### Repository layout
 

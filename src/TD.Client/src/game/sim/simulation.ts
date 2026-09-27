@@ -1,4 +1,4 @@
-import type { DamageType, EnemyAbility, EnemyDefinition, TowerDefinition } from '../../api/types'
+import type { DamageType, EnemyAbility, EnemyDefinition, TowerDefinition, WaveGroup } from '../../api/types'
 import { Grid } from './grid'
 import { dist } from './math'
 import { MechanicsSystem } from './mechanics'
@@ -395,7 +395,7 @@ export class Simulation {
       const group = this.config.level.waves[s.wave].groups[s.group]
       while (s.spawned < group.count && now >= s.nextAt) {
         const def = this.config.enemies.get(group.enemy)!
-        const spawnCell = this.grid.spawns[this.config.level.activeSpawns[group.spawn] ?? 0]
+        const spawnCell = this.spawnCellOf(group)
         this.spawnEnemy(def, this.grid.center(spawnCell), s.wave, group.hpMul, group.elite, false, spawnCell)
         s.spawned++
         s.nextAt += group.interval
@@ -943,6 +943,27 @@ export class Simulation {
   /** Seconds until the next wave auto-starts, or null when waiting on the player / all waves released. */
   get nextWaveIn(): number | null {
     return this.nextWaveAt === null ? null : Math.max(0, this.nextWaveAt - this.time)
+  }
+
+  /** The grid cell a wave group enters from. */
+  spawnCellOf(group: WaveGroup): number {
+    return this.grid.spawns[this.config.level.activeSpawns[group.spawn] ?? 0]
+  }
+
+  /** Index of the next wave to be released, or -1 when every wave is out. */
+  get upcomingWave(): number {
+    const next = this.waveIndex + 1
+    return next < this.waveCount ? next : -1
+  }
+
+  /** Spawn cells still releasing enemies from waves already under way. */
+  get releasingSpawnCells(): number[] {
+    const cells: number[] = []
+    for (const s of this.waveSpawns) {
+      const cell = this.spawnCellOf(this.config.level.waves[s.wave].groups[s.group])
+      if (!cells.includes(cell)) cells.push(cell)
+    }
+    return cells
   }
 
   get earlyCallBonus(): number {

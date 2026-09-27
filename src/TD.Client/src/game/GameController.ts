@@ -1,8 +1,9 @@
 import type { Content } from '../api/content'
 import { completeSession, putSave, type SessionStart } from '../api/sessions'
 import { ApiError } from '../api/http'
-import { initialHud, useHud, type HudState, type SelectedTowerInfo, type Toast, type UpgradeOption } from '../state/game'
+import { initialHud, useHud, type HudState, type SelectedTowerInfo, type Toast, type UpgradeOption, type WaveIntel, type WaveIntelEntry } from '../state/game'
 import type { Settings } from '../state/settings'
+import { gateLetter } from '../lib/labels'
 import { GameAudio } from './audio/gameAudio'
 import { GameRenderer } from './render/GameRenderer'
 import { FrameGovernor, lowerTier, resolveQuality, type QualityProfile } from './render/quality'
@@ -75,6 +76,7 @@ export class GameController {
   private readonly maxSpeed: number
   private readonly cleanup: (() => void)[] = []
   private readonly audio: GameAudio
+  private intel: { wave: number; value: WaveIntel | null } = { wave: -2, value: null }
 
   private constructor(options: GameControllerOptions, sim: Simulation, renderer: GameRenderer, quality: QualityProfile) {
     this.options = options
@@ -233,9 +235,37 @@ export class GameController {
         disabled: sim.hasRule('noInteraction'),
       },
       boss: boss ? { name: boss.def.name, hp: boss.hp, maxHp: boss.maxHp } : null,
+      nextWave: this.waveIntel(),
       toasts: this.toasts,
     }
     useHud.setState(state)
+  }
+
+  /** Composition of the next wave, cached per wave so the HUD only re-renders when it changes. */
+  private waveIntel(): WaveIntel | null {
+    const sim = this.sim
+    const index = sim.upcomingWave
+    if (this.intel.wave === index) return this.intel.value
+    let value: WaveIntel | null = null
+    if (index >= 0) {
+      const multiGate = new Set(sim.config.level.activeSpawns).size > 1
+      const entries = new Map<string, WaveIntelEntry>()
+      for (const g of sim.config.level.waves[index].groups) {
+        const def = sim.config.enemies.get(g.enemy)
+        if (!def) continue
+        const key = `${g.enemy}:${g.elite}`
+        const gate = gateLetter(sim.grid.spawns.indexOf(sim.spawnCellOf(g)))
+        const entry = entries.get(key) ?? { enemyId: g.enemy, name: def.name, count: 0, elite: g.elite, air: def.movement === 'air', boss: def.isBoss, gates: [] }
+        entry.count += g.count
+        if (multiGate && !entry.gates.includes(gate)) entry.gates.push(gate)
+        entries.set(key, entry)
+      }
+      const list = [...entries.values()].sort((a, b) => Number(b.boss) - Number(a.boss) || b.count - a.count)
+      for (const e of list) e.gates.sort()
+      value = { number: index + 1, boss: list.some((e) => e.boss), total: list.reduce((n, e) => n + e.count, 0), entries: list }
+    }
+    this.intel = { wave: index, value }
+    return value
   }
 
   private selectedInfo(): SelectedTowerInfo | null {

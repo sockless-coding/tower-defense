@@ -6,7 +6,7 @@ import { AUTOSAVE_SLOT, GameController } from '../../game/GameController'
 import { useActiveSession, useHud } from '../../state/game'
 import { useSettings } from '../../state/settings'
 import { Button, GearSpinner, Modal } from '../../ui/components'
-import { BossBar, BuildBar, InteractionButton, TopBar, Toasts, TowerPanel } from './Hud'
+import { GameHud } from './Hud'
 import { ResultsOverlay } from './Results'
 import './game.css'
 
@@ -92,17 +92,7 @@ export function GameScreen() {
       )}
       {game && hud.ready && (
         <>
-          <TopBar game={game} onMenu={openMenu} />
-          <BossBar />
-          <Toasts />
-          <BuildBar game={game} content={content} />
-          <TowerPanel game={game} content={content} />
-          <InteractionButton game={game} />
-          {hud.buildSelection && (
-            <div className="build-hint">
-              Tap a tile to build · <button type="button" onClick={() => game.selectBuild(null)}>Cancel</button>
-            </div>
-          )}
+          <GameHud game={game} content={content} onMenu={openMenu} />
           <ResultsOverlay nextLevelId={nextLevelId} onRetry={retry} onRetrySubmit={() => game.retrySubmit()} />
         </>
       )}

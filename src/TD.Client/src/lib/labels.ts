@@ -127,3 +127,8 @@ export function formatRule(rule: string): string {
       return rule
   }
 }
+
+/** Letter shown for a map entrance, by its index in the map's spawn list. */
+export function gateLetter(spawnIndex: number): string {
+  return String.fromCharCode(65 + spawnIndex)
+}

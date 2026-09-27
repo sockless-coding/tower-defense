@@ -1,8 +1,10 @@
 import 'pixi.js/unsafe-eval'
 import { AdvancedBloomFilter } from 'pixi-filters'
-import { Application, Container, Graphics, Sprite, Texture, TilingSprite } from 'pixi.js'
+import { Application, Container, Graphics, Sprite, Text, TextStyle, Texture, TilingSprite } from 'pixi.js'
 import type { TowerDefinition } from '../../api/types'
 import type { Simulation } from '../sim/simulation'
+import { gateLetter } from '../../lib/labels'
+import type { FlowField } from '../sim/grid'
 import type { SimEvent, Vec } from '../sim/types'
 import { DAMAGE_COLORS, Effects } from './effects'
 import { TextureForge } from './forge'
@@ -20,6 +22,9 @@ export interface GhostState {
   valid: boolean
   range: number
 }
+
+const INCOMING_GROUND = 0xff6a3a
+const INCOMING_AIR = 0xffc060
 
 const PROJECTILE_TINT: Record<string, number> = {
   bullet: 0xffd080,
@@ -64,6 +69,11 @@ export class GameRenderer {
   private readonly vaultCores: Sprite[] = []
   private readonly gateGfx = new Graphics()
   private readonly uiGfx = new Graphics()
+  private readonly routeGfx = new Graphics()
+  private readonly incomingGfx = new Graphics()
+  private readonly gateLabels = new Map<number, Text>()
+  private routeCache: { field: FlowField | null; paths: Map<number, Vec[]> } = { field: null, paths: new Map() }
+  private routeAlpha = 0
   private conveyor: TilingSprite[] = []
   private specialCells: number[] = []
   private specialKind = ''
@@ -112,8 +122,9 @@ export class GameRenderer {
       this.layers.overlays.addChild(s)
     }
 
-    this.layers.overlays.addChild(this.gateGfx)
-    this.layers.ui.addChild(this.uiGfx)
+    this.layers.overlays.addChild(this.gateGfx, this.routeGfx)
+    this.layers.ui.addChild(this.incomingGfx, this.uiGfx)
+    this.buildGateLabels()
     this.world.addChild(
       this.layers.terrain,
       this.layers.overlays,
@@ -175,16 +186,28 @@ export class GameRenderer {
 
   // ------------------------------------------------------------------------------------------------ Camera
 
-  /** Screen space reserved for the HUD (top bar, build bar) so the map starts fully visible. */
-  private readonly hudInset = { top: 50, bottom: 40 }
+  /** Screen space covered by the docked HUD bands; the map is framed between them. */
+  private hudInset = { top: 0, bottom: 0 }
+
+  /** Called by the HUD whenever its docked bands change height. */
+  setHudInsets(top: number, bottom: number): void {
+    if (top === this.hudInset.top && bottom === this.hudInset.bottom) return
+    this.hudInset = { top, bottom }
+    this.fit()
+  }
+
+  /** Height of the playfield between the HUD bands. */
+  private get viewHeight(): number {
+    const sh = this.app.screen.height
+    return Math.max(sh * 0.4, sh - this.hudInset.top - this.hudInset.bottom)
+  }
 
   fit(): void {
     const sw = this.app.screen.width
-    const sh = this.app.screen.height
     const w = this.sim.grid.width * TILE
     const h = this.sim.grid.height * TILE
-    const usable = Math.max(sh * 0.6, sh - this.hudInset.top - this.hudInset.bottom)
-    this.baseScale = Math.min(sw / w, usable / h)
+    this.baseScale = Math.min(sw / w, this.viewHeight / h)
+    this.pan.x = 0
     this.pan.y = (this.hudInset.top - this.hudInset.bottom) / 2
     this.clampPan()
   }
@@ -215,11 +238,12 @@ export class GameRenderer {
     const w = this.sim.grid.width * TILE * scale
     const h = this.sim.grid.height * TILE * scale
     const sw = this.app.screen.width
-    const sh = this.app.screen.height
-    const mx = Math.max(0, (w - sw) / 2 + 40)
-    const my = Math.max(Math.abs(this.hudInset.top - this.hudInset.bottom) / 2, (h - sh) / 2 + 60)
+    // Pan around the centre of the playfield band, just far enough to bring every edge into view.
+    const cy = (this.hudInset.top - this.hudInset.bottom) / 2
+    const mx = Math.max(0, (w - sw) / 2 + 24)
+    const my = Math.max(0, (h - this.viewHeight) / 2 + 24)
     this.pan.x = Math.max(-mx, Math.min(mx, this.pan.x))
-    this.pan.y = Math.max(-my, Math.min(my, this.pan.y))
+    this.pan.y = Math.max(cy - my, Math.min(cy + my, this.pan.y))
   }
 
   private applyCamera(): void {
@@ -378,6 +402,7 @@ export class GameRenderer {
     this.syncVault()
     this.drawGates()
     this.animateSpecials(dt)
+    this.drawIncoming(dt)
     this.drawUi()
 
     this.effects.update(dt)
@@ -613,6 +638,157 @@ export class GameRenderer {
       const ring = i % 2 === 0 ? 0.42 : 0.28
       s.position.set((c.x + Math.cos(a) * ring) * TILE, (c.y + Math.sin(a) * ring) * TILE)
     })
+  }
+
+  private buildGateLabels(): void {
+    const grid = this.sim.grid
+    const gates = new Set(this.sim.config.level.activeSpawns)
+    if (gates.size < 2) return
+    const style = new TextStyle({
+      fontFamily: 'Cinzel, Georgia, serif',
+      fontSize: 22,
+      fontWeight: '700',
+      fill: 0xffe0b0,
+      stroke: { color: 0x1a0a04, width: 4 },
+      dropShadow: { color: 0xff4a1a, blur: 8, distance: 0, alpha: 0.8 },
+    })
+    for (const index of gates) {
+      const cell = grid.spawns[index]
+      if (cell === undefined) continue
+      const label = new Text({ text: gateLetter(index), style, resolution: 2 })
+      label.anchor.set(0.5)
+      const p = grid.center(cell)
+      label.position.set(p.x * TILE, (p.y - 0.95) * TILE)
+      label.alpha = 0
+      this.gateLabels.set(cell, label)
+      this.layers.ui.addChild(label)
+    }
+  }
+
+  /** The route a ground enemy would take from a spawn to the vault right now, as tile-centre points. */
+  private routeFrom(cell: number): Vec[] {
+    const grid = this.sim.grid
+    if (this.routeCache.field !== grid.toCore) this.routeCache = { field: grid.toCore, paths: new Map() }
+    let path = this.routeCache.paths.get(cell)
+    if (!path) {
+      path = [grid.center(cell)]
+      let i = cell
+      for (let guard = grid.width * grid.height; guard > 0 && i !== grid.core; guard--) {
+        i = grid.step(grid.toCore, i)
+        if (i < 0) break
+        path.push(grid.center(i))
+      }
+      this.routeCache.paths.set(cell, path)
+    }
+    return path
+  }
+
+  /** Chevrons marching along a polyline (tile units) toward its end, fading in and out at either end. */
+  private drawChevrons(g: Graphics, path: Vec[], color: number, alpha: number, phase: number): void {
+    const lengths = [0]
+    for (let k = 1; k < path.length; k++) lengths.push(lengths[k - 1] + Math.hypot(path[k].x - path[k - 1].x, path[k].y - path[k - 1].y))
+    const total = lengths[lengths.length - 1]
+    if (total <= 0) return
+    const spacing = 0.85
+    const size = 0.16 * TILE
+    let k = 1
+    for (let d = 0.5 + (phase % spacing); d < total - 0.3; d += spacing) {
+      while (lengths[k] < d) k++
+      const a = path[k - 1]
+      const b = path[k]
+      const seg = lengths[k] - lengths[k - 1]
+      const ux = (b.x - a.x) / seg
+      const uy = (b.y - a.y) / seg
+      const t = d - lengths[k - 1]
+      const x = (a.x + ux * t) * TILE
+      const y = (a.y + uy * t) * TILE
+      const fade = Math.min(1, (d - 0.5) / 1.2, (total - d) / 1.5)
+      const bx = x - ux * size
+      const by = y - uy * size
+      g.moveTo(bx - uy * size, by + ux * size)
+        .lineTo(x, y)
+        .lineTo(bx + uy * size, by - ux * size)
+        .stroke({ width: 3, color, alpha: alpha * fade, cap: 'round', join: 'round' })
+    }
+  }
+
+  /**
+   * While the player prepares, marks the entrances the next wave will use and the route it will take to the vault;
+   * entrances stay lit while they are still releasing enemies.
+   */
+  private drawIncoming(dt: number): void {
+    const sim = this.sim
+    const grid = sim.grid
+    const route = this.routeGfx
+    const marks = this.incomingGfx
+    route.clear()
+    marks.clear()
+
+    const upcoming = sim.upcomingWave
+    const preparing = upcoming >= 0 && (sim.waveIndex < 0 || sim.nextWaveAt !== null) && sim.outcome === 'playing'
+    this.routeAlpha = preparing ? Math.min(1, this.routeAlpha + dt * 2.5) : Math.max(0, this.routeAlpha - dt * 2)
+
+    const ground: number[] = []
+    const air: number[] = []
+    if (upcoming >= 0) {
+      for (const group of sim.config.level.waves[upcoming].groups) {
+        const list = sim.config.enemies.get(group.enemy)?.movement === 'air' ? air : ground
+        const cell = sim.spawnCellOf(group)
+        if (!list.includes(cell)) list.push(cell)
+      }
+    }
+
+    // Markers pulse faster as the countdown runs out.
+    const left = sim.nextWaveIn
+    const urgency = left === null ? 0 : 1 - Math.min(1, left / Math.max(1, sim.config.rules.waveGap))
+    const pulse = 0.5 + 0.5 * Math.sin(this.time * (3 + urgency * 6))
+
+    if (this.routeAlpha > 0) {
+      for (const cell of ground) {
+        const path = this.routeFrom(cell)
+        route
+          .poly(path.flatMap((p) => [p.x * TILE, p.y * TILE]), false)
+          .stroke({ width: TILE * 0.34, color: INCOMING_GROUND, alpha: 0.1 * this.routeAlpha, cap: 'round', join: 'round' })
+        this.drawChevrons(route, path, INCOMING_GROUND, 0.75 * this.routeAlpha, this.time * 1.4)
+      }
+      // Flyers ignore the maze and head straight for the vault.
+      const core = grid.center(grid.core)
+      for (const cell of air) {
+        const from = grid.center(cell)
+        route
+          .moveTo(from.x * TILE, from.y * TILE)
+          .lineTo(core.x * TILE, core.y * TILE)
+          .stroke({ width: 2, color: INCOMING_AIR, alpha: 0.18 * this.routeAlpha })
+        this.drawChevrons(route, [from, core], INCOMING_AIR, 0.6 * this.routeAlpha, this.time * 1.4)
+      }
+    }
+
+    const releasing = sim.releasingSpawnCells
+    const active = new Set<number>(releasing)
+    if (this.routeAlpha > 0) for (const c of [...ground, ...air]) active.add(c)
+    for (const [cell, label] of this.gateLabels) {
+      const on = active.has(cell)
+      label.alpha += ((on ? 1 : 0.35) - label.alpha) * Math.min(1, dt * 6)
+      label.scale.set(on ? 1 + pulse * 0.08 : 1)
+    }
+    for (const cell of active) {
+      const spawning = releasing.includes(cell)
+      const strength = spawning ? 1 : this.routeAlpha
+      const p = grid.center(cell)
+      const x = p.x * TILE
+      const y = p.y * TILE
+      const color = air.includes(cell) && !ground.includes(cell) ? INCOMING_AIR : INCOMING_GROUND
+      marks.circle(x, y, TILE * (0.55 + pulse * 0.12)).stroke({ width: 3, color, alpha: (0.35 + pulse * 0.45) * strength })
+      // A slowly turning toothed ring around the hatch.
+      const teeth = 12
+      const spin = this.time * (spawning ? 1.6 : 0.6)
+      for (let k = 0; k < teeth; k++) {
+        const a = spin + (k / teeth) * Math.PI * 2
+        marks.moveTo(x + Math.cos(a) * TILE * 0.7, y + Math.sin(a) * TILE * 0.7).lineTo(x + Math.cos(a) * TILE * 0.8, y + Math.sin(a) * TILE * 0.8)
+      }
+      marks.stroke({ width: 3, color: 0xffd090, alpha: 0.55 * strength, cap: 'round' })
+      this.lighting.light(x, y, TILE * (2.2 + pulse * 0.8), color, (0.6 + pulse * 0.5) * strength)
+    }
   }
 
   private drawUi(): void {
